@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.web.db.mapper.CommonSysRoleMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="commonSysRoleMap" type="com.anguo.web.db.domain.CommonSysRole" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="name" column="name" />
+		 		<result property="eName" column="e_name" />
+		 		<result property="memo" column="memo" />
+		 		<result property="status" column="status" />
+		 		<result property="checked" column="checked" />
+		 		
+		 	</resultMap>
+
+
+<!-- 查询 -->
+<select id="getPageData" resultMap="commonSysRoleMap"
+               parameterType="com.anguo.web.db.domain.CommonSysRole">
+     select * from wenanguo.common_sys_role 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="name != null and name != ''">
+           and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+        </if>
+             <if test="eName != null and eName != ''">
+           and (e_name like concat(#{eName},'%') or e_name like concat(#{eName},'%'))
+        </if>
+             <if test="memo != null and memo != ''">
+           and (memo like concat(#{memo},'%') or memo like concat(#{memo},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+        and id>1
+          </trim>
+     order by id desc
+</select>
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="commonSysRoleMap"
+               parameterType="com.anguo.web.db.domain.CommonSysRole">
+     select * from wenanguo.common_sys_role 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="name != null and name != ''">
+           and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+        </if>
+             <if test="eName != null and eName != ''">
+           and (e_name like concat(#{eName},'%') or e_name like concat(#{eName},'%'))
+        </if>
+             <if test="memo != null and memo != ''">
+           and (memo like concat(#{memo},'%') or memo like concat(#{memo},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+         and id>1
+          </trim>
+     order by id desc
+</select>
+
+
+	<!-- 根据用户查询用户角色 -->
+	<select id="getRoleByUser" resultMap="commonSysRoleMap"
+		parameterType="com.anguo.web.db.domain.CommonSysUser">
+		
+		
+		select a.* from common_sys_role a ,common_user_role b 
+		where a.id =b.common_sys_role_id and b.common_sys_user_id=#{id} 
+		order by a.id desc 
+		
+	</select>
+	
+	
+	<!-- 根据用户查询用户角色树 -->
+	<select id="getRoleTreeByUser" resultMap="commonSysRoleMap"
+		parameterType="com.anguo.web.db.domain.CommonSysUser">
+		
+		
+		select a.*,case 
+        when b.id is not null then 'true'
+        else 'false' 
+		END checked from common_sys_role a left join common_user_role b 
+		on a.id =b.common_sys_role_id and b.common_sys_user_id=#{id} 
+		where a.id>1
+		order by a.id desc 
+		
+	</select>
+	
+	
+	<!-- 根据权限获取用户角色 -->
+	<select id="getRoleByAuthority" resultMap="commonSysRoleMap"
+		parameterType="com.anguo.web.db.domain.CommonSysAuthority">
+		
+		select a.* from common_sys_role a,common_role_authority b where a.id=b.common_sys_role_id and b.common_sys_authority_id=#{id} 
+		order by a.id desc 
+		
+	</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="commonSysRoleMap" parameterType="com.anguo.web.db.domain.CommonSysRole">
+    select * from  wenanguo.common_sys_role
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.web.db.domain.CommonSysRole" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.common_sys_role
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="name != null">
+				name,
+	  	</if>
+	  			 		 		<if test="eName != null">
+				e_name,
+	  	</if>
+	  			 		 		<if test="memo != null">
+				memo,
+	  	</if>
+	  			 		 		<if test="status != null">
+				status,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="name != null">
+#{name},
+</if>
+				<if test="eName != null">
+#{eName},
+</if>
+				<if test="memo != null">
+#{memo},
+</if>
+				<if test="status != null">
+#{status},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.web.db.domain.CommonSysRole">
+	update  wenanguo.common_sys_role 
+	<set>
+										<if test="name != null and name != ''">
+			name=#{name},
+		</if>
+								<if test="eName != null and eName != ''">
+			e_name=#{eName},
+		</if>
+								<if test="memo != null and memo != ''">
+			memo=#{memo},
+		</if>
+								<if test="status != null and status != ''">
+			status=#{status},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonSysRole">
+	delete from  wenanguo.common_sys_role 
+	where id=#{id}
+</delete>
+
+
+
+</mapper>

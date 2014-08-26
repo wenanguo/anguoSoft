@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+    
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                            http://www.springframework.org/schema/aop
+                            http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+                            http://www.springframework.org/schema/tx
+                            http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                            http://www.springframework.org/schema/mvc
+            	            http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	
+    
+    <bean id="myUserInfoInteceptor" class="com.anguo.security.inteceptor.interceptorT"></bean>
+     
+       <!-- 注解请求映射  -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">        
+		<property name="interceptors">
+		    <list> 
+		         
+		    	<!-- <ref bean="logNDCInteceptor"/>   日志拦截器，这是你自定义的拦截器 -->
+		    	<!-- <ref bean="myRequestHelperInteceptor"/>   RequestHelper拦截器，这是你自定义的拦截器--> 
+		    	<!-- <ref bean="myPermissionsInteceptor"/>   权限拦截器，这是你自定义的拦截器--> 
+		    	
+		    	<ref bean="myUserInfoInteceptor"/>   <!--用户信息拦截器，这是你自定义的拦截器--> 
+		    </list>        
+		</property>        
+	</bean> 
+	 	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">  
+			<list>  
+				<ref bean="byteArray_hmc" />  
+				<ref bean="string_hmc" />  
+				<ref bean="resource_hmc" />  
+				<ref bean="source_hmc" />  
+				<ref bean="xmlAwareForm_hmc" />  
+				<ref bean="jaxb2RootElement_hmc" />  
+				<ref bean="jackson_hmc" />  
+			</list>  
+		</property>  
+			<property name="webBindingInitializer">
+				<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+					<property name="conversionService">
+						<bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
+					</property>
+				</bean>
+			</property>
+		
+	</bean>  
+	<bean id="byteArray_hmc" class="org.springframework.http.converter.ByteArrayHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="string_hmc" class="org.springframework.http.converter.StringHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="resource_hmc" class="org.springframework.http.converter.ResourceHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="source_hmc" class="org.springframework.http.converter.xml.SourceHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="xmlAwareForm_hmc" class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="jaxb2RootElement_hmc" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" /><!-- 处理.. -->
+	<bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /><!-- 处理json-->
+    
+    
+     <!-- 方法参数Resolver 
+     <mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="com.anguo.web.resolver.CurrentUserArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+    -->
+ <!--
+        使Spring支持自动检测组件，如注解的Controller
+    -->
+    <context:component-scan base-package="com.anguo.web.controller"/>
+  
+  
+   
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/web/"
+          p:suffix=".jsp"
+          p:viewClass="org.springframework.web.servlet.view.JstlView"
+           />
+    
+   <!-- 文件上传相关声明 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+        p:maxUploadSize="50000000"
+        p:defaultEncoding="utf-8"
+        p:resolveLazily="false"/>
+	
+</beans>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.app.db.mapper.CommonAppSiDefineMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="commonAppSiDefineMap" type="com.anguo.app.db.domain.CommonAppSiDefine" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="siType" column="si_type" />
+		 		<result property="siService" column="si_service" />
+		 		<result property="siName" column="si_name" />
+		 		<result property="siDemo" column="si_demo" />
+		 		<result property="siLogging" column="si_logging" />
+		 		<result property="siAuthAccess" column="si_auth_access" />
+		 		<result property="siMultiResult" column="si_multi_result" />
+		 		<result property="siServiceName" column="si_service_name" />
+		 		<result property="siServiceMethod" column="si_service_method" />
+		 		<result property="memo" column="memo" />
+		 		<result property="status" column="status" />
+		 		<result property="operateUserId" column="operate_user_id" />
+		 		<result property="operateDate" column="operate_date" />
+		 	</resultMap>
+
+<!-- 查询 -->
+<select id="getPageData" resultMap="commonAppSiDefineMap"
+               parameterType="com.anguo.app.db.domain.CommonAppSiDefine">
+     select * from wenanguo.common_app_si_define 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="siType != null and siType != ''">
+           and (si_type like concat(#{siType},'%') or si_type like concat(#{siType},'%'))
+        </if>
+             <if test="siService != null and siService != ''">
+           and (si_service like concat(#{siService},'%') or si_service like concat(#{siService},'%'))
+        </if>
+             <if test="siName != null and siName != ''">
+           and (si_name like concat(#{siName},'%') or si_name like concat(#{siName},'%'))
+        </if>
+             <if test="siDemo != null and siDemo != ''">
+           and (si_demo like concat(#{siDemo},'%') or si_demo like concat(#{siDemo},'%'))
+        </if>
+             <if test="siLogging != null and siLogging != ''">
+           and (si_logging like concat(#{siLogging},'%') or si_logging like concat(#{siLogging},'%'))
+        </if>
+             <if test="siAuthAccess != null and siAuthAccess != ''">
+           and (si_auth_access like concat(#{siAuthAccess},'%') or si_auth_access like concat(#{siAuthAccess},'%'))
+        </if>
+             <if test="siMultiResult != null and siMultiResult != ''">
+           and (si_multi_result like concat(#{siMultiResult},'%') or si_multi_result like concat(#{siMultiResult},'%'))
+        </if>
+             <if test="siServiceName != null and siServiceName != ''">
+           and (si_service_name like concat(#{siServiceName},'%') or si_service_name like concat(#{siServiceName},'%'))
+        </if>
+             <if test="siServiceMethod != null and siServiceMethod != ''">
+           and (si_service_method like concat(#{siServiceMethod},'%') or si_service_method like concat(#{siServiceMethod},'%'))
+        </if>
+             <if test="memo != null and memo != ''">
+           and (memo like concat(#{memo},'%') or memo like concat(#{memo},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (operate_user_id like concat(#{operateUserId},'%') or operate_user_id like concat(#{operateUserId},'%'))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (operate_date like concat(#{operateDate},'%') or operate_date like concat(#{operateDate},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="commonAppSiDefineMap"
+               parameterType="com.anguo.app.db.domain.CommonAppSiDefine">
+     select * from wenanguo.common_app_si_define 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="siType != null and siType != ''">
+           and (si_type like concat(#{siType},'%') or si_type like concat(#{siType},'%'))
+        </if>
+             <if test="siService != null and siService != ''">
+           and (si_service like concat(#{siService},'%') or si_service like concat(#{siService},'%'))
+        </if>
+             <if test="siName != null and siName != ''">
+           and (si_name like concat(#{siName},'%') or si_name like concat(#{siName},'%'))
+        </if>
+             <if test="siDemo != null and siDemo != ''">
+           and (si_demo like concat(#{siDemo},'%') or si_demo like concat(#{siDemo},'%'))
+        </if>
+             <if test="siLogging != null and siLogging != ''">
+           and (si_logging like concat(#{siLogging},'%') or si_logging like concat(#{siLogging},'%'))
+        </if>
+             <if test="siAuthAccess != null and siAuthAccess != ''">
+           and (si_auth_access like concat(#{siAuthAccess},'%') or si_auth_access like concat(#{siAuthAccess},'%'))
+        </if>
+             <if test="siMultiResult != null and siMultiResult != ''">
+           and (si_multi_result like concat(#{siMultiResult},'%') or si_multi_result like concat(#{siMultiResult},'%'))
+        </if>
+             <if test="siServiceName != null and siServiceName != ''">
+           and (si_service_name like concat(#{siServiceName},'%') or si_service_name like concat(#{siServiceName},'%'))
+        </if>
+             <if test="siServiceMethod != null and siServiceMethod != ''">
+           and (si_service_method like concat(#{siServiceMethod},'%') or si_service_method like concat(#{siServiceMethod},'%'))
+        </if>
+             <if test="memo != null and memo != ''">
+           and (memo like concat(#{memo},'%') or memo like concat(#{memo},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (operate_user_id like concat(#{operateUserId},'%') or operate_user_id like concat(#{operateUserId},'%'))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (operate_date like concat(#{operateDate},'%') or operate_date like concat(#{operateDate},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="commonAppSiDefineMap" parameterType="com.anguo.app.db.domain.CommonAppSiDefine">
+    select * from  wenanguo.common_app_si_define
+    where id = #{id}
+</select>
+
+<!-- 根据服务编码查询 -->
+<select id="getDataBySiService" resultMap="commonAppSiDefineMap" parameterType="com.anguo.app.db.domain.CommonAppSiDefine">
+    select * from  wenanguo.common_app_si_define
+    where si_service = #{siService}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppSiDefine" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.common_app_si_define
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="siType != null">
+				si_type,
+	  	</if>
+	  			 		 		<if test="siService != null">
+				si_service,
+	  	</if>
+	  			 		 		<if test="siName != null">
+				si_name,
+	  	</if>
+	  			 		 		<if test="siDemo != null">
+				si_demo,
+	  	</if>
+	  			 		 		<if test="siLogging != null">
+				si_logging,
+	  	</if>
+	  			 		 		<if test="siAuthAccess != null">
+				si_auth_access,
+	  	</if>
+	  			 		 		<if test="siMultiResult != null">
+				si_multi_result,
+	  	</if>
+	  			 		 		<if test="siServiceName != null">
+				si_service_name,
+	  	</if>
+	  			 		 		<if test="siServiceMethod != null">
+				si_service_method,
+	  	</if>
+	  			 		 		<if test="memo != null">
+				memo,
+	  	</if>
+	  			 		 		<if test="status != null">
+				status,
+	  	</if>
+	  			 		 		<if test="operateUserId != null">
+				operate_user_id,
+	  	</if>
+	  			 		 		<if test="operateDate != null">
+				operate_date,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="siType != null">
+#{siType},
+</if>
+				<if test="siService != null">
+#{siService},
+</if>
+				<if test="siName != null">
+#{siName},
+</if>
+				<if test="siDemo != null">
+#{siDemo},
+</if>
+				<if test="siLogging != null">
+#{siLogging},
+</if>
+				<if test="siAuthAccess != null">
+#{siAuthAccess},
+</if>
+				<if test="siMultiResult != null">
+#{siMultiResult},
+</if>
+				<if test="siServiceName != null">
+#{siServiceName},
+</if>
+				<if test="siServiceMethod != null">
+#{siServiceMethod},
+</if>
+				<if test="memo != null">
+#{memo},
+</if>
+				<if test="status != null">
+#{status},
+</if>
+				<if test="operateUserId != null">
+#{operateUserId},
+</if>
+				<if test="operateDate != null">
+#{operateDate},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.app.db.domain.CommonAppSiDefine">
+	update  wenanguo.common_app_si_define 
+	<set>
+										<if test="siType != null and siType != ''">
+			si_type=#{siType},
+		</if>
+								<if test="siService != null and siService != ''">
+			si_service=#{siService},
+		</if>
+								<if test="siName != null and siName != ''">
+			si_name=#{siName},
+		</if>
+								<if test="siDemo != null and siDemo != ''">
+			si_demo=#{siDemo},
+		</if>
+								<if test="siLogging != null and siLogging != ''">
+			si_logging=#{siLogging},
+		</if>
+								<if test="siAuthAccess != null and siAuthAccess != ''">
+			si_auth_access=#{siAuthAccess},
+		</if>
+								<if test="siMultiResult != null and siMultiResult != ''">
+			si_multi_result=#{siMultiResult},
+		</if>
+								<if test="siServiceName != null and siServiceName != ''">
+			si_service_name=#{siServiceName},
+		</if>
+								<if test="siServiceMethod != null and siServiceMethod != ''">
+			si_service_method=#{siServiceMethod},
+		</if>
+								<if test="memo != null and memo != ''">
+			memo=#{memo},
+		</if>
+								<if test="status != null and status != ''">
+			status=#{status},
+		</if>
+								<if test="operateUserId != null and operateUserId != ''">
+			operate_user_id=#{operateUserId},
+		</if>
+								<if test="operateDate != null and operateDate != ''">
+			operate_date=#{operateDate},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonAppSiDefine">
+	delete from  wenanguo.common_app_si_define 
+	where id=#{id}
+</delete>
+
+</mapper>

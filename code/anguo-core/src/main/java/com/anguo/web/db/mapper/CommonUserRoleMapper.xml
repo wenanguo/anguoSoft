@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.web.db.mapper.CommonUserRoleMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="commonUserRoleMap" type="com.anguo.web.db.domain.CommonUserRole" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="commonSysUserId" column="common_sys_user_id" />
+		 		<result property="commonSysRoleId" column="common_sys_role_id" />
+		 	</resultMap>
+
+
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="commonUserRoleMap"
+               parameterType="com.anguo.web.db.domain.CommonUserRole">
+     select * from wenanguo.common_user_role 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="commonSysUserId != null and commonSysUserId != ''">
+           and (common_sys_user_id like concat(#{commonSysUserId},'%') or common_sys_user_id like concat(#{commonSysUserId},'%'))
+        </if>
+             <if test="commonSysRoleId != null and commonSysRoleId != ''">
+           and (common_sys_role_id like concat(#{commonSysRoleId},'%') or common_sys_role_id like concat(#{commonSysRoleId},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="commonUserRoleMap" parameterType="com.anguo.web.db.domain.CommonUserRole">
+    select * from  wenanguo.common_user_role
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.web.db.domain.CommonUserRole" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.common_user_role
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="commonSysUserId != null">
+				common_sys_user_id,
+	  	</if>
+	  			 		 		<if test="commonSysRoleId != null">
+				common_sys_role_id,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="commonSysUserId != null">
+#{commonSysUserId},
+</if>
+				<if test="commonSysRoleId != null">
+#{commonSysRoleId},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.web.db.domain.CommonUserRole">
+	update  wenanguo.common_user_role 
+	<set>
+										<if test="commonSysUserId != null and commonSysUserId != ''">
+			common_sys_user_id=#{commonSysUserId},
+		</if>
+								<if test="commonSysRoleId != null and commonSysRoleId != ''">
+			common_sys_role_id=#{commonSysRoleId},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonUserRole">
+	delete from  wenanguo.common_user_role 
+	where id=#{id}
+</delete>
+
+<!-- 删除当前用户所属角色 -->
+<delete id="deleteDataByUser" parameterType="com.anguo.web.db.domain.CommonSysUser">
+	delete from  wenanguo.common_user_role 
+	where common_sys_user_id=#{id}
+</delete>
+
+</mapper>

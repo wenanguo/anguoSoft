@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.web.db.mapper.CommonSysAuthorityMapper">
+
+	<!-- 配置内容信息 -->
+	<resultMap id="commonSysAuthorityMap" type="com.anguo.web.db.domain.CommonSysAuthority">
+
+		<result property="id" column="id" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="url" column="url" />
+		<result property="icon" column="icon" />
+		<result property="type" column="type" />
+		<result property="sort" column="sort" />
+		<result property="parentId" column="parent_id" />
+		<result property="status" column="status" />
+	</resultMap>
+
+
+
+	<!-- 查询 -->
+	<select id="getAllData" resultMap="commonSysAuthorityMap"
+		parameterType="com.anguo.web.db.domain.CommonSysAuthority">
+		select * from wenanguo.common_sys_authority
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="id != null and id != ''">
+				and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+			</if>
+			<if test="code != null and code != ''">
+				and (code like concat(#{code},'%') or code like concat(#{code},'%'))
+			</if>
+			<if test="name != null and name != ''">
+				and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+			</if>
+			<if test="url != null and url != ''">
+				and (url like concat(#{url},'%') or url like concat(#{url},'%'))
+			</if>
+			<if test="icon != null and icon != ''">
+				and (icon like concat(#{icon},'%') or icon like concat(#{icon},'%'))
+			</if>
+			<if test="type != null and type != ''">
+				and (type like concat(#{type},'%') or type like concat(#{type},'%'))
+			</if>
+			<if test="sort != null and sort != ''">
+				and (sort like concat(#{sort},'%') or sort like concat(#{sort},'%'))
+			</if>
+			<if test="parentId != null and parentId != ''">
+				and (parent_id like concat(#{parentId},'%') or parent_id like
+				concat(#{parentId},'%'))
+			</if>
+			<if test="status != null and status != ''">
+				and (status like concat(#{status},'%') or status like
+				concat(#{status},'%'))
+			</if>
+		</trim>
+		order by id asc
+	</select>
+	
+	
+	<!-- 根据用户所属角色编号查询用户权限 -->
+	<select id="getAuthorityByUserId" resultMap="commonSysAuthorityMap"
+		parameterType="com.anguo.web.db.domain.CommonSysUser">
+		
+		<!-- 
+		select a.* from common_sys_authority a,common_role_authority b where a.id=b.common_sys_authority_id 
+		and b.common_sys_role_id=#{id} 
+		order by a.id desc 
+		-->
+		
+		select distinct a.* from common_sys_authority a,common_role_authority b ,common_user_role c where a.id=b.common_sys_authority_id and b.common_sys_role_id=c.common_sys_role_id 
+		and c.common_sys_user_id=#{id}
+		order by a.id desc 
+
+		
+	</select>
+
+	<!-- 读一条记录 -->
+	<select id="getData" resultMap="commonSysAuthorityMap"
+		parameterType="com.anguo.web.db.domain.CommonSysAuthority">
+		select * from wenanguo.common_sys_authority
+		where id = #{id}
+	</select>
+	
+	
+
+	<!-- 插入记录 -->
+	<insert id="insertData" parameterType="com.anguo.web.db.domain.CommonSysAuthority"
+		useGeneratedKeys="true" keyProperty="id">
+
+		insert into wenanguo.common_sys_authority
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="code != null">
+				code,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+
+			<if test="code != null">
+				#{code},
+			</if>
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="url != null">
+				#{url},
+			</if>
+			<if test="icon != null">
+				#{icon},
+			</if>
+			<if test="type != null">
+				#{type},
+			</if>
+			<if test="sort != null">
+				#{sort},
+			</if>
+			<if test="parentId != null">
+				#{parentId},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 修改 -->
+	<update id="updateData" parameterType="com.anguo.web.db.domain.CommonSysAuthority">
+		update wenanguo.common_sys_authority
+		<set>
+			<if test="code != null and code != ''">
+				code=#{code},
+			</if>
+			<if test="name != null and name != ''">
+				name=#{name},
+			</if>
+			<if test="url != null and url != ''">
+				url=#{url},
+			</if>
+			<if test="icon != null and icon != ''">
+				icon=#{icon},
+			</if>
+			<if test="type != null and type != ''">
+				type=#{type},
+			</if>
+			<if test="sort != null and sort != ''">
+				sort=#{sort},
+			</if>
+			<if test="parentId != null and parentId != ''">
+				parent_id=#{parentId},
+			</if>
+			<if test="status != null and status != ''">
+				status=#{status},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonSysAuthority">
+		delete from wenanguo.common_sys_authority
+		where id=#{id}
+	</delete>
+
+</mapper>

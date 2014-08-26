@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.app.db.mapper.CommonAppSiDataMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="commonAppSiDataMap" type="com.anguo.app.db.domain.CommonAppSiData" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="commonAppSiDefineId" column="common_app_si_define_id" />
+		 		<result property="dataName" column="data_name" />
+		 		<result property="dataTitle" column="data_title" />
+		 		<result property="dataType" column="data_type" />
+		 		<result property="dataPattern" column="data_pattern" />
+		 		<result property="memo" column="memo" />
+		 		<result property="dataDefaultVal" column="data_default_val" />
+		 		<result property="parentId" column="parent_id" />
+		 		<result property="status" column="status" />
+		 		<result property="operateUserId" column="operate_user_id" />
+		 		<result property="operateDate" column="operate_date" />
+		 	</resultMap>
+
+
+<!-- 查询 -->
+<select id="getPageData" resultMap="commonAppSiDataMap"
+               parameterType="com.anguo.app.db.domain.CommonAppSiData">
+     select * from wenanguo.common_app_si_data 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="commonAppSiDefineId != null and commonAppSiDefineId != ''">
+           and (common_app_si_define_id like concat(#{commonAppSiDefineId},'%') or common_app_si_define_id like concat(#{commonAppSiDefineId},'%'))
+        </if>
+             <if test="dataName != null and dataName != ''">
+           and (data_name like concat(#{dataName},'%') or data_name like concat(#{dataName},'%'))
+        </if>
+             <if test="dataTitle != null and dataTitle != ''">
+           and (data_title like concat(#{dataTitle},'%') or data_title like concat(#{dataTitle},'%'))
+        </if>
+             <if test="dataType != null and dataType != ''">
+           and (data_type like concat(#{dataType},'%') or data_type like concat(#{dataType},'%'))
+        </if>
+             <if test="dataPattern != null and dataPattern != ''">
+           and (data_pattern like concat(#{dataPattern},'%') or data_pattern like concat(#{dataPattern},'%'))
+        </if>
+             <if test="memo != null and memo != ''">
+           and (memo like concat(#{memo},'%') or memo like concat(#{memo},'%'))
+        </if>
+             <if test="dataDefaultVal != null and dataDefaultVal != ''">
+           and (data_default_val like concat(#{dataDefaultVal},'%') or data_default_val like concat(#{dataDefaultVal},'%'))
+        </if>
+             <if test="parentId != null and parentId != ''">
+           and (parent_id like concat(#{parentId},'%') or parent_id like concat(#{parentId},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (operate_user_id like concat(#{operateUserId},'%') or operate_user_id like concat(#{operateUserId},'%'))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (operate_date like concat(#{operateDate},'%') or operate_date like concat(#{operateDate},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="commonAppSiDataMap"
+               parameterType="com.anguo.app.db.domain.CommonAppSiData">
+     select * from wenanguo.common_app_si_data 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="commonAppSiDefineId != null and commonAppSiDefineId != ''">
+           and (common_app_si_define_id like concat(#{commonAppSiDefineId},'%') or common_app_si_define_id like concat(#{commonAppSiDefineId},'%'))
+        </if>
+             <if test="dataName != null and dataName != ''">
+           and (data_name like concat(#{dataName},'%') or data_name like concat(#{dataName},'%'))
+        </if>
+             <if test="dataTitle != null and dataTitle != ''">
+           and (data_title like concat(#{dataTitle},'%') or data_title like concat(#{dataTitle},'%'))
+        </if>
+             <if test="dataType != null and dataType != ''">
+           and (data_type like concat(#{dataType},'%') or data_type like concat(#{dataType},'%'))
+        </if>
+             <if test="dataPattern != null and dataPattern != ''">
+           and (data_pattern like concat(#{dataPattern},'%') or data_pattern like concat(#{dataPattern},'%'))
+        </if>
+             <if test="memo != null and memo != ''">
+           and (memo like concat(#{memo},'%') or memo like concat(#{memo},'%'))
+        </if>
+             <if test="dataDefaultVal != null and dataDefaultVal != ''">
+           and (data_default_val like concat(#{dataDefaultVal},'%') or data_default_val like concat(#{dataDefaultVal},'%'))
+        </if>
+             <if test="parentId != null and parentId != ''">
+           and (parent_id like concat(#{parentId},'%') or parent_id like concat(#{parentId},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (operate_user_id like concat(#{operateUserId},'%') or operate_user_id like concat(#{operateUserId},'%'))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (operate_date like concat(#{operateDate},'%') or operate_date like concat(#{operateDate},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="commonAppSiDataMap" parameterType="com.anguo.app.db.domain.CommonAppSiData">
+    select * from  wenanguo.common_app_si_data
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppSiData" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.common_app_si_data
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="commonAppSiDefineId != null">
+				common_app_si_define_id,
+	  	</if>
+	  			 		 		<if test="dataName != null">
+				data_name,
+	  	</if>
+	  			 		 		<if test="dataTitle != null">
+				data_title,
+	  	</if>
+	  			 		 		<if test="dataType != null">
+				data_type,
+	  	</if>
+	  			 		 		<if test="dataPattern != null">
+				data_pattern,
+	  	</if>
+	  			 		 		<if test="memo != null">
+				memo,
+	  	</if>
+	  			 		 		<if test="dataDefaultVal != null">
+				data_default_val,
+	  	</if>
+	  			 		 		<if test="parentId != null">
+				parent_id,
+	  	</if>
+	  			 		 		<if test="status != null">
+				status,
+	  	</if>
+	  			 		 		<if test="operateUserId != null">
+				operate_user_id,
+	  	</if>
+	  			 		 		<if test="operateDate != null">
+				operate_date,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="commonAppSiDefineId != null">
+#{commonAppSiDefineId},
+</if>
+				<if test="dataName != null">
+#{dataName},
+</if>
+				<if test="dataTitle != null">
+#{dataTitle},
+</if>
+				<if test="dataType != null">
+#{dataType},
+</if>
+				<if test="dataPattern != null">
+#{dataPattern},
+</if>
+				<if test="memo != null">
+#{memo},
+</if>
+				<if test="dataDefaultVal != null">
+#{dataDefaultVal},
+</if>
+				<if test="parentId != null">
+#{parentId},
+</if>
+				<if test="status != null">
+#{status},
+</if>
+				<if test="operateUserId != null">
+#{operateUserId},
+</if>
+				<if test="operateDate != null">
+#{operateDate},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.app.db.domain.CommonAppSiData">
+	update  wenanguo.common_app_si_data 
+	<set>
+										<if test="commonAppSiDefineId != null and commonAppSiDefineId != ''">
+			common_app_si_define_id=#{commonAppSiDefineId},
+		</if>
+								<if test="dataName != null and dataName != ''">
+			data_name=#{dataName},
+		</if>
+								<if test="dataTitle != null and dataTitle != ''">
+			data_title=#{dataTitle},
+		</if>
+								<if test="dataType != null and dataType != ''">
+			data_type=#{dataType},
+		</if>
+								<if test="dataPattern != null and dataPattern != ''">
+			data_pattern=#{dataPattern},
+		</if>
+								<if test="memo != null and memo != ''">
+			memo=#{memo},
+		</if>
+								<if test="dataDefaultVal != null and dataDefaultVal != ''">
+			data_default_val=#{dataDefaultVal},
+		</if>
+								<if test="parentId != null and parentId != ''">
+			parent_id=#{parentId},
+		</if>
+								<if test="status != null and status != ''">
+			status=#{status},
+		</if>
+								<if test="operateUserId != null and operateUserId != ''">
+			operate_user_id=#{operateUserId},
+		</if>
+								<if test="operateDate != null and operateDate != ''">
+			operate_date=#{operateDate},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonAppSiData">
+	delete from  wenanguo.common_app_si_data 
+	where id=#{id}
+</delete>
+
+</mapper>

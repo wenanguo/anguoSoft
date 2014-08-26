@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.web.db.mapper.ReportPieMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="reportPieMap" type="com.anguo.web.db.domain.ReportPie" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="name" column="name" />
+		 		<result property="y" column="y" />
+		 		<result property="sliced" column="sliced" />
+		 		<result property="selected" column="selected" />
+		 	</resultMap>
+
+<!-- 查询 -->
+<select id="getPageData" resultMap="reportPieMap"
+               parameterType="com.anguo.web.db.domain.ReportPie">
+     select * from wenanguo.report_pie 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="name != null and name != ''">
+           and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+        </if>
+             <if test="y != null and y != ''">
+           and (y like concat(#{y},'%') or y like concat(#{y},'%'))
+        </if>
+             <if test="sliced != null and sliced != ''">
+           and (sliced like concat(#{sliced},'%') or sliced like concat(#{sliced},'%'))
+        </if>
+             <if test="selected != null and selected != ''">
+           and (selected like concat(#{selected},'%') or selected like concat(#{selected},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="reportPieMap"
+               parameterType="com.anguo.web.db.domain.ReportPie">
+     select * from wenanguo.report_pie 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="name != null and name != ''">
+           and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+        </if>
+             <if test="y != null and y != ''">
+           and (y like concat(#{y},'%') or y like concat(#{y},'%'))
+        </if>
+             <if test="sliced != null and sliced != ''">
+           and (sliced like concat(#{sliced},'%') or sliced like concat(#{sliced},'%'))
+        </if>
+             <if test="selected != null and selected != ''">
+           and (selected like concat(#{selected},'%') or selected like concat(#{selected},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="reportPieMap" parameterType="com.anguo.web.db.domain.ReportPie">
+    select * from  wenanguo.report_pie
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.web.db.domain.ReportPie" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.report_pie
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="name != null">
+				name,
+	  	</if>
+	  			 		 		<if test="y != null">
+				y,
+	  	</if>
+	  			 		 		<if test="sliced != null">
+				sliced,
+	  	</if>
+	  			 		 		<if test="selected != null">
+				selected,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="name != null">
+#{name},
+</if>
+				<if test="y != null">
+#{y},
+</if>
+				<if test="sliced != null">
+#{sliced},
+</if>
+				<if test="selected != null">
+#{selected},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.web.db.domain.ReportPie">
+	update  wenanguo.report_pie 
+	<set>
+										<if test="name != null and name != ''">
+			name=#{name},
+		</if>
+								<if test="y != null and y != ''">
+			y=#{y},
+		</if>
+								<if test="sliced != null and sliced != ''">
+			sliced=#{sliced},
+		</if>
+								<if test="selected != null and selected != ''">
+			selected=#{selected},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.web.db.domain.ReportPie">
+	delete from  wenanguo.report_pie 
+	where id=#{id}
+</delete>
+
+</mapper>

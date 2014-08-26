@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.web.db.mapper.ReportBlMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="reportBlMap" type="com.anguo.web.db.domain.ReportBl" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="name" column="name" />
+		 		<result property="m1" column="m1" />
+		 		<result property="m2" column="m2" />
+		 		<result property="m3" column="m3" />
+		 		<result property="m4" column="m4" />
+		 		<result property="m5" column="m5" />
+		 		<result property="m6" column="m6" />
+		 		<result property="m7" column="m7" />
+		 		<result property="m8" column="m8" />
+		 		<result property="m9" column="m9" />
+		 		<result property="m10" column="m10" />
+		 		<result property="m11" column="m11" />
+		 		<result property="m12" column="m12" />
+		 	</resultMap>
+
+
+<!-- 查询 -->
+<select id="getPageData" resultMap="reportBlMap"
+               parameterType="com.anguo.web.db.domain.ReportBl">
+     select * from wenanguo.report_bl 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="name != null and name != ''">
+           and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+        </if>
+             <if test="m1 != null and m1 != ''">
+           and (m1 like concat(#{m1},'%') or m1 like concat(#{m1},'%'))
+        </if>
+             <if test="m2 != null and m2 != ''">
+           and (m2 like concat(#{m2},'%') or m2 like concat(#{m2},'%'))
+        </if>
+             <if test="m3 != null and m3 != ''">
+           and (m3 like concat(#{m3},'%') or m3 like concat(#{m3},'%'))
+        </if>
+             <if test="m4 != null and m4 != ''">
+           and (m4 like concat(#{m4},'%') or m4 like concat(#{m4},'%'))
+        </if>
+             <if test="m5 != null and m5 != ''">
+           and (m5 like concat(#{m5},'%') or m5 like concat(#{m5},'%'))
+        </if>
+             <if test="m6 != null and m6 != ''">
+           and (m6 like concat(#{m6},'%') or m6 like concat(#{m6},'%'))
+        </if>
+             <if test="m7 != null and m7 != ''">
+           and (m7 like concat(#{m7},'%') or m7 like concat(#{m7},'%'))
+        </if>
+             <if test="m8 != null and m8 != ''">
+           and (m8 like concat(#{m8},'%') or m8 like concat(#{m8},'%'))
+        </if>
+             <if test="m9 != null and m9 != ''">
+           and (m9 like concat(#{m9},'%') or m9 like concat(#{m9},'%'))
+        </if>
+             <if test="m10 != null and m10 != ''">
+           and (m10 like concat(#{m10},'%') or m10 like concat(#{m10},'%'))
+        </if>
+             <if test="m11 != null and m11 != ''">
+           and (m11 like concat(#{m11},'%') or m11 like concat(#{m11},'%'))
+        </if>
+             <if test="m12 != null and m12 != ''">
+           and (m12 like concat(#{m12},'%') or m12 like concat(#{m12},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="reportBlMap"
+               parameterType="com.anguo.web.db.domain.ReportBl">
+     select * from wenanguo.report_bl 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="name != null and name != ''">
+           and (name like concat(#{name},'%') or name like concat(#{name},'%'))
+        </if>
+             <if test="m1 != null and m1 != ''">
+           and (m1 like concat(#{m1},'%') or m1 like concat(#{m1},'%'))
+        </if>
+             <if test="m2 != null and m2 != ''">
+           and (m2 like concat(#{m2},'%') or m2 like concat(#{m2},'%'))
+        </if>
+             <if test="m3 != null and m3 != ''">
+           and (m3 like concat(#{m3},'%') or m3 like concat(#{m3},'%'))
+        </if>
+             <if test="m4 != null and m4 != ''">
+           and (m4 like concat(#{m4},'%') or m4 like concat(#{m4},'%'))
+        </if>
+             <if test="m5 != null and m5 != ''">
+           and (m5 like concat(#{m5},'%') or m5 like concat(#{m5},'%'))
+        </if>
+             <if test="m6 != null and m6 != ''">
+           and (m6 like concat(#{m6},'%') or m6 like concat(#{m6},'%'))
+        </if>
+             <if test="m7 != null and m7 != ''">
+           and (m7 like concat(#{m7},'%') or m7 like concat(#{m7},'%'))
+        </if>
+             <if test="m8 != null and m8 != ''">
+           and (m8 like concat(#{m8},'%') or m8 like concat(#{m8},'%'))
+        </if>
+             <if test="m9 != null and m9 != ''">
+           and (m9 like concat(#{m9},'%') or m9 like concat(#{m9},'%'))
+        </if>
+             <if test="m10 != null and m10 != ''">
+           and (m10 like concat(#{m10},'%') or m10 like concat(#{m10},'%'))
+        </if>
+             <if test="m11 != null and m11 != ''">
+           and (m11 like concat(#{m11},'%') or m11 like concat(#{m11},'%'))
+        </if>
+             <if test="m12 != null and m12 != ''">
+           and (m12 like concat(#{m12},'%') or m12 like concat(#{m12},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="reportBlMap" parameterType="com.anguo.web.db.domain.ReportBl">
+    select * from  wenanguo.report_bl
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.web.db.domain.ReportBl" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.report_bl
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="name != null">
+				name,
+	  	</if>
+	  			 		 		<if test="m1 != null">
+				m1,
+	  	</if>
+	  			 		 		<if test="m2 != null">
+				m2,
+	  	</if>
+	  			 		 		<if test="m3 != null">
+				m3,
+	  	</if>
+	  			 		 		<if test="m4 != null">
+				m4,
+	  	</if>
+	  			 		 		<if test="m5 != null">
+				m5,
+	  	</if>
+	  			 		 		<if test="m6 != null">
+				m6,
+	  	</if>
+	  			 		 		<if test="m7 != null">
+				m7,
+	  	</if>
+	  			 		 		<if test="m8 != null">
+				m8,
+	  	</if>
+	  			 		 		<if test="m9 != null">
+				m9,
+	  	</if>
+	  			 		 		<if test="m10 != null">
+				m10,
+	  	</if>
+	  			 		 		<if test="m11 != null">
+				m11,
+	  	</if>
+	  			 		 		<if test="m12 != null">
+				m12,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="name != null">
+#{name},
+</if>
+				<if test="m1 != null">
+#{m1},
+</if>
+				<if test="m2 != null">
+#{m2},
+</if>
+				<if test="m3 != null">
+#{m3},
+</if>
+				<if test="m4 != null">
+#{m4},
+</if>
+				<if test="m5 != null">
+#{m5},
+</if>
+				<if test="m6 != null">
+#{m6},
+</if>
+				<if test="m7 != null">
+#{m7},
+</if>
+				<if test="m8 != null">
+#{m8},
+</if>
+				<if test="m9 != null">
+#{m9},
+</if>
+				<if test="m10 != null">
+#{m10},
+</if>
+				<if test="m11 != null">
+#{m11},
+</if>
+				<if test="m12 != null">
+#{m12},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.web.db.domain.ReportBl">
+	update  wenanguo.report_bl 
+	<set>
+										<if test="name != null and name != ''">
+			name=#{name},
+		</if>
+								<if test="m1 != null and m1 != ''">
+			m1=#{m1},
+		</if>
+								<if test="m2 != null and m2 != ''">
+			m2=#{m2},
+		</if>
+								<if test="m3 != null and m3 != ''">
+			m3=#{m3},
+		</if>
+								<if test="m4 != null and m4 != ''">
+			m4=#{m4},
+		</if>
+								<if test="m5 != null and m5 != ''">
+			m5=#{m5},
+		</if>
+								<if test="m6 != null and m6 != ''">
+			m6=#{m6},
+		</if>
+								<if test="m7 != null and m7 != ''">
+			m7=#{m7},
+		</if>
+								<if test="m8 != null and m8 != ''">
+			m8=#{m8},
+		</if>
+								<if test="m9 != null and m9 != ''">
+			m9=#{m9},
+		</if>
+								<if test="m10 != null and m10 != ''">
+			m10=#{m10},
+		</if>
+								<if test="m11 != null and m11 != ''">
+			m11=#{m11},
+		</if>
+								<if test="m12 != null and m12 != ''">
+			m12=#{m12},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.web.db.domain.ReportBl">
+	delete from  wenanguo.report_bl 
+	where id=#{id}
+</delete>
+
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.log.db.mapper.CommonOperateLogMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="commonOperateLogMap" type="com.anguo.log.db.domain.CommonOperateLog" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="runtimeClass" column="runtime_class" />
+		 		<result property="runtimeMethod" column="runtime_method" />
+		 		<result property="createtime" column="createtime" />
+		 		<result property="loglevel" column="loglevel" />
+		 		<result property="logmsg" column="logmsg" />
+		 		<result property="userId" column="user_id" />
+		 		<result property="userType" column="user_type" />
+		 	</resultMap>
+
+
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="commonOperateLogMap"
+               parameterType="com.anguo.log.db.domain.CommonOperateLog">
+     select * from wenanguo.common_operate_log 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="runtimeClass != null and runtimeClass != ''">
+           and (runtime_class like concat(#{runtimeClass},'%') or runtime_class like concat(#{runtimeClass},'%'))
+        </if>
+             <if test="runtimeMethod != null and runtimeMethod != ''">
+           and (runtime_method like concat(#{runtimeMethod},'%') or runtime_method like concat(#{runtimeMethod},'%'))
+        </if>
+             <if test="createtime != null and createtime != ''">
+           and (createtime like concat(#{createtime},'%') or createtime like concat(#{createtime},'%'))
+        </if>
+             <if test="loglevel != null and loglevel != ''">
+           and (loglevel like concat(#{loglevel},'%') or loglevel like concat(#{loglevel},'%'))
+        </if>
+             <if test="logmsg != null and logmsg != ''">
+           and (logmsg like concat(#{logmsg},'%') or logmsg like concat(#{logmsg},'%'))
+        </if>
+             <if test="userId != null and userId != ''">
+           and (user_id like concat(#{userId},'%') or user_id like concat(#{userId},'%'))
+        </if>
+             <if test="userType != null and userType != ''">
+           and (user_type like concat(#{userType},'%') or user_type like concat(#{userType},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="commonOperateLogMap" parameterType="com.anguo.log.db.domain.CommonOperateLog">
+    select * from  wenanguo.common_operate_log
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.log.db.domain.CommonOperateLog" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.common_operate_log
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="runtimeClass != null">
+				runtime_class,
+	  	</if>
+	  			 		 		<if test="runtimeMethod != null">
+				runtime_method,
+	  	</if>
+	  			 		 		<if test="createtime != null">
+				createtime,
+	  	</if>
+	  			 		 		<if test="loglevel != null">
+				loglevel,
+	  	</if>
+	  			 		 		<if test="logmsg != null">
+				logmsg,
+	  	</if>
+	  			 		 		<if test="userId != null">
+				user_id,
+	  	</if>
+	  			 		 		<if test="userType != null">
+				user_type,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="runtimeClass != null">
+#{runtimeClass},
+</if>
+				<if test="runtimeMethod != null">
+#{runtimeMethod},
+</if>
+				<if test="createtime != null">
+#{createtime},
+</if>
+				<if test="loglevel != null">
+#{loglevel},
+</if>
+				<if test="logmsg != null">
+#{logmsg},
+</if>
+				<if test="userId != null">
+#{userId},
+</if>
+				<if test="userType != null">
+#{userType},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.log.db.domain.CommonOperateLog">
+	update  wenanguo.common_operate_log 
+	<set>
+										<if test="runtimeClass != null and runtimeClass != ''">
+			runtime_class=#{runtimeClass},
+		</if>
+								<if test="runtimeMethod != null and runtimeMethod != ''">
+			runtime_method=#{runtimeMethod},
+		</if>
+								<if test="createtime != null and createtime != ''">
+			createtime=#{createtime},
+		</if>
+								<if test="loglevel != null and loglevel != ''">
+			loglevel=#{loglevel},
+		</if>
+								<if test="logmsg != null and logmsg != ''">
+			logmsg=#{logmsg},
+		</if>
+								<if test="userId != null and userId != ''">
+			user_id=#{userId},
+		</if>
+								<if test="userType != null and userType != ''">
+			user_type=#{userType},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.log.db.domain.CommonOperateLog">
+	delete from  wenanguo.common_operate_log 
+	where id=#{id}
+</delete>
+
+</mapper>
