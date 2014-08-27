@@ -37,6 +37,11 @@ public class CommonAppSiData extends BaseVo  {
 	 */
 	private String dataType;
 	/**
+	 * 参数类型.1入参，2出参
+	 */
+	private String paramType;
+	
+	/**
 	 * 表达式.
 	 */
 	private String dataPattern;
@@ -151,6 +156,12 @@ public Date getOperateDate() {
 	}
 	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
+	}
+	public String getParamType() {
+		return paramType;
+	}
+	public void setParamType(String paramType) {
+		this.paramType = paramType;
 	}
 	
 }

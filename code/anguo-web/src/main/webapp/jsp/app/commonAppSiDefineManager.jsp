@@ -31,10 +31,31 @@ var tool_btns = {'0' : ['-',
 	   </div>
 	   
     	<div data-options="region:'center',border:false">
-	    	<table id="webNewsList"></table>
-	    	<div id="add" title="新增" style="width:600px;height:585px;"></div>
-			
+    	
+	    	<div class="easyui-layout" data-options="fit:true,border:false">
+	    	
+		    	<div data-options="region:'north',border:false">
+		    		<table id="webNewsList"></table>
+			    	<div id="add" title="新增" style="width:600px;height:585px;"></div>
+		    	</div>
+		    	
+		    	<div data-options="region:'center',border:false">
+		
+					<div class="easyui-tabs" data-options="border:false,fit:true">
+						<div title="请求参数定义" >
+							<table id="inParamGrid"></table>
+						</div>
+						<div title="返回参数定义" >
+							<table id="outParamGrid"></table>
+						</div>
+					</div>
+				</div>
+	    	
+	    	</div>
+    	
 	    </div>
+	    
+	    
 	    
 	
 

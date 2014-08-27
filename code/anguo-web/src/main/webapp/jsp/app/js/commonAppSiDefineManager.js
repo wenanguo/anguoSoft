@@ -141,6 +141,107 @@ $(function(){
 				}
 			}
 		]],
+		onClickRow : function(rowIndex, rowData) {
+			var params = {
+					commonAppSiDefineId : rowData.id
+					};
+					
+			reloadInParamGrid(params);
+
+		},
+		onDblClickRow:function(rowIndex, rowData){
+			doEdit(1,rowIndex,rowData);
+			
+			
+			
+			
+			
+			
+		},
+		pagination:true,
+		loadMsg:'正在加载...'
+	});
+	
+	
+	/**
+	 * 设置入参datagrid
+	 */
+	$('#inParamGrid').datagrid({
+		fit : true,
+		border : false,
+		rownumbers : true,
+		singleSelect:true,
+		fitColumns : true,
+		nowrap : true,
+		toolbar : tool_btns[1],
+	    columns:[[
+	    	{field:'id',checkbox:true},
+			{
+				field:'commonAppSiDefineId',
+				title:'所属接口',
+				width:40,
+				hidden:true
+			},{
+				field:'dataName',
+				title:'参数名称',
+				width:100
+			},{
+				field:'dataTitle',
+				title:'参数标题',
+				width:140
+			},{
+				field:'dataType',
+				title:'数据类型',
+				width:80
+			},
+			{
+				field:'paramType',
+				title:'参数类型',
+				width:100,
+				hidden:true
+			},{
+				field:'dataPattern',
+				title:'表达式',
+				width:100
+			},{
+				field:'dataDefaultVal',
+				title:'默认值',
+				width:140
+			},{
+				field:'memo',
+				title:'备注',
+				width:140
+			},
+			{
+				field:'status',
+				title:'状态',
+				width:90,
+				formatter:function(value,rowData,rowIndex){
+					if(value == 1){
+						return '<span style="color:#0000FF">已启用</span>';
+					}else if(value == -1){
+						return '<span style="color:red">已停用</span>';
+					}
+				}
+			},
+			{
+				field:'operateUserId',
+				hidden:true
+			},
+			{
+				field:'operateUserName',
+				title:'操作人',
+				width:90
+			},
+			{
+				field:'operateDt',
+				title:'操作时间',
+				width:90,
+				formatter:function(value,rowData,rowIndex){
+					return value?new Date(value).format('yyyy-MM-dd'):'<span style="color:#0A8B0A">- -</span>';
+				}
+			}
+		]],
 		onDblClickRow:function(rowIndex, rowData){
 			doEdit(1,rowIndex,rowData);
 		},
@@ -158,6 +259,19 @@ function reloadgrid(params) {
 	$('#webNewsList').datagrid({
 		url : 'commonAppSiDefine/list.htm?webNewsTypeId='
 				+ params.webNewsTypeId
+	});
+
+	
+}
+
+/**
+ * 通过条件刷新inParamGrid
+ */
+function reloadInParamGrid(params) {
+	
+	$('#inParamGrid').datagrid({
+		url : 'commonAppSiData/list.htm?paramType=1&commonAppSiDefineId='
+				+ params.commonAppSiDefineId
 	});
 
 	

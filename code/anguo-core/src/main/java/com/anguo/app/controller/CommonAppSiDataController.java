@@ -3,19 +3,14 @@ package com.anguo.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.anguo.app.db.domain.CommonAppSiData;
-import com.anguo.app.db.mapper.CommonAppSiDataMapper;
 import com.anguo.app.service.CommonAppSiDataService;
 import com.anguo.mybatis.db.controller.BaseController;
 import com.anguo.mybatis.db.core.PageResult;
@@ -34,7 +29,7 @@ public class CommonAppSiDataController extends BaseController {
 	@Autowired
 	private CommonAppSiDataService commonAppSiDataService;
 
-	@RequestMapping("/commonAppSiData/list.json")
+	@RequestMapping("/commonAppSiData/list.htm")
 	@ResponseBody
 	public PageResult<CommonAppSiData> queryCommonAppSiDataList(CommonAppSiData commonAppSiData) {
 		try {
@@ -49,7 +44,7 @@ public class CommonAppSiDataController extends BaseController {
 		return null;
 	}
 
-	@RequestMapping("/commonAppSiData/listAll.json")
+	@RequestMapping("/commonAppSiData/listAll.htm")
 	@ResponseBody
 	public List<CommonAppSiData> queryCommonAppSiDataAllList(CommonAppSiData commonAppSiData) {
 		try {
@@ -61,7 +56,7 @@ public class CommonAppSiDataController extends BaseController {
 		return null;
 	}
 
-	@RequestMapping("/commonAppSiData/create.json")
+	@RequestMapping("/commonAppSiData/create.htm")
 	@ResponseBody
 	public Map saveCommonAppSiData(HttpServletRequest request,
 			HttpServletResponse response, CommonAppSiData commonAppSiData) {
@@ -84,7 +79,7 @@ public class CommonAppSiDataController extends BaseController {
 		return messages;
 	}
 
-	@RequestMapping("/commonAppSiData/update.json")
+	@RequestMapping("/commonAppSiData/update.htm")
 	@ResponseBody
 	public Map updateCommonAppSiData(HttpServletRequest request,
 			HttpServletResponse response,CommonAppSiData commonAppSiData) {
@@ -107,7 +102,7 @@ public class CommonAppSiDataController extends BaseController {
 		
 	}
 
-	@RequestMapping("/commonAppSiData/delete.json")
+	@RequestMapping("/commonAppSiData/delete.htm")
 	@ResponseBody
 	public Map deleteCommonAppSiData(HttpServletRequest request,CommonAppSiData commonAppSiData) {
 		Map messages = new HashMap();
@@ -131,7 +126,7 @@ public class CommonAppSiDataController extends BaseController {
 		return messages;
 	}
 	
-	@RequestMapping("/commonAppSiData/load.json")
+	@RequestMapping("/commonAppSiData/load.htm")
 	@ResponseBody
 	public Object loadCommonAppSiData(CommonAppSiData commonAppSiData) {
 		

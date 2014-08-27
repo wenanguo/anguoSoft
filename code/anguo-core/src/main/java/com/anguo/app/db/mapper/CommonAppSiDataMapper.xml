@@ -11,6 +11,7 @@
 		 		<result property="dataName" column="data_name" />
 		 		<result property="dataTitle" column="data_title" />
 		 		<result property="dataType" column="data_type" />
+		 		<result property="paramType" column="param_type" />
 		 		<result property="dataPattern" column="data_pattern" />
 		 		<result property="memo" column="memo" />
 		 		<result property="dataDefaultVal" column="data_default_val" />
@@ -40,6 +41,9 @@
         </if>
              <if test="dataType != null and dataType != ''">
            and (data_type like concat(#{dataType},'%') or data_type like concat(#{dataType},'%'))
+        </if>
+        <if test="paramType != null and paramType != ''">
+           and (param_type like concat(#{paramType},'%') or param_type like concat(#{paramType},'%'))
         </if>
              <if test="dataPattern != null and dataPattern != ''">
            and (data_pattern like concat(#{dataPattern},'%') or data_pattern like concat(#{dataPattern},'%'))
@@ -85,6 +89,9 @@
         </if>
              <if test="dataType != null and dataType != ''">
            and (data_type like concat(#{dataType},'%') or data_type like concat(#{dataType},'%'))
+        </if>
+         <if test="paramType != null and paramType != ''">
+           and (param_type like concat(#{paramType},'%') or param_type like concat(#{paramType},'%'))
         </if>
              <if test="dataPattern != null and dataPattern != ''">
            and (data_pattern like concat(#{dataPattern},'%') or data_pattern like concat(#{dataPattern},'%'))
@@ -135,6 +142,9 @@
 	  			 		 		<if test="dataType != null">
 				data_type,
 	  	</if>
+	  	<if test="paramType != null">
+				param_type,
+	  	</if>
 	  			 		 		<if test="dataPattern != null">
 				data_pattern,
 	  	</if>
@@ -171,6 +181,9 @@
 </if>
 				<if test="dataType != null">
 #{dataType},
+</if>
+<if test="paramType != null">
+#{paramType},
 </if>
 				<if test="dataPattern != null">
 #{dataPattern},
@@ -212,6 +225,11 @@
 								<if test="dataType != null and dataType != ''">
 			data_type=#{dataType},
 		</if>
+		
+		<if test="paramType != null and paramType != ''">
+			param_type=#{paramType},
+		</if>
+		
 								<if test="dataPattern != null and dataPattern != ''">
 			data_pattern=#{dataPattern},
 		</if>
