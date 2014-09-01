@@ -21,14 +21,14 @@ var tool_btns =
 {id:"btn_del",text:"删除",iconCls:"book_delete",disabled:false,handler:function(){doDel();}},'-'
 ],
 '1' : ['-',
-{id:"btn_inparam_add",text:"新增",iconCls:"book_add",disabled:false,handler:function(){doAdd();}},'-',
-{id:"btn_inparam_edit",text:"修改",iconCls:"book_edit",disabled:false,handler:function(){doEdit();}},'-',
-{id:"btn_inparam_del",text:"删除",iconCls:"book_delete",disabled:false,handler:function(){doDel();}},'-'
+{id:"btn_inparam_add",text:"新增",iconCls:"book_add",disabled:false,handler:function(){doInParamAdd();}},'-',
+{id:"btn_inparam_edit",text:"修改",iconCls:"book_edit",disabled:false,handler:function(){doInParamEdit();}},'-',
+{id:"btn_inparam_del",text:"删除",iconCls:"book_delete",disabled:false,handler:function(){doInParamDel();}},'-'
 ],
 '2' : ['-',
-{id:"btn_outparam_add",text:"新增",iconCls:"book_add",disabled:false,handler:function(){doAdd();}},'-',
-{id:"btn_outparam_edit",text:"修改",iconCls:"book_edit",disabled:false,handler:function(){doEdit();}},'-',
-{id:"btn_outparam_del",text:"删除",iconCls:"book_delete",disabled:false,handler:function(){doDel();}},'-'
+{id:"btn_outparam_add",text:"新增",iconCls:"book_add",disabled:false,handler:function(){doOutParamAdd();}},'-',
+{id:"btn_outparam_edit",text:"修改",iconCls:"book_edit",disabled:false,handler:function(){doOutParamEdit();}},'-',
+{id:"btn_outparam_del",text:"删除",iconCls:"book_delete",disabled:false,handler:function(){doOutParamDel();}},'-'
 ]
 
 };

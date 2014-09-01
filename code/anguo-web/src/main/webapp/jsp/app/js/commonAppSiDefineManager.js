@@ -1,4 +1,5 @@
 var moduleId=0;
+var commonAppSiDefineId=0;
 
 $(function(){
 	
@@ -143,23 +144,10 @@ $(function(){
 		]],
 		onClickRow : function(rowIndex, rowData) {
 			
-			//重新载入入参
-			var params = {
-					gridName:'inParamGrid',
-					commonAppSiDefineId : rowData.id,
-					paramType:1
-					};
-					
-			reloadParamGrid(params);
-			
-			//重新载入出参
-			var params = {
-					gridName:'outParamGrid',
-					commonAppSiDefineId : rowData.id,
-					paramType:2
-					};
-					
-			reloadParamGrid(params);
+			commonAppSiDefineId=rowData.id;
+			reloadInParamGrid(commonAppSiDefineId);
+			reloadOutParamGrid(commonAppSiDefineId);
+		
 
 		},
 		onDblClickRow:function(rowIndex, rowData){
@@ -373,9 +361,43 @@ function reloadParamGrid(params) {
 		url : 'commonAppSiData/list.htm?paramType='+params.paramType+'&commonAppSiDefineId='
 				+ params.commonAppSiDefineId
 	});
-
 	
 }
+
+/**
+ * 根据接口定义编号刷新入参数据
+ * @param commonAppSiDefineId
+ */
+function reloadInParamGrid(commonAppSiDefineId) {
+	
+	//重新载入出参
+	var params = {
+			gridName:'inParamGrid',
+			commonAppSiDefineId : commonAppSiDefineId,
+			paramType:1
+			};
+			
+	reloadParamGrid(params);
+	
+}
+
+/**
+ * 根据接口定义编号刷新出参数据
+ * @param commonAppSiDefineId
+ */
+function reloadOutParamGrid(commonAppSiDefineId) {
+	
+	//重新载入出参
+	var params = {
+			gridName:'outParamGrid',
+			commonAppSiDefineId : commonAppSiDefineId,
+			paramType:2
+			};
+			
+	reloadParamGrid(params);
+	
+}
+
 
 
 /**
@@ -457,6 +479,68 @@ function doAdd(){
 	});
 }
 
+/**
+ * 新增参数方法
+ */
+function doInParamAdd(){
+	$('#add').show().dialog({
+		modal:true,
+		title:'新增参数定义',
+		href:'jsp/app/commonAppSiDataManager-add.jsp',
+		cache:false,
+		toolbar:[{
+			text:'提交',  
+			iconCls:'tick',  
+			handler:function(){
+				
+				$('#addForm').form('submit',{
+					url:'commonAppSiData/create.htm',
+					onSubmit: function(){
+						var isValid = $('#addForm').form('validate');
+						if (!isValid){
+							return false;	
+						}
+						
+					},
+					success:function(data){
+						var obj = eval('('+ data +')');
+						
+						$('#add').dialog('close');
+						showRMsg(obj.msg);
+						
+						//刷新grid
+						reloadInParamGrid(commonAppSiDefineId);
+								
+					}
+				});
+			}
+		},'-',{
+			text:'关闭',
+			iconCls:'cancel',  
+			handler:function(){
+				$('#add').dialog('close');
+			}
+		}],
+		onLoad:function(){
+			
+			
+			$('#addForm').form('clear');
+			
+			var param={
+					paramType:1,
+					commonAppSiDefineId:commonAppSiDefineId
+			};
+			$('#addForm').form('load', param);
+			
+			
+		},
+		onClose:function()
+		{
+		}
+	
+	});
+}
+
 
 /**
  * 修改方法
@@ -526,6 +610,78 @@ function doEdit(){
 	
 	});
 }
+
+/**
+ * 修改入参方法
+ */
+function doInParamEdit(){
+	
+	//获得选择行
+	var rows = $('#inParamGrid').datagrid('getSelections');
+
+	if (rows.length != 1) {
+		$.messager.alert('提示', '请选择一条数据再进行修改', 'error');
+		return false;
+	}
+	
+	
+	
+	$('#add').show().dialog({
+		modal:true,
+		title:'修改接口定义',
+		href:'jsp/app/commonAppSiDataManager-add.jsp',
+		cache:false,
+		toolbar:[{  
+			text:'提交',  
+			iconCls:'tick',  
+			handler:function(){
+				$('#addForm').form('submit',{
+					url:'commonAppSiData/update.htm',
+					onSubmit: function(){
+						var isValid = $('#addForm').form('validate');
+						if (!isValid){
+							return false;	
+						}
+						
+					},
+					success:function(data){
+						var obj = eval('('+ data +')');
+						$('#add').dialog('close');
+						
+						showRMsg(obj.msg);
+
+
+						//刷新grid
+						var params = {
+								commonAppSiDefineId : commonAppSiDefineId,
+								paramType:2
+								};
+								
+						reloadOutParamGrid(params);
+						
+					}  
+				});
+			}
+		},'-',{
+			text:'关闭',
+			iconCls:'cancel',  
+			handler:function(){
+				$('#add').dialog('close');
+				
+			}
+		}],
+		onLoad:function(){
+			$('#addForm').form('load', rows[0]);
+
+		},
+		onClose:function()
+		{
+		}
+	
+	});
+}
+
+
 
 
 /**

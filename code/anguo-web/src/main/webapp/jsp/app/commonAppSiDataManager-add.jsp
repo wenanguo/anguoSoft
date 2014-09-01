@@ -76,8 +76,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					</table>
 					
-					 <input type="hidden" id="commonAppSiDefineId" name="commonAppSiDefineId" value="">
-					 <input type="hidden" id="paramType" name="paramType" value="">
+					 <input type="hidden" id="commonAppSiDefineId" name="commonAppSiDefineId" value="1">
+					 <input type="hidden" id="paramType" name="paramType" value="1">
 					 <input type="hidden" id="id" name="id" value=""> 
 			</form>
 		</div>
