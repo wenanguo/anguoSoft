@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 					</table>
-					 <input type="hidden" id="siType" name="siType" value="">
+					 <input type="hidden" id="siType" name="siType" value="1">
 					 <input type="hidden" id="id" name="id" value=""> 
 			</form>
 		</div>

@@ -1,4 +1,6 @@
-var moduleId=0;
+//接口类别
+var siType=0;
+//参数接口定义编号
 var commonAppSiDefineId=0;
 
 $(function(){
@@ -7,22 +9,21 @@ $(function(){
 	/**
 	 * 初始化菜单树
 	 */
-	$('#webNewsTypeTree').tree({
-		url:'webNewsType/tree.htm',
+	$('#commonSysClassTree').tree({
+		url:'commonSysClass/tree.htm',
 		method:'get',
 		animate:true,
 		onClick: function(node){
 			
 			//判断是否叶子节点
-			//if($(this).tree('isLeaf',node.target))
+			if($(this).tree('isLeaf',node.target))
 			{
-				moduleId=node.id;
+				siType=node.id;
 				//刷新grid
-				var params = {
-						webNewsTypeId : moduleId
-						};
-						
-				reloadgrid(params);
+				reloadgrid(siType);
+				
+				//启用接口管理按钮
+				disableToolbar(false);
 			}
 		}
 	});
@@ -33,7 +34,7 @@ $(function(){
 	/**
 	 * 设置datagrid
 	 */
-	$('#webNewsList').datagrid({
+	$('#dataGrid').datagrid({
 		fit : true,
 		border : false,
 		rownumbers : true,
@@ -49,7 +50,8 @@ $(function(){
 			{
 				field:'siType',
 				title:'接口分类',
-				width:40
+				width:40,
+				hidden:true
 			},{
 				field:'siService',
 				title:'接口编码',
@@ -147,16 +149,16 @@ $(function(){
 			commonAppSiDefineId=rowData.id;
 			reloadInParamGrid(commonAppSiDefineId);
 			reloadOutParamGrid(commonAppSiDefineId);
+			
+			
+			//启用参数按钮
+			disableParamToolbar(false);
+
 		
 
 		},
 		onDblClickRow:function(rowIndex, rowData){
-			doEdit(1,rowIndex,rowData);
-			
-			
-			
-			
-			
+			doEdit();
 			
 		},
 		pagination:true,
@@ -244,7 +246,7 @@ $(function(){
 			}
 		]],
 		onDblClickRow:function(rowIndex, rowData){
-			doEdit(1,rowIndex,rowData);
+			doInParamEdit();
 		},
 		pagination:true,
 		loadMsg:'正在加载...'
@@ -330,23 +332,64 @@ $(function(){
 			}
 		]],
 		onDblClickRow:function(rowIndex, rowData){
-			doEdit(1,rowIndex,rowData);
+			doOutParamEdit();
 		},
 		pagination:true,
 		loadMsg:'正在加载...'
 	});
 	
+	
+	
+	//初始化载入
+	reloadgrid();
+	
+	
+	//禁用按钮
+	disableParamToolbar(true);
+	disableToolbar(true);
+	
 });
+
+
+/**
+ * 是否禁用工具条
+ */
+function disableParamToolbar(flag)
+{
+	$('#btn_inparam_add,#btn_inparam_edit,#btn_inparam_del').linkbutton({
+		disabled:flag
+	});
+	
+	$('#btn_outparam_add,#btn_outparam_edit,#btn_outparam_del').linkbutton({
+		disabled:flag
+	});
+}
+
+/**
+ * 是否禁用工具条
+ */
+function disableToolbar(flag)
+{
+	$('#btn_add,#btn_edit,#btn_del').linkbutton({
+		disabled:flag
+	});
+	
+}
+
 
 
 /**
  * 通过条件刷新grid
  */
-function reloadgrid(params) {
+function reloadgrid(siType) {
 	
-	$('#webNewsList').datagrid({
-		url : 'commonAppSiDefine/list.htm?webNewsTypeId='
-				+ params.webNewsTypeId
+	var urlStr='commonAppSiDefine/list.htm';
+	if(siType!=null){
+		urlStr=urlStr+'?siType='+ siType
+	}
+	
+	$('#dataGrid').datagrid({
+		url : urlStr
 	});
 
 	
@@ -434,7 +477,7 @@ function doAdd(){
 			handler:function(){
 				
 				//设置当前选中节点
-				$("#webNewsTypeId").val(moduleId);
+				//$("#webNewsTypeId").val(moduleId);
 				
 				$('#addForm').form('submit',{
 					url:'commonAppSiDefine/create.htm',
@@ -452,11 +495,7 @@ function doAdd(){
 						showRMsg(obj.msg);
 						
 						//刷新grid
-						var params = {
-								webNewsTypeId : moduleId
-								};
-								
-						reloadgrid(params);
+						reloadgrid(siType);
 								
 					}
 				});
@@ -471,11 +510,14 @@ function doAdd(){
 		onLoad:function(){
 			$('#addForm').form('reset');
 
-		},
-		onClose:function()
-		{
+			
+			var param={
+					siType:siType
+			};
+			$('#addForm').form('load', param);
+			
+			
 		}
-	
 	});
 }
 
@@ -533,11 +575,67 @@ function doInParamAdd(){
 			$('#addForm').form('load', param);
 			
 			
-		},
-		onClose:function()
-		{
 		}
 	
+	});
+}
+
+
+/**
+ * 新增返回参数方法
+ */
+function doOutParamAdd(){
+	$('#add').show().dialog({
+		modal:true,
+		title:'新增返回参数定义',
+		href:'jsp/app/commonAppSiDataManager-add.jsp',
+		cache:false,
+		toolbar:[{
+			text:'提交',  
+			iconCls:'tick',  
+			handler:function(){
+				
+				$('#addForm').form('submit',{
+					url:'commonAppSiData/create.htm',
+					onSubmit: function(){
+						var isValid = $('#addForm').form('validate');
+						if (!isValid){
+							return false;	
+						}
+						
+					},
+					success:function(data){
+						var obj = eval('('+ data +')');
+						
+						$('#add').dialog('close');
+						showRMsg(obj.msg);
+						
+						//刷新grid
+						reloadOutParamGrid(commonAppSiDefineId);
+								
+					}
+				});
+			}
+		},'-',{
+			text:'关闭',
+			iconCls:'cancel',  
+			handler:function(){
+				$('#add').dialog('close');
+			}
+		}],
+		onLoad:function(){
+			
+			
+			$('#addForm').form('clear');
+			
+			var param={
+					paramType:2,
+					commonAppSiDefineId:commonAppSiDefineId
+			};
+			$('#addForm').form('load', param);
+			
+			
+		}
 	});
 }
 
@@ -548,7 +646,7 @@ function doInParamAdd(){
 function doEdit(){
 	
 	//获得选择行
-	var rows = $('#webNewsList').datagrid('getSelections');
+	var rows = $('#dataGrid').datagrid('getSelections');
 
 	if (rows.length != 1) {
 		$.messager.alert('提示', '请选择一条数据再进行修改', 'error');
@@ -583,11 +681,7 @@ function doEdit(){
 
 
 						//刷新grid
-						var params = {
-								webNewsTypeId : moduleId
-								};
-								
-						reloadgrid(params);
+						reloadgrid(siType);
 						
 					}  
 				});
@@ -603,11 +697,7 @@ function doEdit(){
 		onLoad:function(){
 			$('#addForm').form('load', rows[0]);
 
-		},
-		onClose:function()
-		{
 		}
-	
 	});
 }
 
@@ -624,11 +714,9 @@ function doInParamEdit(){
 		return false;
 	}
 	
-	
-	
 	$('#add').show().dialog({
 		modal:true,
-		title:'修改接口定义',
+		title:'修改入参定义',
 		href:'jsp/app/commonAppSiDataManager-add.jsp',
 		cache:false,
 		toolbar:[{  
@@ -645,19 +733,15 @@ function doInParamEdit(){
 						
 					},
 					success:function(data){
-						var obj = eval('('+ data +')');
+					
+						//关闭窗口
 						$('#add').dialog('close');
 						
-						showRMsg(obj.msg);
+						//提示消息
+						showRMsg($.parseJSON(data).msg);
 
-
-						//刷新grid
-						var params = {
-								commonAppSiDefineId : commonAppSiDefineId,
-								paramType:2
-								};
-								
-						reloadOutParamGrid(params);
+						//从新载入数据
+						reloadInParamGrid(commonAppSiDefineId);
 						
 					}  
 				});
@@ -673,14 +757,70 @@ function doInParamEdit(){
 		onLoad:function(){
 			$('#addForm').form('load', rows[0]);
 
-		},
-		onClose:function()
-		{
 		}
-	
 	});
 }
 
+
+/**
+ * 修改返回参数方法
+ */
+function doOutParamEdit(){
+	
+	//获得选择行
+	var rows = $('#outParamGrid').datagrid('getSelections');
+
+	if (rows.length != 1) {
+		$.messager.alert('提示', '请选择一条数据再进行修改', 'error');
+		return false;
+	}
+	
+	$('#add').show().dialog({
+		modal:true,
+		title:'修改入参定义',
+		href:'jsp/app/commonAppSiDataManager-add.jsp',
+		cache:false,
+		toolbar:[{  
+			text:'提交',  
+			iconCls:'tick',  
+			handler:function(){
+				$('#addForm').form('submit',{
+					url:'commonAppSiData/update.htm',
+					onSubmit: function(){
+						var isValid = $('#addForm').form('validate');
+						if (!isValid){
+							return false;	
+						}
+						
+					},
+					success:function(data){
+					
+						//关闭窗口
+						$('#add').dialog('close');
+						
+						//提示消息
+						showRMsg($.parseJSON(data).msg);
+
+						//从新载入数据
+						reloadOutParamGrid(commonAppSiDefineId);
+						
+					}  
+				});
+			}
+		},'-',{
+			text:'关闭',
+			iconCls:'cancel',  
+			handler:function(){
+				$('#add').dialog('close');
+				
+			}
+		}],
+		onLoad:function(){
+			$('#addForm').form('load', rows[0]);
+
+		}
+	});
+}
 
 
 
@@ -688,7 +828,7 @@ function doInParamEdit(){
  * 删除方法
  */
 function doDel() {
-	var data = $('#webNewsList').datagrid('getChecked');
+	var data = $('#dataGrid').datagrid('getChecked');
 	if (!data.length == 1) {
 		$.messager.alert('提示', '请选择一条数据再进行删除', 'error');
 		return;
@@ -697,38 +837,89 @@ function doDel() {
 	
 	$.messager.confirm('提示', '确认删除吗？', function(r) {
 					if (r) {
-						var rows = $('#webNewsList').datagrid('getChecked');
-						var ids = [];
-
-						for (var i = 0; i < rows.length; i++) {
-							ids.push(rows[i].id);
-						}
+						
 						$.ajax({
-									url : 'webNews/delete.htm',
-
+									url : 'commonAppSiDefine/delete.htm',
 									data : {
-										ids : ids.join(',')
+										id : data[0].id
 									},
 									dataType : 'json',
-									success : function(d) {
-
+									success : function(data) {
 										//刷新grid
-										var params = {
-												webNewsTypeId : moduleId
-												};
-												
-										reloadgrid(params);
+										reloadgrid(siType);
 										
-										$.messager.show({
-											title:'提示',  
-											msg:d.msg
-										});
+										showRMsg(data.msg);
+										
 									}
 								});
-
 					}
 				});
+}
+
+
+/**
+ * 删除方法
+ */
+function doInParamDel() {
+	var data = $('#inParamGrid').datagrid('getChecked');
+	if (!data.length == 1) {
+		$.messager.alert('提示', '请选择一条数据再进行删除', 'error');
+		return;
+	}
+
 	
+	$.messager.confirm('提示', '确认删除吗？', function(r) {
+					if (r) {
+						
+						$.ajax({
+									url : 'commonAppSiData/delete.htm',
+									data : {
+										id : data[0].id
+									},
+									dataType : 'json',
+									success : function(data) {
+										
+										reloadInParamGrid(commonAppSiDefineId);
+										
+										showRMsg(data.msg);
+										
+									}
+								});
+					}
+				});
+}
+
+
+/**
+ * 删除方法
+ */
+function doOutParamDel() {
+	var data = $('#outParamGrid').datagrid('getChecked');
+	if (!data.length == 1) {
+		$.messager.alert('提示', '请选择一条数据再进行删除', 'error');
+		return;
+	}
+
+	
+	$.messager.confirm('提示', '确认删除吗？', function(r) {
+					if (r) {
+						
+						$.ajax({
+									url : 'commonAppSiData/delete.htm',
+									data : {
+										id : data[0].id
+									},
+									dataType : 'json',
+									success : function(data) {
+										
+										reloadOutParamGrid(commonAppSiDefineId);
+										
+										showRMsg(data.msg);
+										
+									}
+								});
+					}
+				});
 }
 
 

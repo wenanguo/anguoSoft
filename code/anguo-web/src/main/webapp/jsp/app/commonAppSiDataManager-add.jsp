@@ -51,14 +51,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 					<tr>
-						<td style="text-align:left;font-size:12px;">备注:<span style="color:red">*</span></td>
-						<td>
-							<input id="memo" name="memo" class="easyui-validatebox" style="width:240px;"  validType="length[0,25]" />
-						</td>
-					</tr>
-					
-					
-					<tr>
 						<td style="text-align:left;font-size:12px;">状态:<span style="color:red">*</span></td>
 						<td>
 							<input type="radio" name="status" value="100" checked="checked"/>启用

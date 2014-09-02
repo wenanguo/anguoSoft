@@ -41,7 +41,7 @@ var tool_btns =
     	
 	    
 	   <div data-options="region:'west',split:true" title="模块" style="width:200px;">
-	   <ul class="easyui-tree" style="padding:10px;fit:true;border:0px" id="webNewsTypeTree" ></ul>
+	   <ul class="easyui-tree" style="padding:10px;fit:true;border:0px" id="commonSysClassTree" ></ul>
 	   </div>
 	   
     	<div data-options="region:'center',border:false">
@@ -49,7 +49,7 @@ var tool_btns =
 	    	<div class="easyui-layout" data-options="fit:true,border:false">
 	    	
 		    	<div data-options="region:'north',border:false" style="height:300px">
-		    		<table id="webNewsList"></table>
+		    		<table id="dataGrid"></table>
 			    	<div id="add" title="新增" style="width:600px;height:585px;"></div>
 		    	</div>
 		    	
