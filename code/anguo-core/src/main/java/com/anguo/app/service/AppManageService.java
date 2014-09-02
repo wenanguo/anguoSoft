@@ -43,10 +43,9 @@ public class AppManageService implements ApplicationContextAware {
 	 * @param Service_code
 	 * @param reqParam
 	 */
-	public Map ObjectInvoke(String serviceClass,String serviceMethod,String reqParam)
+	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam)
 	{
-		
-		Map map=new HashMap();
+		Object returnOjb=null;
 		
 		try {
 			
@@ -77,18 +76,13 @@ public class AppManageService implements ApplicationContextAware {
           
         }
 			
-			Object returnOjb= method.invoke(serviceObj, new Object[] { param });
-			
-			map.put("code", "100");
-			map.put("resule", "secuss");
-			map.put("responseData", returnOjb);
-			
+		returnOjb= method.invoke(serviceObj, new Object[] { param });
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return map;
+		return returnOjb;
 	}
 
 	

@@ -22,7 +22,7 @@ public class AppTest {
 	/**
 	 * 服务器地址
 	 */
-	public static final String ServerUrl = "http://127.0.0.1:8080/anguosoft/";
+	public static final String ServerUrl = "http://127.0.0.1:8091/anguosoft/";
 	
 
 	@Test

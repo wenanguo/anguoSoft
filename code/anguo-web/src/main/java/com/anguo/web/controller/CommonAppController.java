@@ -1,5 +1,7 @@
 package com.anguo.web.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.service.AppManageService;
+import com.anguo.app.service.CommonAppSiDataService;
 import com.anguo.app.service.CommonAppSiDefineService;
 
 /**
@@ -28,6 +32,9 @@ public class CommonAppController {
 	
 	@Autowired
 	CommonAppSiDefineService commonAppSiDefineService;
+	
+	@Autowired
+	CommonAppSiDataService commonAppSiDataService;
 	
 	
 	/**
@@ -52,11 +59,39 @@ public class CommonAppController {
 		  
 		  
 	    //反射调用sprin bean 方法
-	    Map result = null; 
+	    Map result = new HashMap();
+	    
+	    result.put("code", "100");
+	    result.put("resule", "secuss");
+	    
 	    
 	    if(commonAppSiDefine!=null)
 	    {
-	    	result=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), reqParam);
+	    	if(commonAppSiDefine.getSiDemo().equals(2))
+	    	{
+	    		//真实接口
+	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), reqParam);
+	    		result.put("responseData", resultObj);
+	    	}else
+	    	{
+	    		//模拟接口
+	    		Map responseMap=new HashMap();
+	    		
+	    		CommonAppSiData cas=new CommonAppSiData();
+	    		cas.setCommonAppSiDefineId(commonAppSiDefine.getId());
+	    		cas.setParamType("2");
+	    		
+	    		List<CommonAppSiData> list=this.commonAppSiDataService.getAllData(cas);
+	    		
+	    		for(CommonAppSiData temp : list)
+	    		{
+	    			responseMap.put(temp.getDataName(), temp.getDataDefaultVal());
+	    		}
+	    		
+	    		result.put("responseData", responseMap);
+	    		
+	    	}
+	    	
 	    }
 
 
