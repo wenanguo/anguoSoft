@@ -3,7 +3,6 @@ package com.anguo.app.test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -13,9 +12,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
-
 import com.anguo.util.AnguoJsonUtil;
 import com.anguo.web.db.domain.TreeNode;
+
+
 
 public class AppTest {
 	
@@ -70,7 +70,6 @@ public class AppTest {
 
 			System.out.println(result);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			httpClient.getConnectionManager().shutdown();

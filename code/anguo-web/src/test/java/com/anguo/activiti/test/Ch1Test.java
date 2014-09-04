@@ -9,6 +9,7 @@ import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.Test;
 
 
 @ContextConfiguration(locations = {"file:src/main/resources/project-*.xml" })
@@ -25,11 +26,12 @@ public class Ch1Test extends AbstractTestNGSpringContextTests {
 	@Autowired
 	TaskService taskService;
 	
+	@Test
 	public void testDeploy()
 	{
 		//部署
 		Deployment deployment = repositoryService.createDeployment()
-				  .addClasspathResource("FinancialReportProcess.bpmn20.xml")
+				  .addClasspathResource("hello.bpmn20.xml")
 				  .deploy();
 		
 		
