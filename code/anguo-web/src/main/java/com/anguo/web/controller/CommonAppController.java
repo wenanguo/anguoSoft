@@ -52,6 +52,13 @@ public class CommonAppController {
 	  public Object doAction(@PathVariable("serviceCode") String serviceCode, String reqParam, String appParam, String userParam, HttpSession session, HttpServletRequest request)
 	  {
 		  
+		  
+		  System.out.println("系统参数："+appParam);
+		  System.out.println("业务参数："+reqParam);
+		  System.out.println("用户参数："+userParam);
+		  
+		  
+		  
 		//根据服务编码获取用户bean名称及方法名
 		  CommonAppSiDefine commonAppSiDefine=new CommonAppSiDefine();
 		  commonAppSiDefine.setSiService(serviceCode);

@@ -54,7 +54,12 @@ public class AppTest {
 		// 进行BASE64加密
 		//param = encryptBASE64(param);
 
+		//业务参数
 		paramMap.add(new BasicNameValuePair("reqParam", param));
+		//系统参数
+		paramMap.add(new BasicNameValuePair("appParam", "{osVision:10}"));
+		//用户参数
+		paramMap.add(new BasicNameValuePair("userParam", "{uuid:abc}"));
 
 		HttpPost httppost = new HttpPost(url);
 
