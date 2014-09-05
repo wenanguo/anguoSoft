@@ -228,20 +228,13 @@ public class AnguoRSAEncryptUtil {
 	 * 加密
 	 * @param plainTextData 待加密字符串
 	 * @return
+	 * @throws Exception 
 	 */
-	public String encrypt(String plainTextData)
+	public byte[] encrypt(String plainTextData) throws Exception
 	{
-		byte[] plainText=null;
 		
-		try {
-			plainText = decrypt(getPrivateKey(), plainTextData.getBytes());
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		return encrypt(getPublicKey(), plainTextData.getBytes());
 		
-		System.out.println(plainText);
-		return AnguoRSAEncryptUtil.byteArrayToString(plainText);
 	}
 	/**
 	 * 加密过程
@@ -278,19 +271,15 @@ public class AnguoRSAEncryptUtil {
 	 * 解密
 	 * @param cipherData 待解密字符串数据
 	 * @return
+	 * @throws Exception 
 	 */
-	public String decrypt(String cipherData)
+	public byte[] decrypt(byte[] cipherData) throws Exception
 	{
-		
-		byte[] plainText=null;
-		try {
-			plainText = decrypt(getPrivateKey(), cipherData.getBytes());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return AnguoRSAEncryptUtil.byteArrayToString(plainText);
+		return decrypt(this.getPrivateKey(),cipherData);
+	
 	}
+	
+	
 	/**
 	 * 解密过程
 	 * @param privateKey 私钥
@@ -406,10 +395,15 @@ public class AnguoRSAEncryptUtil {
 			for(int i=0 ;i<10;i++){
 			//加密
 			byte[] cipher = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), encryptStr.getBytes());
-			//解密
-			byte[] plainText = rsaEncrypt.decrypt(rsaEncrypt.getPrivateKey(), cipher);
+			
+			
 			System.out.println("密文长度:"+ cipher.length);
 			System.out.println(AnguoRSAEncryptUtil.byteArrayToString(cipher));
+			
+			
+			//解密
+			byte[] plainText = rsaEncrypt.decrypt(rsaEncrypt.getPrivateKey(), cipher);
+			
 			System.out.println("明文长度:"+ plainText.length);
 			System.out.println(AnguoRSAEncryptUtil.byteArrayToString(plainText));
 			System.out.println(new String(plainText));
