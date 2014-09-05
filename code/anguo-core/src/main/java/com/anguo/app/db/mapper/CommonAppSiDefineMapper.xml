@@ -13,6 +13,7 @@
 		 		<result property="siDemo" column="si_demo" />
 		 		<result property="siLogging" column="si_logging" />
 		 		<result property="siAuthAccess" column="si_auth_access" />
+		 		<result property="siEncryptionWay" column="si_encryption_way" />
 		 		<result property="siMultiResult" column="si_multi_result" />
 		 		<result property="siServiceName" column="si_service_name" />
 		 		<result property="siServiceMethod" column="si_service_method" />
@@ -160,6 +161,9 @@
 	  			 		 		<if test="siAuthAccess != null">
 				si_auth_access,
 	  	</if>
+	  	<if test="siEncryptionWay != null">
+				si_encryption_way,
+	  	</if>
 	  			 		 		<if test="siMultiResult != null">
 				si_multi_result,
 	  	</if>
@@ -203,6 +207,10 @@
 				<if test="siAuthAccess != null">
 #{siAuthAccess},
 </if>
+<if test="siEncryptionWay != null">
+#{siEncryptionWay},
+</if>
+
 				<if test="siMultiResult != null">
 #{siMultiResult},
 </if>
@@ -248,6 +256,9 @@
 		</if>
 								<if test="siAuthAccess != null and siAuthAccess != ''">
 			si_auth_access=#{siAuthAccess},
+		</if>
+		<if test="siEncryptionWay != null and siEncryptionWay != ''">
+			si_encryption_way=#{siEncryptionWay},
 		</if>
 								<if test="siMultiResult != null and siMultiResult != ''">
 			si_multi_result=#{siMultiResult},

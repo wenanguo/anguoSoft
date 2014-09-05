@@ -43,6 +43,12 @@ public class CommonAppSiDefine extends BaseVo  {
 	 * 授权访问.
 	 */
 	private Integer siAuthAccess;
+	
+	/**
+	 * 加密方式
+	 */
+	private Integer siEncryptionWay;
+	
 	/**
 	 * 多行.
 	 */
@@ -89,7 +95,12 @@ public Integer getSiType() {
 	public void setSiType(Integer siType) {
 		this.siType = siType;
 	}
-    
+	public Integer getSiEncryptionWay() {
+		return siEncryptionWay;
+	}
+	public void setSiEncryptionWay(Integer siEncryptionWay) {
+		this.siEncryptionWay = siEncryptionWay;
+	}
 public String getSiService() {
 		return siService;
 	}

@@ -9,6 +9,7 @@ import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.service.AppManageService;
 import com.anguo.app.service.CommonAppSiDefineService;
 import com.anguo.mybatis.db.core.PageResult;
+import com.anguo.util.AnguoRSAEncryptUtil;
 
 
 
@@ -21,6 +22,9 @@ public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 	
 	@Autowired
 	CommonAppSiDefineService commonAppSiDefineService;
+	
+	@Autowired
+	AnguoRSAEncryptUtil anguoRSAEncryptUtil;
 	
 	@Test
 	public void test1()
@@ -53,5 +57,31 @@ public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 		  
 		PageResult<CommonAppSiDefine> list =this.commonAppSiDefineService.getPageData(commonAppSiDefine);
 		System.out.println(list);
+	}
+	@Test
+	public void test4()
+	{
+		
+		//测试字符串
+				String encryptStr= "wenanguo##123456";
+
+				try {
+					long start=System.currentTimeMillis();
+					for(int i=0 ;i<10;i++){
+					//加密
+					String cipher = this.anguoRSAEncryptUtil.encrypt(encryptStr);
+					
+					System.out.println("加密文："+cipher);
+					//解密
+					String plainText = this.anguoRSAEncryptUtil.decrypt(cipher);
+					
+					System.out.println("明文："+plainText);
+					
+					}
+					
+					System.out.println(System.currentTimeMillis()-start);
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
 	}
 }

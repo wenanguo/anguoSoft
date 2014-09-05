@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.service.AppManageService;
@@ -25,6 +24,8 @@ import com.anguo.app.service.CommonAppSiDefineService;
  */
 @Controller
 public class CommonAppController {
+	
+	
 
 	//app业务逻辑类
 	@Autowired
@@ -52,14 +53,14 @@ public class CommonAppController {
 	  public Object doAction(@PathVariable("serviceCode") String serviceCode, String reqParam, String appParam, String userParam, HttpSession session, HttpServletRequest request)
 	  {
 		  
-		  
 		  System.out.println("系统参数："+appParam);
 		  System.out.println("业务参数："+reqParam);
 		  System.out.println("用户参数："+userParam);
 		  
+		  String localAppParam,localReqParam,localUserParam;
 		  
 		  
-		//根据服务编码获取用户bean名称及方法名
+		  //根据服务编码获取用户bean名称及方法名
 		  CommonAppSiDefine commonAppSiDefine=new CommonAppSiDefine();
 		  commonAppSiDefine.setSiService(serviceCode);
 		  commonAppSiDefine=this.commonAppSiDefineService.getDataBySiService(commonAppSiDefine);
@@ -74,6 +75,19 @@ public class CommonAppController {
 	    
 	    if(commonAppSiDefine!=null)
 	    {
+	    	
+	    	//根据加密方式进行解密
+	    	if(commonAppSiDefine.getSiEncryptionWay().equals(1))
+	    	{
+	    		//base64
+	    		
+	    	}else
+	    	{
+	    		
+	    	}
+	    	
+	    	
+	    	
 	    	if(commonAppSiDefine.getSiDemo().equals(2))
 	    	{
 	    		//真实接口
@@ -105,6 +119,8 @@ public class CommonAppController {
 	    return result;
 	  }
 
+	  
+	  
 
 	
 }
