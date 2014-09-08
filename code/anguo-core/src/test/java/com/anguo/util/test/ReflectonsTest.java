@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import com.anguo.util.AnguoReflections;
 
-public class CodeTest {
+public class ReflectonsTest {
 
 	
 	@Test
