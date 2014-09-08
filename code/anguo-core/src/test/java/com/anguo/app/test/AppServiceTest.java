@@ -59,10 +59,14 @@ public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 		System.out.println(list);
 	}
 	
+	/**
+	 * 单元测试，RSA非对称加密
+	 * @throws Exception
+	 */
 	@Test
 	public void test4() throws Exception
 	{
-		  System.err.println("公钥加密——私钥解密");  
+		  System.out.println("公钥加密——私钥解密");  
 	        String inputStr = "abc";  
 	        byte[] data = inputStr.getBytes();  
 	        
