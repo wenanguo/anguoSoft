@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -31,8 +32,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.asn1.ASN1Sequence;
 import org.bouncycastle.asn1.pkcs.RSAPrivateKeyStructure;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * 安全编码组件
@@ -121,27 +121,53 @@ public class AnguoEncryptUtil  {
 	}
 	
 	
-	 /** 
-     * BASE64解密 
-     *  
-     * @param key 
-     * @return 
-     * @throws Exception 
-     */  
-    public static byte[] decryptBASE64(String key) throws Exception {  
-        return (new BASE64Decoder()).decodeBuffer(key);  
-    }  
-  
-    /** 
-     * BASE64加密 
-     *  
-     * @param key 
-     * @return 
-     * @throws Exception 
-     */  
-    public static String encryptBASE64(byte[] key) throws Exception {  
-        return (new BASE64Encoder()).encodeBuffer(key);  
-    }  
+//	 /** 
+//     * BASE64解密 
+//     *  
+//     * @param key 
+//     * @return 
+//     * @throws Exception 
+//     */  
+//    public static byte[] decryptBASE64(String key) throws Exception {  
+//        return (new BASE64Decoder()).decodeBuffer(key);  
+//    }  
+//  
+//    /** 
+//     * BASE64加密 
+//     *  
+//     * @param key 
+//     * @return 
+//     * @throws Exception 
+//     */  
+//    public static String encryptBASE64(byte[] key) throws Exception {  
+//        return (new BASE64Encoder()).encodeBuffer(key);  
+//    }  
+	
+	/**
+     * 将二进制数据编码为BASE64字符串
+     * @param binaryData
+     * @return
+     */
+    public static String encryptBASE64(byte[] binaryData) {
+        try {
+            return new String(Base64.encodeBase64(binaryData), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+    }
+     
+    /**
+     * 将BASE64字符串恢复为二进制数据
+     * @param base64String
+     * @return
+     */
+    public static byte[] decryptBASE64(String base64String) {
+        try {
+            return Base64.decodeBase64(base64String.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+    }
   
     /** 
      * MD5加密 
@@ -563,8 +589,8 @@ public class AnguoEncryptUtil  {
 			
 			publicKeyStr=readKeyContent(publicKeyPath);
 			
-			BASE64Decoder base64Decoder= new BASE64Decoder();
-			byte[] buffer= base64Decoder.decodeBuffer(publicKeyStr);
+			//BASE64Decoder base64Decoder= new BASE64Decoder();
+			byte[] buffer= decryptBASE64(publicKeyStr);
 			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
 			X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
 			this.publicKey= (RSAPublicKey) keyFactory.generatePublic(keySpec);
@@ -594,8 +620,8 @@ public class AnguoEncryptUtil  {
 			privateKeyStr=readKeyContent(privateKeyPath);
 			
 			
-			BASE64Decoder base64Decoder= new BASE64Decoder();
-			byte[] buffer= base64Decoder.decodeBuffer(privateKeyStr);
+			//BASE64Decoder base64Decoder= new BASE64Decoder();
+			byte[] buffer= decryptBASE64(privateKeyStr);
 			PKCS8EncodedKeySpec keySpec= new PKCS8EncodedKeySpec(buffer);
 			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
 			this.privateKey= (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
@@ -624,8 +650,8 @@ public class AnguoEncryptUtil  {
 			privateKeyStr=readKeyContent(privateKeyPath);
 			
 			
-			BASE64Decoder base64Decoder= new BASE64Decoder();
-			byte[] buffer= base64Decoder.decodeBuffer(privateKeyStr);
+			//BASE64Decoder base64Decoder= new BASE64Decoder();
+			byte[] buffer= decryptBASE64(privateKeyStr);
 			
 			RSAPrivateKeyStructure asn1PrivKey = new RSAPrivateKeyStructure((ASN1Sequence) ASN1Sequence.fromByteArray(buffer));  
 			RSAPrivateKeySpec rsaPrivKeySpec = new RSAPrivateKeySpec(asn1PrivKey.getModulus(), asn1PrivKey.getPrivateExponent());  
