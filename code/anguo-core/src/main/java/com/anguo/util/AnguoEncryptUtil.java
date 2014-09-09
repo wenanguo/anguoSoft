@@ -1,14 +1,11 @@
 package com.anguo.util;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.Key;
 import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -20,19 +17,15 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.HashMap;
 import java.util.Map;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
+import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.asn1.ASN1Sequence;
 import org.bouncycastle.asn1.pkcs.RSAPrivateKeyStructure;
-
-import org.apache.commons.codec.binary.Base64;
 
 /**
  * 安全编码组件
@@ -589,7 +582,6 @@ public class AnguoEncryptUtil  {
 			
 			publicKeyStr=readKeyContent(publicKeyPath);
 			
-			//BASE64Decoder base64Decoder= new BASE64Decoder();
 			byte[] buffer= decryptBASE64(publicKeyStr);
 			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
 			X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
