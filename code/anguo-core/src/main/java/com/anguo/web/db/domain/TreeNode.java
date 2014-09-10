@@ -1,5 +1,6 @@
 package com.anguo.web.db.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  * @author Andrew.Wen
  *
  */
-public class TreeNode {
+public class TreeNode implements Serializable {
 	
 	@Override
 	public String toString() {

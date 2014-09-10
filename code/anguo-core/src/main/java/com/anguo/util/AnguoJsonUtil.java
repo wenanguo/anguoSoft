@@ -6,13 +6,14 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
+
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * json转换工具类
@@ -30,9 +31,9 @@ public class AnguoJsonUtil {
 		m = new ObjectMapper();
 
 		// 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
-		m.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
+		//m.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-		m.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
+		//m.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
 
 		m.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
@@ -50,9 +51,9 @@ public class AnguoJsonUtil {
 	 * @throws JsonParseException
 	 * @throws IOException
 	 */
-	public static <T> Object fromJson(String jsonAsString, Class<T> pojoClass) {
+	public static <T> T fromJson(String jsonAsString, Class<T> pojoClass) {
 
-		Object object = null;
+		T object = null;
 
 		try {
 			object = m.readValue(jsonAsString, pojoClass);
@@ -72,39 +73,45 @@ public class AnguoJsonUtil {
 	 * @param pojo
 	 *            序列化对象
 	 * @return
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
-	public static String toJson(Object pojo) {
-		return toJson(pojo, false);
+	public static String toJson(Object pojo) throws JsonGenerationException, JsonMappingException, IOException {
+		
+		
+		
+		return m.writeValueAsString(pojo);
 	}
 
-	/**
-	 * 对象序列化为json
-	 * 
-	 * @Title: toJson
-	 * @param pojo
-	 *            序列化对象
-	 * @param prettyPrint
-	 *            是否使用正确格式输出
-	 * @return
-	 */
-	public static String toJson(Object pojo, boolean prettyPrint) {
-
-		StringWriter sw = new StringWriter();
-
-		JsonGenerator jg = null;
-		try {
-			jg = jf.createJsonGenerator(sw);
-			if (prettyPrint) {
-				jg.useDefaultPrettyPrinter();
-			}
-			m.writeValue(jg, pojo);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return sw.toString();
-	}
+//	/**
+//	 * 对象序列化为json
+//	 * 
+//	 * @Title: toJson
+//	 * @param pojo
+//	 *            序列化对象
+//	 * @param prettyPrint
+//	 *            是否使用正确格式输出
+//	 * @return
+//	 */
+//	public static String toJson(Object pojo, boolean prettyPrint) {
+//
+//		StringWriter sw = new StringWriter();
+//
+//		JsonGenerator jg = null;
+//		try {
+//			jg = jf.createJsonGenerator(sw);
+//			if (prettyPrint) {
+//				jg.useDefaultPrettyPrinter();
+//			}
+//			m.writeValueAsString( pojo);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return sw.toString();
+//	}
 
 	/**
 	 * 把数据源HashMap转换成json

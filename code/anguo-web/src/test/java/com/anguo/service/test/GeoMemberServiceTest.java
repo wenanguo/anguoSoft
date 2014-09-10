@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.anguo.member.db.domain.GeoMember;
 import com.anguo.member.service.GeoMemberService;
@@ -184,6 +185,53 @@ public class GeoMemberServiceTest extends AbstractTestNGSpringContextTests {
 		int result = geoMemberService.deleteData(geoMember);
 
 		assert result == 1 : "删除数据失败，执行结果为" + result;
+
+	}
+	
+	
+	/**
+	 * 删除数据
+	 */
+	@Test(groups = {BaseConstants.TEST_DATABASE_AFFECT})
+	public void loginTest() {
+
+		GeoMember geoMember = new GeoMember();
+
+		// ********设置数据***********
+		geoMember.setMemberName("wenanguo1");
+		geoMember.setPassword("123456");
+		// ******************************
+		GeoMember resultGeoMember = null;
+		
+		//测试用户名错误
+		try {
+			 resultGeoMember  = geoMemberService.login(geoMember);
+		} catch (Exception e) {
+			
+			Assert.assertEquals(e.getMessage(), "用户不存在！");
+		}
+
+		
+		//测试密码错误
+		try {
+			geoMember.setMemberName("wenanguo");
+			geoMember.setPassword("1234561");
+			 resultGeoMember  = geoMemberService.login(geoMember);
+		} catch (Exception e) {
+			
+			Assert.assertEquals(e.getMessage(), "密码错误！");
+		}
+		
+		//测试密码错误
+		try {
+					geoMember.setMemberName("wenanguo");
+					geoMember.setPassword("123456");
+					resultGeoMember  = geoMemberService.login(geoMember);
+					
+					Assert.assertNotNull(resultGeoMember);
+			} catch (Exception e) {
+					
+			}
 
 	}
 

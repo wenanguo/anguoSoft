@@ -67,10 +67,10 @@ public class CommonAppController {
 		  
 		  
 	    //反射调用sprin bean 方法
-	    Map result = new HashMap();
-	    
-	    result.put("code", "100");
-	    result.put("resule", "secuss");
+//	    Map result = new HashMap();
+//	    
+//	    result.put("code", "100");
+//	    result.put("resule", "secuss");
 	    
 	    
 	    if(commonAppSiDefine!=null)
@@ -92,7 +92,8 @@ public class CommonAppController {
 	    	{
 	    		//真实接口
 	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), reqParam);
-	    		result.put("responseData", resultObj);
+	    		//result.put("responseData", resultObj);
+	    		return resultObj;
 	    	}else
 	    	{
 	    		//模拟接口
@@ -109,14 +110,16 @@ public class CommonAppController {
 	    			responseMap.put(temp.getDataName(), temp.getDataDefaultVal());
 	    		}
 	    		
-	    		result.put("responseData", responseMap);
-	    		
+	    		//result.put("responseData", responseMap);
+	    		return responseMap;
 	    	}
 	    	
 	    }
+	    
+	    return null;
 
 
-	    return result;
+	    
 	  }
 
 	  

@@ -10,8 +10,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.JsonSerializer;
-import org.codehaus.jackson.map.SerializerProvider;
+
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+
 
 
 
@@ -372,16 +374,19 @@ public class AnguoDateUtils extends JsonSerializer<Date> {
 		return date;
 	}
 	
+	
 	/**
 	 * 绑定spring jackon字符串序列化
 	 */
 	@Override
-	public void serialize(Date value, JsonGenerator jgen,
+	public void serialize(Date value,
+			com.fasterxml.jackson.core.JsonGenerator jgen,
 			SerializerProvider provider) throws IOException,
-			JsonProcessingException {
+			com.fasterxml.jackson.core.JsonProcessingException {
 		SimpleDateFormat formatter = new SimpleDateFormat(AnguoDateUtils.C_TIME_PATTON_DEFAULT);
 		String formattedDate = formatter.format(value);
 		jgen.writeString(formattedDate);
+		
 	}
 
 }

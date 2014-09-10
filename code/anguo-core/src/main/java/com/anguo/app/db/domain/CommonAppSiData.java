@@ -16,6 +16,17 @@ import com.anguo.mybatis.db.core.BaseVo;
  */
 public class CommonAppSiData extends BaseVo  {
 
+	@Override
+	public String toString() {
+		return "CommonAppSiData [id=" + id + ", commonAppSiDefineId="
+				+ commonAppSiDefineId + ", dataName=" + dataName
+				+ ", dataTitle=" + dataTitle + ", dataType=" + dataType
+				+ ", paramType=" + paramType + ", dataPattern=" + dataPattern
+				+ ", memo=" + memo + ", dataDefaultVal=" + dataDefaultVal
+				+ ", parentId=" + parentId + ", status=" + status
+				+ ", operateUserId=" + operateUserId + ", operateDate="
+				+ operateDate + "]";
+	}
 	/**
 	 * 编号.
 	 */

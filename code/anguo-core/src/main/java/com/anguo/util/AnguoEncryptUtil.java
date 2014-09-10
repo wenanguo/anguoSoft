@@ -433,21 +433,14 @@ public class AnguoEncryptUtil  {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] encryptByPublicKey(byte[] data, String key)
+	public static byte[] encryptByPublicKey(byte[] data, String publicKeyStr)
 			throws Exception {
-		// 对公钥解密
-		byte[] keyBytes = decryptBASE64(key);
-
-		// 取得公钥
-		X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
-		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
-		Key publicKey = keyFactory.generatePublic(x509KeySpec);
-
-		// 对数据加密
-		Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
-		cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-
-		return cipher.doFinal(data);
+		byte[] buffer= decryptBASE64(publicKeyStr);
+		KeyFactory keyFactory= KeyFactory.getInstance("RSA");
+		X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
+		RSAPublicKey key=(RSAPublicKey) keyFactory.generatePublic(keySpec);
+		
+		return  encryptByPublicKey(data,key);
 	}
 	
 	/**
@@ -472,37 +465,32 @@ public class AnguoEncryptUtil  {
 	}
 
 	/**
-	 * 加密<br>
-	 * 用私钥加密
-	 * 
-	 * @param data
-	 * @param key
+	 * RSA加密<br>
+	 * 用字符串秘钥加密
+	 * @param data 加密数据
+	 * @param privateKeyStr 字符串秘钥
 	 * @return
-	 * @throws Exception
 	 */
-	public static byte[] encryptByPrivateKey(byte[] data, String key)
+	public static byte[] encryptByPrivateKey(byte[] data, String privateKeyStr)
 			throws Exception {
-		// 对密钥解密
-		byte[] keyBytes = decryptBASE64(key);
-
-		// 取得私钥
-		PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
-		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
-		Key privateKey = keyFactory.generatePrivate(pkcs8KeySpec);
-
-		// 对数据加密
-		Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
-		cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-
-		return cipher.doFinal(data);
+		
+		byte[] buffer= decryptBASE64(privateKeyStr);
+		
+		RSAPrivateKeyStructure asn1PrivKey = new RSAPrivateKeyStructure((ASN1Sequence) ASN1Sequence.fromByteArray(buffer));  
+		RSAPrivateKeySpec rsaPrivKeySpec = new RSAPrivateKeySpec(asn1PrivKey.getModulus(), asn1PrivKey.getPrivateExponent());  
+		KeyFactory keyFactory= KeyFactory.getInstance("RSA");  
+		
+		RSAPrivateKey privateKey=(RSAPrivateKey) keyFactory.generatePrivate(rsaPrivKeySpec);  
+		
+		return encryptByPrivateKey(data,privateKey);
+		
+		
 	}
 	
 	/**
-	 * 加密<br>
-	 * 用私钥加密
-	 * 
-	 * @param data
-	 * @param key
+	 * 使用私钥进行RSA加密
+	 * @param data 加密数据
+	 * @param privateKey 私钥对象
 	 * @return
 	 * @throws Exception
 	 */
@@ -531,19 +519,6 @@ public class AnguoEncryptUtil  {
 		return encryptBASE64(key.getEncoded());
 	}
 
-	/**
-	 * 取得公钥
-	 * 
-	 * @param keyMap
-	 * @return
-	 * @throws Exception
-	 */
-	public static String getPublicKey(Map<String, Object> keyMap)
-			throws Exception {
-		Key key = (Key) keyMap.get(PUBLIC_KEY);
-
-		return encryptBASE64(key.getEncoded());
-	}
 	
 	
 	/**
@@ -573,6 +548,40 @@ public class AnguoEncryptUtil  {
 		} catch (NullPointerException e) {
 			throw new Exception("公钥数据为空");
 		}
+	}
+	
+	/**
+	 * 根据字符串生成公钥对象
+	 * @param publicKeyStr
+	 * @return
+	 * @throws NoSuchAlgorithmException 
+	 * @throws InvalidKeySpecException 
+	 */
+	public RSAPublicKey initPublicKey(String publicKeyStr) throws NoSuchAlgorithmException, InvalidKeySpecException
+	{
+		byte[] buffer= decryptBASE64(publicKeyStr);
+		KeyFactory keyFactory= KeyFactory.getInstance("RSA");
+		X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
+		return (RSAPublicKey) keyFactory.generatePublic(keySpec);
+	}
+	
+	/**
+	 * 根据字符串生成私钥对象
+	 * @param privateKeyStr
+	 * @return
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeySpecException
+	 */
+	public RSAPrivateKey initPrivateKey(String privateKeyStr) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException 
+	{
+		byte[] buffer= decryptBASE64(privateKeyStr);
+		
+		RSAPrivateKeyStructure asn1PrivKey = new RSAPrivateKeyStructure((ASN1Sequence) ASN1Sequence.fromByteArray(buffer));  
+		RSAPrivateKeySpec rsaPrivKeySpec = new RSAPrivateKeySpec(asn1PrivKey.getModulus(), asn1PrivKey.getPrivateExponent());  
+		KeyFactory keyFactory= KeyFactory.getInstance("RSA");  
+		
+		return (RSAPrivateKey) keyFactory.generatePrivate(rsaPrivKeySpec);  
 	}
 	
 	

@@ -5,13 +5,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.anguo.mybatis.db.core.BaseVo;
 import com.anguo.util.AnguoDateUtils;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * 用户实体类，继承UserDetailss实现spring security权限验证

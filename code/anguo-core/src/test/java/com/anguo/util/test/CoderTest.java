@@ -79,4 +79,44 @@ public class CoderTest {
         Assert.assertEquals(true, status);  
   
     }  
+    
+    
+    @Test  
+    public void test2() throws Exception {  
+    	   String DEFAULT_PUBLIC_KEY=
+    			        "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDveyqk24CbH/mAgEbUD03pVYQ1"+"\r"
+    					+"pTbhZf+9hnVJMtVfYEHf33i53Myq/qVkPsAI6/6iCHgOXhR1RGRmCXtZnTELoPVn"+"\r"
+    					+"K3nRQJVFpeVmH3s4i6q6BXaTt6i0RTfWQzeP9SgUtfSPzoAxoGM4DfRw3U5wYvzH"+"\r"
+    					+"v60/Mvd4IvWafQeYvQIDAQAB"+"\r";
+    	   
+    	   String DEFAULT_PRIVATE_KEY=
+    			"MIICXAIBAAKBgQDveyqk24CbH/mAgEbUD03pVYQ1pTbhZf+9hnVJMtVfYEHf33i5"+"\r"
+    			+"3Myq/qVkPsAI6/6iCHgOXhR1RGRmCXtZnTELoPVnK3nRQJVFpeVmH3s4i6q6BXaT"+"\r"
+    			+"t6i0RTfWQzeP9SgUtfSPzoAxoGM4DfRw3U5wYvzHv60/Mvd4IvWafQeYvQIDAQAB"+"\r"
+    			+"AoGAO5hl+1KYhYIGgADsH1eTpu5eEU+FAcB1TP/J7iZVTP/SRNkC3RXiZOcr1296"+"\r"
+    			+"MH4yBrae0cx9wNT9Oxs+9AUXL/dmPnJh36+4Rg4P1aHl65Q0hvuq7UUwCqPXG+AT"+"\r"
+    			+"RjIP57htK/E/0dyvMicXfMr1Ip6+gUFcYgy3nChm9phfz+0CQQD6+79KR82d6Amg"+"\r"
+    			+"1Rk8yhXMND8eO8t2CzqBeZlDJlmOmBwJhLjOglTcCeDrecAUQgcq+euQUB0Mca4l"+"\r"
+    			+"Z48u1iOvAkEA9ESQRwgSNWFP8xOqDPBvBFbE/UT4caB9/SqJDHMgDwj/XvV6IXoN"+"\r"
+    			+"29yprg+z3uJJi2ANZZIalUDpxsFXbg0pUwJBANV6zHqiGIL3mzjyCUVrnp7S0d0l"+"\r"
+    			+"fyoo4tq+U16KgCKJv09ZVNhSg1umC2o/ZOHWR8KGUZeujQbIqxelvmRYQIECQEC7"+"\r"
+    			+"yuCIKwsqdt2cYHx9W25y8FGObajvN3RYSWmbOOvDHqozs+IbToDtwan3T1vJ7GOb"+"\r"
+    			+"WPGJ/rF/OnUJ1/m6UzECQGxVPKOcSUsQI1NKTLHvATgGxAdvQNii1b3DjjqNLFDN"+"\r"
+    			+"aBtbG4svFr0t7HLkilUQnvex3oJkTsp/VYBxTbSSLVU="+"\r";
+
+    	
+        System.err.println("公钥加密——私钥解密");  
+        String inputStr = "abc";  
+        byte[] data = inputStr.getBytes();  
+        
+  
+        byte[] encodedData = AnguoEncryptUtil.encryptByPublicKey(data, DEFAULT_PUBLIC_KEY);  
+  
+        byte[] decodedData = AnguoEncryptUtil.decryptByPrivateKey(encodedData,DEFAULT_PRIVATE_KEY);  
+  
+        String outputStr = new String(decodedData);  
+        System.err.println("加密前: " + inputStr + "\n\r" + "解密后: " + outputStr);  
+        Assert.assertEquals(inputStr, outputStr);  
+  
+    }  
 }

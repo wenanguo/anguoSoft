@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
+import com.anguo.app.db.domain.ResultMsg;
 import com.anguo.member.db.domain.GeoMember;
 import com.anguo.member.service.GeoMemberService;
 import com.anguo.mybatis.db.controller.BaseController;
@@ -109,8 +112,6 @@ public class GeoMemberController extends BaseController {
 			int i =geoMemberService.deleteData(geoMember);
 			
 			
-			
-			
 			if (i > 0) {
 				messages.put("success", true);
 				messages.put("msg", "删除成功!");
@@ -126,10 +127,34 @@ public class GeoMemberController extends BaseController {
 		return messages;
 	}
 	
+	
+	
+	
 	@RequestMapping("/geoMember/load.htm")
 	@ResponseBody
 	public Object loadGeoMember(GeoMember geoMember) {
 		
 		return geoMemberService.getData(geoMember);
+	}
+	
+	
+	@RequestMapping("/geoMember/login.htm")
+	@ResponseBody
+	public ResultMsg<GeoMember> login(GeoMember geoMember) {
+		
+		ResultMsg<GeoMember> messages = new ResultMsg<GeoMember>();
+		
+		GeoMember resultGeoMember=null;
+		try {
+				resultGeoMember  = geoMemberService.login(geoMember);
+				messages.setCode(100);
+				messages.setObj(resultGeoMember);
+			} catch (Exception e) {
+				messages.setCode(101);
+				messages.setMsg(e.getMessage());
+			}
+		
+		
+		return messages;
 	}
 }

@@ -12,6 +12,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
+
+import com.anguo.app.db.domain.ResultMsg;
+import com.anguo.member.db.domain.GeoMember;
 import com.anguo.util.AnguoJsonUtil;
 import com.anguo.web.db.domain.TreeNode;
 
@@ -36,16 +39,11 @@ public class AppTest {
 
 		
 		
-		TreeNode t=new TreeNode();
+		GeoMember member=new GeoMember();
+		member.setMemberName("wenanguo");
+		member.setPassword("123456");
 		
-		t.setChecked(false);
-		t.setId(147258369);
-		t.setText("test1");
-		t.setTitle("title2");
-		t.setUrl("url3");
-		
-		
-		String param=AnguoJsonUtil.toJson(t);
+		String param=AnguoJsonUtil.toJson(member);
 		
 		
 		// 参数json格式
@@ -74,6 +72,11 @@ public class AppTest {
 			String result = EntityUtils.toString(response.getEntity());
 
 			System.out.println(result);
+			
+			ResultMsg<GeoMember> messages= AnguoJsonUtil.fromJson(result, new ResultMsg<GeoMember>().getClass());
+			System.out.println(messages.getCode());
+			System.out.println(messages.getMsg());
+			System.out.println(messages.getObj().getMemberName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
