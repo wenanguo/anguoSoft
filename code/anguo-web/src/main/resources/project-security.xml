@@ -98,7 +98,7 @@
 	
 	
 	<bean id="anguoRSAEncryptUtil" class="com.anguo.util.AnguoEncryptUtil" init-method="init">
-		<property name="publicKeyPath" value=D:/ssh/rsa_public_key.pem/>
+		<property name="publicKeyPath" value="D:/ssh/rsa_public_key.pem"/>
 		<property name="privateKeyPath" value="D:/ssh/pkcs8_rsa_private_key.pem"/>
 	</bean>
 	

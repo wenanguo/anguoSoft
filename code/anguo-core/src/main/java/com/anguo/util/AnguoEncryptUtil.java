@@ -114,28 +114,6 @@ public class AnguoEncryptUtil  {
 	}
 	
 	
-//	 /** 
-//     * BASE64解密 
-//     *  
-//     * @param key 
-//     * @return 
-//     * @throws Exception 
-//     */  
-//    public static byte[] decryptBASE64(String key) throws Exception {  
-//        return (new BASE64Decoder()).decodeBuffer(key);  
-//    }  
-//  
-//    /** 
-//     * BASE64加密 
-//     *  
-//     * @param key 
-//     * @return 
-//     * @throws Exception 
-//     */  
-//    public static String encryptBASE64(byte[] key) throws Exception {  
-//        return (new BASE64Encoder()).encodeBuffer(key);  
-//    }  
-	
 	/**
      * 将二进制数据编码为BASE64字符串
      * @param binaryData
@@ -272,7 +250,7 @@ public class AnguoEncryptUtil  {
 	public static String sign(byte[] data, RSAPrivateKey privateKey) throws Exception {
 		
 		// KEY_ALGORITHM 指定的加密算法
-		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
+		//KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
 
 		// 取私钥匙对象
 
