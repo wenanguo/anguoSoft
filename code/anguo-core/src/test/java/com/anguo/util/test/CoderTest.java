@@ -8,7 +8,7 @@ import com.anguo.util.AnguoEncryptUtil;
 
 /**
  * 
- * @author 梁栋
+ * @author andrew
  * @version 1.0
  * @since 1.0
  */
@@ -19,12 +19,6 @@ public class CoderTest {
   
     @BeforeTest  
     public void setUp() throws Exception {  
-//        Map<String, Object> keyMap = RSACoder.initKey();  
-//  
-//        publicKey = RSACoder.getPublicKey(keyMap);  
-//        privateKey = RSACoder.getPrivateKey(keyMap);  
-//        System.err.println("公钥: \n\r" + publicKey);  
-//        System.err.println("私钥： \n\r" + privateKey);  
     	
     	rSACoder=new AnguoEncryptUtil();
     	System.out.println("载入密钥对");
@@ -108,7 +102,6 @@ public class CoderTest {
         System.err.println("公钥加密——私钥解密");  
         String inputStr = "abc";  
         byte[] data = inputStr.getBytes();  
-        
   
         byte[] encodedData = AnguoEncryptUtil.encryptByPublicKey(data, DEFAULT_PUBLIC_KEY);  
   

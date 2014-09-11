@@ -38,8 +38,8 @@ public class AnguoEncryptUtil  {
 	public static final String KEY_ALGORITHM = "RSA";
 	public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 
-	private static final String PUBLIC_KEY = "RSAPublicKey";
-	private static final String PRIVATE_KEY = "RSAPrivateKey";
+	//private static final String PUBLIC_KEY = "RSAPublicKey";
+	//private static final String PRIVATE_KEY = "RSAPrivateKey";
 	public static final String KEY_SHA = "SHA";  
     public static final String KEY_MD5 = "MD5";  
     /** 
@@ -204,6 +204,9 @@ public class AnguoEncryptUtil  {
     }
 	
 	
+    
+    
+    //**************************RSA加密**********************************
 	/**
 	 * 用私钥对信息生成数字签名
 	 * 
@@ -334,25 +337,15 @@ public class AnguoEncryptUtil  {
 	 * 用私钥解密
 	 * 
 	 * @param data
-	 * @param key
+	 * @param privateKeyStr 私钥字符串
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] decryptByPrivateKey(byte[] data, String key)
+	public static byte[] decryptByPrivateKey(byte[] data, String privateKeyStr)
 			throws Exception {
-		// 对密钥解密
-		byte[] keyBytes = decryptBASE64(key);
-
-		// 取得私钥
-		PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
-		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
-		Key privateKey = keyFactory.generatePrivate(pkcs8KeySpec);
-
-		// 对数据解密
-		Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
-		cipher.init(Cipher.DECRYPT_MODE, privateKey);
-
-		return cipher.doFinal(data);
+		
+		return decryptByPrivateKey(data,initPrivateKey(privateKeyStr));
+		
 	}
 	
 	/**
@@ -360,7 +353,7 @@ public class AnguoEncryptUtil  {
 	 * 用私钥解密
 	 * 
 	 * @param data
-	 * @param key
+	 * @param privateKey 私钥对象
 	 * @return
 	 * @throws Exception
 	 */
@@ -382,25 +375,12 @@ public class AnguoEncryptUtil  {
 	 * 用公钥解密
 	 * 
 	 * @param data
-	 * @param key
+	 * @param publicKeyStr 公钥字符串
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] decryptByPublicKey(byte[] data, String key)
-			throws Exception {
-		// 对密钥解密
-		byte[] keyBytes = decryptBASE64(key);
-
-		// 取得公钥
-		X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
-		KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
-		Key publicKey = keyFactory.generatePublic(x509KeySpec);
-
-		// 对数据解密
-		Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
-		cipher.init(Cipher.DECRYPT_MODE, publicKey);
-
-		return cipher.doFinal(data);
+	public static byte[] decryptByPublicKey(byte[] data, String publicKeyStr) throws Exception {
+		return decryptByPublicKey(data,initPublicKey(publicKeyStr));
 	}
 	
 	/**
@@ -408,7 +388,7 @@ public class AnguoEncryptUtil  {
 	 * 用公钥解密
 	 * 
 	 * @param data
-	 * @param key
+	 * @param publicKey 公钥对象
 	 * @return
 	 * @throws Exception
 	 */
@@ -429,18 +409,13 @@ public class AnguoEncryptUtil  {
 	 * 用公钥加密
 	 * 
 	 * @param data
-	 * @param key
+	 * @param publicKeyStr 公钥字符串
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] encryptByPublicKey(byte[] data, String publicKeyStr)
-			throws Exception {
-		byte[] buffer= decryptBASE64(publicKeyStr);
-		KeyFactory keyFactory= KeyFactory.getInstance("RSA");
-		X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
-		RSAPublicKey key=(RSAPublicKey) keyFactory.generatePublic(keySpec);
+	public static byte[] encryptByPublicKey(byte[] data, String publicKeyStr) throws Exception {
 		
-		return  encryptByPublicKey(data,key);
+		return  encryptByPublicKey(data,initPublicKey(publicKeyStr));
 	}
 	
 	/**
@@ -448,7 +423,7 @@ public class AnguoEncryptUtil  {
 	 * 用公钥加密
 	 * 
 	 * @param data
-	 * @param key
+	 * @param publicKey 公钥对象
 	 * @return
 	 * @throws Exception
 	 */
@@ -468,23 +443,13 @@ public class AnguoEncryptUtil  {
 	 * RSA加密<br>
 	 * 用字符串秘钥加密
 	 * @param data 加密数据
-	 * @param privateKeyStr 字符串秘钥
+	 * @param privateKeyStr 私钥字符串
 	 * @return
 	 */
 	public static byte[] encryptByPrivateKey(byte[] data, String privateKeyStr)
 			throws Exception {
 		
-		byte[] buffer= decryptBASE64(privateKeyStr);
-		
-		RSAPrivateKeyStructure asn1PrivKey = new RSAPrivateKeyStructure((ASN1Sequence) ASN1Sequence.fromByteArray(buffer));  
-		RSAPrivateKeySpec rsaPrivKeySpec = new RSAPrivateKeySpec(asn1PrivKey.getModulus(), asn1PrivKey.getPrivateExponent());  
-		KeyFactory keyFactory= KeyFactory.getInstance("RSA");  
-		
-		RSAPrivateKey privateKey=(RSAPrivateKey) keyFactory.generatePrivate(rsaPrivKeySpec);  
-		
-		return encryptByPrivateKey(data,privateKey);
-		
-		
+		return encryptByPrivateKey(data,initPrivateKey(privateKeyStr));
 	}
 	
 	/**
@@ -505,19 +470,7 @@ public class AnguoEncryptUtil  {
 		return cipher.doFinal(data);
 	}
 
-	/**
-	 * 取得私钥
-	 * 
-	 * @param keyMap
-	 * @return
-	 * @throws Exception
-	 */
-	public static String getPrivateKey(Map<String, Object> keyMap)
-			throws Exception {
-		Key key = (Key) keyMap.get(PRIVATE_KEY);
 
-		return encryptBASE64(key.getEncoded());
-	}
 
 	
 	
@@ -534,11 +487,9 @@ public class AnguoEncryptUtil  {
 		try {
 			
 			publicKeyStr=readKeyContent(publicKeyPath);
+		
+			this.publicKey= this.initPublicKey(publicKeyStr);
 			
-			byte[] buffer= decryptBASE64(publicKeyStr);
-			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
-			X509EncodedKeySpec keySpec= new X509EncodedKeySpec(buffer);
-			this.publicKey= (RSAPublicKey) keyFactory.generatePublic(keySpec);
 		} catch (NoSuchAlgorithmException e) {
 			throw new Exception("无此算法");
 		} catch (InvalidKeySpecException e) {
@@ -557,7 +508,7 @@ public class AnguoEncryptUtil  {
 	 * @throws NoSuchAlgorithmException 
 	 * @throws InvalidKeySpecException 
 	 */
-	public RSAPublicKey initPublicKey(String publicKeyStr) throws NoSuchAlgorithmException, InvalidKeySpecException
+	public static RSAPublicKey initPublicKey(String publicKeyStr) throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
 		byte[] buffer= decryptBASE64(publicKeyStr);
 		KeyFactory keyFactory= KeyFactory.getInstance("RSA");
@@ -573,7 +524,7 @@ public class AnguoEncryptUtil  {
 	 * @throws NoSuchAlgorithmException
 	 * @throws InvalidKeySpecException
 	 */
-	public RSAPrivateKey initPrivateKey(String privateKeyStr) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException 
+	public static RSAPrivateKey initPrivateKey(String privateKeyStr) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException 
 	{
 		byte[] buffer= decryptBASE64(privateKeyStr);
 		
@@ -598,8 +549,6 @@ public class AnguoEncryptUtil  {
 		try {
 			privateKeyStr=readKeyContent(privateKeyPath);
 			
-			
-			//BASE64Decoder base64Decoder= new BASE64Decoder();
 			byte[] buffer= decryptBASE64(privateKeyStr);
 			PKCS8EncodedKeySpec keySpec= new PKCS8EncodedKeySpec(buffer);
 			KeyFactory keyFactory= KeyFactory.getInstance("RSA");
@@ -618,7 +567,7 @@ public class AnguoEncryptUtil  {
 	
 	/**
 	 * 载入秘钥，使用未经过PKCS#8编码的私钥文件
-	 * @param privateKeyPath
+	 * @param privateKeyPath 文件路径
 	 * @throws Exception
 	 */
 	public void loadPrivateKey(String privateKeyPath) throws Exception{
@@ -628,15 +577,7 @@ public class AnguoEncryptUtil  {
 		try {
 			privateKeyStr=readKeyContent(privateKeyPath);
 			
-			
-			//BASE64Decoder base64Decoder= new BASE64Decoder();
-			byte[] buffer= decryptBASE64(privateKeyStr);
-			
-			RSAPrivateKeyStructure asn1PrivKey = new RSAPrivateKeyStructure((ASN1Sequence) ASN1Sequence.fromByteArray(buffer));  
-			RSAPrivateKeySpec rsaPrivKeySpec = new RSAPrivateKeySpec(asn1PrivKey.getModulus(), asn1PrivKey.getPrivateExponent());  
-			KeyFactory keyFactory= KeyFactory.getInstance("RSA");  
-			
-			this.privateKey=(RSAPrivateKey) keyFactory.generatePrivate(rsaPrivKeySpec);  
+			this.privateKey=this.initPrivateKey(privateKeyStr);;  
 			
 		} catch (NoSuchAlgorithmException e) {
 			throw new Exception("无此算法");
@@ -651,7 +592,7 @@ public class AnguoEncryptUtil  {
 	
 	/**
 	 * 从文件中读取秘钥内容
-	 * @param path
+	 * @param path 文件路径
 	 * @return
 	 * @throws IOException
 	 */
