@@ -1,20 +1,20 @@
-
 package com.anguo.app.db.domain;
-
-
-
 
 import java.util.Date;
 
-import com.anguo.mybatis.db.core.BaseVo;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import com.anguo.mybatis.db.core.BaseVo;
+import com.anguo.util.AnguoDateUtils;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * 接口参数实体类
- * @ClassName: CommonAppSiData 
+ * 
+ * @ClassName: CommonAppSiData
  * @author Andrew.Wen
  */
-public class CommonAppSiData extends BaseVo  {
+public class CommonAppSiData extends BaseVo {
 
 	@Override
 	public String toString() {
@@ -27,6 +27,7 @@ public class CommonAppSiData extends BaseVo  {
 				+ ", operateUserId=" + operateUserId + ", operateDate="
 				+ operateDate + "]";
 	}
+
 	/**
 	 * 编号.
 	 */
@@ -51,7 +52,7 @@ public class CommonAppSiData extends BaseVo  {
 	 * 参数类型.1入参，2出参
 	 */
 	private String paramType;
-	
+
 	/**
 	 * 表达式.
 	 */
@@ -79,100 +80,113 @@ public class CommonAppSiData extends BaseVo  {
 	/**
 	 * 操作时间.
 	 */
+
 	private Date operateDate;
 
-
-
-
-    
-public Integer getId() {
+	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-    
-public Integer getCommonAppSiDefineId() {
+
+	public Integer getCommonAppSiDefineId() {
 		return commonAppSiDefineId;
 	}
+
 	public void setCommonAppSiDefineId(Integer commonAppSiDefineId) {
 		this.commonAppSiDefineId = commonAppSiDefineId;
 	}
-    
-public String getDataName() {
+
+	public String getDataName() {
 		return dataName;
 	}
+
 	public void setDataName(String dataName) {
 		this.dataName = dataName;
 	}
-    
-public String getDataTitle() {
+
+	public String getDataTitle() {
 		return dataTitle;
 	}
+
 	public void setDataTitle(String dataTitle) {
 		this.dataTitle = dataTitle;
 	}
-    
-public String getDataType() {
+
+	public String getDataType() {
 		return dataType;
 	}
+
 	public void setDataType(String dataType) {
 		this.dataType = dataType;
 	}
-    
-public String getDataPattern() {
+
+	public String getDataPattern() {
 		return dataPattern;
 	}
+
 	public void setDataPattern(String dataPattern) {
 		this.dataPattern = dataPattern;
 	}
-    
-public String getMemo() {
+
+	public String getMemo() {
 		return memo;
 	}
+
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-    
-public String getDataDefaultVal() {
+
+	public String getDataDefaultVal() {
 		return dataDefaultVal;
 	}
+
 	public void setDataDefaultVal(String dataDefaultVal) {
 		this.dataDefaultVal = dataDefaultVal;
 	}
-    
-public Integer getParentId() {
+
+	public Integer getParentId() {
 		return parentId;
 	}
+
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
-    
-public Integer getStatus() {
+
+	public Integer getStatus() {
 		return status;
 	}
+
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-    
-public Integer getOperateUserId() {
+
+	public Integer getOperateUserId() {
 		return operateUserId;
 	}
+
 	public void setOperateUserId(Integer operateUserId) {
 		this.operateUserId = operateUserId;
 	}
-    
-public Date getOperateDate() {
+
+	@DateTimeFormat(pattern = AnguoDateUtils.C_TIME_PATTON_DEFAULT)
+	@JsonSerialize(using = AnguoDateUtils.class)
+	public Date getOperateDate() {
 		return operateDate;
 	}
+
 	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
 	}
+
 	public String getParamType() {
 		return paramType;
 	}
+
 	public void setParamType(String paramType) {
 		this.paramType = paramType;
 	}
-	
+
 }

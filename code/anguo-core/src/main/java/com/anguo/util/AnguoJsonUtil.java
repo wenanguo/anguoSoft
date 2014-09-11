@@ -1,16 +1,13 @@
 package com.anguo.util;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-
-import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AnguoJsonUtil {
 
 	private static ObjectMapper m = null;
-	private static JsonFactory jf = null;
+	//private static JsonFactory jf = null;
 
 	static {
 
@@ -37,7 +34,7 @@ public class AnguoJsonUtil {
 
 		m.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
-		jf = new JsonFactory();
+		//jf = new JsonFactory();
 	}
 
 	/**
