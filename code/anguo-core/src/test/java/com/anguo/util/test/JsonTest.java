@@ -69,7 +69,7 @@ public class JsonTest {
 		ResultMsg<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
 		
 		
-		System.out.println(lst.toString());
+		System.out.println(lst.getCode());
 		System.out.println(lst.getObj().toString());
 	}
 	
@@ -130,6 +130,7 @@ public class JsonTest {
 		System.out.println(lst.toString());
 	}
 	
+	
 	@Test
 	public void test6() throws JsonParseException, JsonMappingException, IOException
 	{
@@ -153,7 +154,9 @@ public class JsonTest {
 		
 		
 		
-		ResultMsgList<CommonAppSiData> lst =  mapper.readValue(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { }); 		
+		//ResultMsgList<CommonAppSiData> lst =  mapper.readValue(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { }); 		
+		
+		ResultMsgList<CommonAppSiData> lst =  AnguoJsonUtil.fromJson(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { });
 		
 		
 		System.out.println(lst.getObj().toString());

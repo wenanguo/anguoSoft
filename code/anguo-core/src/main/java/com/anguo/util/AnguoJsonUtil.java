@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -62,6 +63,31 @@ public class AnguoJsonUtil {
 
 		return object;
 	}
+	
+	
+	/**
+	 * 使用复杂泛型反序列化对象
+	 * @param jsonAsString
+	 * @param typeReference
+	 * @return
+	 */
+	public static <T> T fromJson(String jsonAsString, TypeReference typeReference) {
+
+		T object = null;
+
+		try {
+			object = m.readValue(jsonAsString, typeReference);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return object;
+	}
+	
+	
+	
 
 	/**
 	 * 对象序列化为json
