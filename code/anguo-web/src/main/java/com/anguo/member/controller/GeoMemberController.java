@@ -3,8 +3,10 @@ package com.anguo.member.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+
+import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.domain.ResultMsg;
 import com.anguo.member.db.domain.GeoMember;
 import com.anguo.member.service.GeoMemberService;
@@ -138,6 +142,12 @@ public class GeoMemberController extends BaseController {
 	}
 	
 	
+	
+	/**
+	 * 登陆接口
+	 * @param geoMember
+	 * @return
+	 */
 	@RequestMapping("/geoMember/login.htm")
 	@ResponseBody
 	public ResultMsg<GeoMember> login(GeoMember geoMember) {
@@ -147,10 +157,9 @@ public class GeoMemberController extends BaseController {
 		GeoMember resultGeoMember=null;
 		try {
 				resultGeoMember  = geoMemberService.login(geoMember);
-				messages.setCode(100);
 				messages.setObj(resultGeoMember);
 			} catch (Exception e) {
-				messages.setCode(101);
+				messages.setCode(ConstantClass.INTERFACE_SERVICEERROR);
 				messages.setMsg(e.getMessage());
 			}
 		

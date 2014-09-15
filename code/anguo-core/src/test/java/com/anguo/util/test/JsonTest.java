@@ -156,7 +156,69 @@ public class JsonTest {
 		
 		//ResultMsgList<CommonAppSiData> lst =  mapper.readValue(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { }); 		
 		
-		ResultMsgList<CommonAppSiData> lst =  AnguoJsonUtil.fromJson(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { });
+		//ResultMsgList<CommonAppSiData> lst =  AnguoJsonUtil.fromJson(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { });
+		
+		
+		//System.out.println(lst.getObj().toString());
+	}
+	
+	@Test
+	public void test7() throws JsonParseException, JsonMappingException, IOException
+	{
+		List<CommonAppSiData> list=new ArrayList<CommonAppSiData>();
+		CommonAppSiData c1=new CommonAppSiData();
+		c1.setMemo("备注");
+		c1.setOperateDate(new Date());
+		list.add(c1);
+		
+		
+		ResultMsgList<CommonAppSiData> rlm=new ResultMsgList<CommonAppSiData>(); 
+		rlm.setObj(list);
+		
+		String json=AnguoJsonUtil.toJson(rlm);
+		System.out.println(json);
+
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+		
+		
+		
+		//ResultMsgList<CommonAppSiData> lst =  mapper.readValue(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { }); 		
+		
+		ResultMsg<List<CommonAppSiData>> lst =  AnguoJsonUtil.fromJson(json, new ResultMsg<List<CommonAppSiData>>().getClass());
+		
+		
+		System.out.println(lst.getObj().toString());
+	}
+	
+	@Test
+	public void test8() throws JsonParseException, JsonMappingException, IOException
+	{
+		List<CommonAppSiData> list=new ArrayList<CommonAppSiData>();
+		CommonAppSiData c1=new CommonAppSiData();
+		c1.setMemo("备注");
+		c1.setOperateDate(new Date());
+		list.add(c1);
+		
+		
+		ResultMsgList<CommonAppSiData> rlm=new ResultMsgList<CommonAppSiData>(); 
+		rlm.setObj(list);
+		
+		String json=AnguoJsonUtil.toJson(rlm);
+		System.out.println(json);
+
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+		
+		
+		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(ResultMsg.class,new ArrayList<CommonAppSiData>().getClass());  		
+		
+		ResultMsg<List<CommonAppSiData>> lst =  mapper.readValue(json, javaType);
 		
 		
 		System.out.println(lst.getObj().toString());

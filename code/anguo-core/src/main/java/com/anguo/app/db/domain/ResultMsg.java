@@ -11,7 +11,7 @@ public class ResultMsg<T> {
 	/**
 	 * 操作代码
 	 */
-	private int code;
+	private int code=100;
 	/**
 	 * 消息描述
 	 */

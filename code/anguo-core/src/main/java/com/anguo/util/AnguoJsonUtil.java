@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
+import com.anguo.app.db.domain.CommonAppSiData;
+import com.anguo.app.db.domain.ResultMsg;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -65,18 +68,40 @@ public class AnguoJsonUtil {
 	}
 	
 	
+//	/**
+//	 * 使用复杂泛型反序列化对象
+//	 * @param jsonAsString
+//	 * @param typeReference
+//	 * @return
+//	 */
+//	public static <T> T fromJson(String jsonAsString, TypeReference typeReference) {
+//
+//		T object = null;
+//
+//		try {
+//			object = m.readValue(jsonAsString, typeReference);
+//
+//		} catch (Exception e) {
+//
+//			e.printStackTrace();
+//		}
+//
+//		return object;
+//	}
+	
+	
 	/**
 	 * 使用复杂泛型反序列化对象
 	 * @param jsonAsString
 	 * @param typeReference
 	 * @return
 	 */
-	public static <T> T fromJson(String jsonAsString, TypeReference typeReference) {
+	public static <T> T fromJson(String jsonAsString, T typeReference) {
 
 		T object = null;
 
 		try {
-			object = m.readValue(jsonAsString, typeReference);
+			object = m.readValue(jsonAsString, new TypeReference<T>() { });
 
 		} catch (Exception e) {
 
@@ -85,7 +110,6 @@ public class AnguoJsonUtil {
 
 		return object;
 	}
-	
 	
 	
 

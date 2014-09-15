@@ -1,8 +1,10 @@
 package com.anguo.app.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
@@ -39,16 +41,24 @@ public class AppManageService implements ApplicationContextAware {
 	
 	
 	/**
-	 * 调用业务逻辑类方法
-	 * @param Service_code
-	 * @param reqParam
+	 * 调用业务逻辑类方法 
+	 * @param serviceClass bean类名称
+	 * @param serviceMethod bean方法名称
+	 * @param reqParam 请求业务参数字符串
+	 * @param appParam 请求系统参数字符串
+	 * @param userParam 请求用户参数字符串
+	 * @param session 
+	 * @param request
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
 	 */
-	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam)
+	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam,String appParam, String userParam, HttpSession session, HttpServletRequest request) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		Object returnOjb=null;
 		
-		try {
-			
 		Object serviceObj=this.applicationContext.getBean(serviceClass);
 		
 		Method method = BeanUtils.findMethodWithMinimalParameters(serviceObj.getClass(), serviceMethod);
@@ -58,30 +68,49 @@ public class AppManageService implements ApplicationContextAware {
 
         int paramCount = methodParamTypes.length;
         
-        Object param = null;
+        //参数队列
+        Object[] paramArrays =  new Object[paramCount];
         
-        if (paramCount > 0)
+        if (paramCount==1)
         {
           Class methodParamType = methodParamTypes[0];
 
-         
+          	//初始化业务参数
             if (!StringUtils.isEmpty(reqParam))
             {
-              param = AnguoJsonUtil.fromJson(reqParam, methodParamType);
+            	paramArrays[0] = AnguoJsonUtil.fromJson(reqParam, methodParamType);
             }
             else {
-              param = methodParamType.newInstance();
+            	paramArrays[0] = methodParamType.newInstance();
             }
-
+        }else if(paramCount==2)
+        {
+            //初始化系统参数
+            if (!StringUtils.isEmpty(appParam))
+            {
+            	paramArrays[1] = AnguoJsonUtil.fromJson(reqParam, Object.class);
+            }
+            else {
+            	paramArrays[1] = Object.class.newInstance();
+            }
+	    }else if(paramCount==3)
+	    {
+            //初始化用户参数
+            if (!StringUtils.isEmpty(userParam))
+            {
+            	paramArrays[2] = AnguoJsonUtil.fromJson(reqParam, Object.class);
+            }
+            else {
+            	paramArrays[2] = Object.class.newInstance();
+            }
           
         }
+		
+        //调用方法
+		returnOjb= method.invoke(serviceObj, paramArrays);
 			
-		returnOjb= method.invoke(serviceObj, new Object[] { param });
 			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		return returnOjb;
 	}
 

@@ -1,16 +1,20 @@
 package com.anguo.web.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.service.AppManageService;
@@ -47,10 +51,14 @@ public class CommonAppController {
 	 * @param session 
 	 * @param request
 	 * @return
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
 	  @RequestMapping(value={"/{serviceCode}.app"}, method={RequestMethod.POST})
 	  @ResponseBody
-	  public Object doAction(@PathVariable("serviceCode") String serviceCode, String reqParam, String appParam, String userParam, HttpSession session, HttpServletRequest request)
+	  public Object doAction(@PathVariable("serviceCode") String serviceCode, String reqParam, String appParam, String userParam, HttpSession session, HttpServletRequest request) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	  {
 		  
 		  System.out.println("系统参数："+appParam);
@@ -91,8 +99,7 @@ public class CommonAppController {
 	    	if(commonAppSiDefine.getSiDemo().equals(2))
 	    	{
 	    		//真实接口
-	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), reqParam);
-	    		//result.put("responseData", resultObj);
+	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), reqParam, appParam,  userParam,  session,  request);
 	    		return resultObj;
 	    	}else
 	    	{
@@ -110,7 +117,6 @@ public class CommonAppController {
 	    			responseMap.put(temp.getDataName(), temp.getDataDefaultVal());
 	    		}
 	    		
-	    		//result.put("responseData", responseMap);
 	    		return responseMap;
 	    	}
 	    	

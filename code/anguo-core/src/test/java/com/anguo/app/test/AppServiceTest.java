@@ -1,5 +1,7 @@
 package com.anguo.app.test;
 
+import java.lang.reflect.InvocationTargetException;
+
 import junit.framework.Assert;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,9 @@ public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 	AnguoEncryptUtil anguoEncryptUtil;
 	
 	@Test
-	public void test1()
+	public void test1() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		Object obj=this.paramManageService.ObjectInvoke("appService", "login", "123");
+		Object obj=this.paramManageService.ObjectInvoke("appService", "login", "123",null,null,null,null);
 		System.out.println(obj);
 	}
 	
