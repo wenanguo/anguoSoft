@@ -13,10 +13,13 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 
+import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ResultMsg;
 import com.anguo.member.db.domain.GeoMember;
+import com.anguo.util.AnguoEncryptUtil;
 import com.anguo.util.AnguoJsonUtil;
 import com.anguo.web.db.domain.TreeNode;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 
 
@@ -53,11 +56,11 @@ public class AppTest {
 		//param = encryptBASE64(param);
 
 		//业务参数
-		paramMap.add(new BasicNameValuePair("reqParam", param));
+		paramMap.add(new BasicNameValuePair("reqParam", AnguoEncryptUtil.encryptBASE64(param.getBytes())));
 		//系统参数
-		paramMap.add(new BasicNameValuePair("appParam", "{osVision:10}"));
+		paramMap.add(new BasicNameValuePair("appParam", AnguoEncryptUtil.encryptBASE64("{osVision:10}".getBytes())));
 		//用户参数
-		paramMap.add(new BasicNameValuePair("userParam", "{uuid:abc}"));
+		paramMap.add(new BasicNameValuePair("userParam", AnguoEncryptUtil.encryptBASE64("{sign:abc}".getBytes())));
 
 		HttpPost httppost = new HttpPost(url);
 
@@ -73,7 +76,7 @@ public class AppTest {
 
 			System.out.println(result);
 			
-			ResultMsg<GeoMember> messages= AnguoJsonUtil.fromJson(result, new ResultMsg<GeoMember>().getClass());
+			ResultMsg<CommonSysMember> messages= AnguoJsonUtil.fromJson(result, new TypeReference<ResultMsg<CommonSysMember>>(){});
 			System.out.println(messages.getCode());
 			System.out.println(messages.getMsg());
 			System.out.println(messages.getObj().getMemberName());

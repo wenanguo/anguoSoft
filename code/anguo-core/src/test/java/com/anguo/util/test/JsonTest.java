@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.ResultMsg;
@@ -38,8 +42,8 @@ public class JsonTest {
 		System.out.println(jsonStr);
 		
 		
-		CommonAppSiData t2=AnguoJsonUtil.fromJson(jsonStr, CommonAppSiData.class);
-		System.out.println(t2);
+		CommonAppSiData t2=AnguoJsonUtil.fromJson(jsonStr, new TypeReference<CommonAppSiData>(){});
+		Assert.assertEquals(t2.getMemo(), "wenanguo");
 	}
 	
 	@Test
@@ -185,12 +189,16 @@ public class JsonTest {
 		
 		
 		
-		//ResultMsgList<CommonAppSiData> lst =  mapper.readValue(json, new TypeReference<ResultMsgList<CommonAppSiData>>() { }); 		
+		//ResultMsg<List<CommonAppSiData>> lst =  mapper.readValue(json, new TypeReference<ResultMsg<List<CommonAppSiData>>>() { }); 		
 		
-		ResultMsg<List<CommonAppSiData>> lst =  AnguoJsonUtil.fromJson(json, new ResultMsg<List<CommonAppSiData>>().getClass());
+		//ResultMsgList<CommonAppSiData> lst2 =  AnguoJsonUtil.fromJson(json, new ResultMsgList<CommonAppSiData>().getClass());
 		
+		//ResultMsg<List<CommonAppSiData>> lst=AnguoJsonUtil.fromJson(json, new TypeReference<ResultMsg<List<CommonAppSiData>>>() { });
 		
-		System.out.println(lst.getObj().toString());
+//		for(CommonAppSiData cas : lst.getObj()){
+//				
+//				Assert.assertEquals(cas.getMemo(),"备注");
+//			}
 	}
 	
 	@Test
@@ -220,8 +228,31 @@ public class JsonTest {
 		
 		ResultMsg<List<CommonAppSiData>> lst =  mapper.readValue(json, javaType);
 		
+		//for(CommonAppSiData cas : lst.getObj()){
+			
+		System.out.println(lst);
 		
-		System.out.println(lst.getObj().toString());
+	}
+	
+	
+	@Test
+	public void test9() throws JsonGenerationException, JsonMappingException, IOException
+	{
+		Map map=new HashMap();
+		
+		map.put("memo", "wenanguo");
+		
+		
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+//		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+		
+		String jsonStr=AnguoJsonUtil.toJson(map);
+		System.out.println(jsonStr);
+		
+		
+		CommonAppSiData t2=AnguoJsonUtil.fromJson(jsonStr, new TypeReference<CommonAppSiData>(){});
+		Assert.assertEquals(t2.getMemo(), "wenanguo");
 	}
 	
 	

@@ -13,6 +13,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.anguo.app.db.domain.CommonAppLoggedUser;
+import com.anguo.member.db.domain.GeoMember;
 import com.anguo.util.AnguoJsonUtil;
 
 
@@ -71,6 +73,15 @@ public class AppManageService implements ApplicationContextAware {
         //参数队列
         Object[] paramArrays =  new Object[paramCount];
         
+        
+        //循环注入
+        for(int i=0;i<paramCount;i++)
+        {
+        	
+        }
+        
+        
+        
         if (paramCount==1)
         {
           Class methodParamType = methodParamTypes[0];
@@ -88,7 +99,7 @@ public class AppManageService implements ApplicationContextAware {
             //初始化系统参数
             if (!StringUtils.isEmpty(appParam))
             {
-            	paramArrays[1] = AnguoJsonUtil.fromJson(reqParam, Object.class);
+            	paramArrays[1] = AnguoJsonUtil.fromJson(reqParam, CommonAppLoggedUser.class);
             }
             else {
             	paramArrays[1] = Object.class.newInstance();
@@ -98,7 +109,7 @@ public class AppManageService implements ApplicationContextAware {
             //初始化用户参数
             if (!StringUtils.isEmpty(userParam))
             {
-            	paramArrays[2] = AnguoJsonUtil.fromJson(reqParam, Object.class);
+            	paramArrays[2] = AnguoJsonUtil.fromJson(reqParam, GeoMember.class);
             }
             else {
             	paramArrays[2] = Object.class.newInstance();

@@ -170,4 +170,18 @@ public class CoderTest {
         Assert.assertEquals(inputStr, outputStr);  
   
     }  
+    
+    @Test
+    public void test4()
+    {
+    	String str="{\"wenanguo\":\"wenanguo\"}";
+    	
+    	
+    	String a1=AnguoEncryptUtil.encryptBASE64(str.getBytes());
+    	System.out.println("加密："+a1);
+    	
+    	String a2=new String(AnguoEncryptUtil.decryptBASE64(a1));
+    	System.out.println("解密："+a2);
+    	
+    }
 }

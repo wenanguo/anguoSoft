@@ -1,4 +1,4 @@
-package com.anguo.service.test;
+package com.anguo.app.test;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import com.anguo.mybatis.db.controller.BaseConstants;
 
 
 
-@ContextConfiguration(locations = { "classpath*:cmcc-platform.xml" , "file:src/main/resources/project-*.xml" })
+@ContextConfiguration(locations = { "classpath*:cmcc-platform.xml" , "file:src/test/resources/project-*.xml" })
 public class GeoMemberServiceTest extends AbstractTestNGSpringContextTests {
 
 

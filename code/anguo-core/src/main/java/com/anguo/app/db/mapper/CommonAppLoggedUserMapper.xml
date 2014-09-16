@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.app.db.mapper.CommonAppLoggedUserMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="commonAppLoggedUserMap" type="com.anguo.app.db.domain.CommonAppLoggedUser" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="uuid" column="uuid" />
+		 		<result property="memberId" column="member_id" />
+		 		<result property="phoneBrand" column="phone_brand" />
+		 		<result property="channelFlag" column="channel_flag" />
+		 		<result property="appBetaFlag" column="app_beta_flag" />
+		 		<result property="phoneDeviceId" column="phone_device_id" />
+		 		<result property="innerVersion" column="inner_version" />
+		 		<result property="externalVersion" column="external_version" />
+		 		<result property="osType" column="os_type" />
+		 		<result property="osVersion" column="os_version" />
+		 		<result property="phoneModel" column="phone_model" />
+		 		<result property="imsi" column="imsi" />
+		 		<result property="imei" column="imei" />
+		 		<result property="sign" column="sign" />
+		 		<result property="appCode" column="app_code" />
+		 		<result property="status" column="status" />
+		 		<result property="operateUserId" column="operate_user_id" />
+		 		<result property="operateDate" column="operate_date" />
+		 	</resultMap>
+
+<!-- 分页查询 -->
+<select id="getPageData" resultMap="commonAppLoggedUserMap"
+               parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+     select * from wenanguo.common_app_logged_user 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="uuid != null and uuid != ''">
+           and (uuid like concat(#{uuid},'%') or uuid like concat(#{uuid},'%'))
+        </if>
+             <if test="memberId != null and memberId != ''">
+           and (member_id like concat(#{memberId},'%') or member_id like concat(#{memberId},'%'))
+        </if>
+             <if test="phoneBrand != null and phoneBrand != ''">
+           and (phone_brand like concat(#{phoneBrand},'%') or phone_brand like concat(#{phoneBrand},'%'))
+        </if>
+             <if test="channelFlag != null and channelFlag != ''">
+           and (channel_flag like concat(#{channelFlag},'%') or channel_flag like concat(#{channelFlag},'%'))
+        </if>
+             <if test="appBetaFlag != null and appBetaFlag != ''">
+           and (app_beta_flag like concat(#{appBetaFlag},'%') or app_beta_flag like concat(#{appBetaFlag},'%'))
+        </if>
+             <if test="phoneDeviceId != null and phoneDeviceId != ''">
+           and (phone_device_id like concat(#{phoneDeviceId},'%') or phone_device_id like concat(#{phoneDeviceId},'%'))
+        </if>
+             <if test="innerVersion != null and innerVersion != ''">
+           and (inner_version like concat(#{innerVersion},'%') or inner_version like concat(#{innerVersion},'%'))
+        </if>
+             <if test="externalVersion != null and externalVersion != ''">
+           and (external_version like concat(#{externalVersion},'%') or external_version like concat(#{externalVersion},'%'))
+        </if>
+             <if test="osType != null and osType != ''">
+           and (os_type like concat(#{osType},'%') or os_type like concat(#{osType},'%'))
+        </if>
+             <if test="osVersion != null and osVersion != ''">
+           and (os_version like concat(#{osVersion},'%') or os_version like concat(#{osVersion},'%'))
+        </if>
+             <if test="phoneModel != null and phoneModel != ''">
+           and (phone_model like concat(#{phoneModel},'%') or phone_model like concat(#{phoneModel},'%'))
+        </if>
+             <if test="imsi != null and imsi != ''">
+           and (imsi like concat(#{imsi},'%') or imsi like concat(#{imsi},'%'))
+        </if>
+             <if test="imei != null and imei != ''">
+           and (imei like concat(#{imei},'%') or imei like concat(#{imei},'%'))
+        </if>
+             <if test="sign != null and sign != ''">
+           and (sign like concat(#{sign},'%') or sign like concat(#{sign},'%'))
+        </if>
+             <if test="appCode != null and appCode != ''">
+           and (app_code like concat(#{appCode},'%') or app_code like concat(#{appCode},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (operate_user_id like concat(#{operateUserId},'%') or operate_user_id like concat(#{operateUserId},'%'))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (operate_date like concat(#{operateDate},'%') or operate_date like concat(#{operateDate},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+	
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="commonAppLoggedUserMap"
+               parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+     select * from wenanguo.common_app_logged_user 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (id like concat(#{id},'%') or id like concat(#{id},'%'))
+        </if>
+             <if test="uuid != null and uuid != ''">
+           and (uuid like concat(#{uuid},'%') or uuid like concat(#{uuid},'%'))
+        </if>
+             <if test="memberId != null and memberId != ''">
+           and (member_id like concat(#{memberId},'%') or member_id like concat(#{memberId},'%'))
+        </if>
+             <if test="phoneBrand != null and phoneBrand != ''">
+           and (phone_brand like concat(#{phoneBrand},'%') or phone_brand like concat(#{phoneBrand},'%'))
+        </if>
+             <if test="channelFlag != null and channelFlag != ''">
+           and (channel_flag like concat(#{channelFlag},'%') or channel_flag like concat(#{channelFlag},'%'))
+        </if>
+             <if test="appBetaFlag != null and appBetaFlag != ''">
+           and (app_beta_flag like concat(#{appBetaFlag},'%') or app_beta_flag like concat(#{appBetaFlag},'%'))
+        </if>
+             <if test="phoneDeviceId != null and phoneDeviceId != ''">
+           and (phone_device_id like concat(#{phoneDeviceId},'%') or phone_device_id like concat(#{phoneDeviceId},'%'))
+        </if>
+             <if test="innerVersion != null and innerVersion != ''">
+           and (inner_version like concat(#{innerVersion},'%') or inner_version like concat(#{innerVersion},'%'))
+        </if>
+             <if test="externalVersion != null and externalVersion != ''">
+           and (external_version like concat(#{externalVersion},'%') or external_version like concat(#{externalVersion},'%'))
+        </if>
+             <if test="osType != null and osType != ''">
+           and (os_type like concat(#{osType},'%') or os_type like concat(#{osType},'%'))
+        </if>
+             <if test="osVersion != null and osVersion != ''">
+           and (os_version like concat(#{osVersion},'%') or os_version like concat(#{osVersion},'%'))
+        </if>
+             <if test="phoneModel != null and phoneModel != ''">
+           and (phone_model like concat(#{phoneModel},'%') or phone_model like concat(#{phoneModel},'%'))
+        </if>
+             <if test="imsi != null and imsi != ''">
+           and (imsi like concat(#{imsi},'%') or imsi like concat(#{imsi},'%'))
+        </if>
+             <if test="imei != null and imei != ''">
+           and (imei like concat(#{imei},'%') or imei like concat(#{imei},'%'))
+        </if>
+             <if test="sign != null and sign != ''">
+           and (sign like concat(#{sign},'%') or sign like concat(#{sign},'%'))
+        </if>
+             <if test="appCode != null and appCode != ''">
+           and (app_code like concat(#{appCode},'%') or app_code like concat(#{appCode},'%'))
+        </if>
+             <if test="status != null and status != ''">
+           and (status like concat(#{status},'%') or status like concat(#{status},'%'))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (operate_user_id like concat(#{operateUserId},'%') or operate_user_id like concat(#{operateUserId},'%'))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (operate_date like concat(#{operateDate},'%') or operate_date like concat(#{operateDate},'%'))
+        </if>
+          </trim>
+     order by id asc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="commonAppLoggedUserMap" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+    select * from  wenanguo.common_app_logged_user
+    where id = #{id}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  wenanguo.common_app_logged_user
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="uuid != null">
+				uuid,
+	  	</if>
+	  			 		 		<if test="memberId != null">
+				member_id,
+	  	</if>
+	  			 		 		<if test="phoneBrand != null">
+				phone_brand,
+	  	</if>
+	  			 		 		<if test="channelFlag != null">
+				channel_flag,
+	  	</if>
+	  			 		 		<if test="appBetaFlag != null">
+				app_beta_flag,
+	  	</if>
+	  			 		 		<if test="phoneDeviceId != null">
+				phone_device_id,
+	  	</if>
+	  			 		 		<if test="innerVersion != null">
+				inner_version,
+	  	</if>
+	  			 		 		<if test="externalVersion != null">
+				external_version,
+	  	</if>
+	  			 		 		<if test="osType != null">
+				os_type,
+	  	</if>
+	  			 		 		<if test="osVersion != null">
+				os_version,
+	  	</if>
+	  			 		 		<if test="phoneModel != null">
+				phone_model,
+	  	</if>
+	  			 		 		<if test="imsi != null">
+				imsi,
+	  	</if>
+	  			 		 		<if test="imei != null">
+				imei,
+	  	</if>
+	  			 		 		<if test="sign != null">
+				sign,
+	  	</if>
+	  			 		 		<if test="appCode != null">
+				app_code,
+	  	</if>
+	  			 		 		<if test="status != null">
+				status,
+	  	</if>
+	  			 		 		<if test="operateUserId != null">
+				operate_user_id,
+	  	</if>
+	  			 		 		<if test="operateDate != null">
+				operate_date,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="uuid != null">
+#{uuid},
+</if>
+				<if test="memberId != null">
+#{memberId},
+</if>
+				<if test="phoneBrand != null">
+#{phoneBrand},
+</if>
+				<if test="channelFlag != null">
+#{channelFlag},
+</if>
+				<if test="appBetaFlag != null">
+#{appBetaFlag},
+</if>
+				<if test="phoneDeviceId != null">
+#{phoneDeviceId},
+</if>
+				<if test="innerVersion != null">
+#{innerVersion},
+</if>
+				<if test="externalVersion != null">
+#{externalVersion},
+</if>
+				<if test="osType != null">
+#{osType},
+</if>
+				<if test="osVersion != null">
+#{osVersion},
+</if>
+				<if test="phoneModel != null">
+#{phoneModel},
+</if>
+				<if test="imsi != null">
+#{imsi},
+</if>
+				<if test="imei != null">
+#{imei},
+</if>
+				<if test="sign != null">
+#{sign},
+</if>
+				<if test="appCode != null">
+#{appCode},
+</if>
+				<if test="status != null">
+#{status},
+</if>
+				<if test="operateUserId != null">
+#{operateUserId},
+</if>
+				<if test="operateDate != null">
+#{operateDate},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+	update  wenanguo.common_app_logged_user 
+	<set>
+										<if test="uuid != null and uuid != ''">
+			uuid=#{uuid},
+		</if>
+								<if test="memberId != null and memberId != ''">
+			member_id=#{memberId},
+		</if>
+								<if test="phoneBrand != null and phoneBrand != ''">
+			phone_brand=#{phoneBrand},
+		</if>
+								<if test="channelFlag != null and channelFlag != ''">
+			channel_flag=#{channelFlag},
+		</if>
+								<if test="appBetaFlag != null and appBetaFlag != ''">
+			app_beta_flag=#{appBetaFlag},
+		</if>
+								<if test="phoneDeviceId != null and phoneDeviceId != ''">
+			phone_device_id=#{phoneDeviceId},
+		</if>
+								<if test="innerVersion != null and innerVersion != ''">
+			inner_version=#{innerVersion},
+		</if>
+								<if test="externalVersion != null and externalVersion != ''">
+			external_version=#{externalVersion},
+		</if>
+								<if test="osType != null and osType != ''">
+			os_type=#{osType},
+		</if>
+								<if test="osVersion != null and osVersion != ''">
+			os_version=#{osVersion},
+		</if>
+								<if test="phoneModel != null and phoneModel != ''">
+			phone_model=#{phoneModel},
+		</if>
+								<if test="imsi != null and imsi != ''">
+			imsi=#{imsi},
+		</if>
+								<if test="imei != null and imei != ''">
+			imei=#{imei},
+		</if>
+								<if test="sign != null and sign != ''">
+			sign=#{sign},
+		</if>
+								<if test="appCode != null and appCode != ''">
+			app_code=#{appCode},
+		</if>
+								<if test="status != null and status != ''">
+			status=#{status},
+		</if>
+								<if test="operateUserId != null and operateUserId != ''">
+			operate_user_id=#{operateUserId},
+		</if>
+								<if test="operateDate != null and operateDate != ''">
+			operate_date=#{operateDate},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+	delete from  wenanguo.common_app_logged_user 
+	where id=#{id}
+</delete>
+
+</mapper>
