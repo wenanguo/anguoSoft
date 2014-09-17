@@ -166,6 +166,12 @@
     where id = #{id}
 </select>
 
+<!-- 读一条记录 -->
+<select id="getDataByUUID" resultMap="commonAppLoggedUserMap" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+    select * from  ${commonSchema}.common_app_logged_user
+    where uuid = #{uuid}
+</select>
+
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser" useGeneratedKeys="true" keyProperty="id">
 	
@@ -353,6 +359,13 @@
 <delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
 	delete from  ${commonSchema}.common_app_logged_user 
 	where id=#{id}
+</delete>
+
+
+<!-- 删除已登录信息 -->
+<delete id="deleteDataByMember" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
+	delete from  ${commonSchema}.common_app_logged_user 
+	where member_id=#{memberId}
 </delete>
 
 </mapper>

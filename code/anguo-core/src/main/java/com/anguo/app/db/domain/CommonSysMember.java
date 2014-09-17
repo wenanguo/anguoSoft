@@ -7,6 +7,7 @@ package com.anguo.app.db.domain;
 import java.util.Date;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import com.anguo.mybatis.db.core.BaseVo;
 
 
@@ -33,6 +34,11 @@ public class CommonSysMember extends BaseVo  {
 	 * 编号.
 	 */
 	private Integer id;
+	/**
+	 * uuid.
+	 */
+	private String uuid;
+	
 	/**
 	 * 所属校区.
 	 */
@@ -104,7 +110,12 @@ public class CommonSysMember extends BaseVo  {
 
 
 
-
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
     
 public Integer getId() {
 		return id;

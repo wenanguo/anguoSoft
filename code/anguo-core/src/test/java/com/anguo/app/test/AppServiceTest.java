@@ -10,7 +10,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import com.anguo.app.db.domain.CommonAppSiDefine;
-import com.anguo.app.service.AppManageService;
+import com.anguo.app.service.CommonAppService;
 import com.anguo.app.service.CommonAppSiDefineService;
 import com.anguo.mybatis.db.core.PageResult;
 import com.anguo.util.AnguoEncryptUtil;
@@ -22,7 +22,7 @@ import com.anguo.util.AnguoEncryptUtil;
 public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 
 	@Autowired
-	AppManageService paramManageService;
+	CommonAppService paramManageService;
 	
 	@Autowired
 	CommonAppSiDefineService commonAppSiDefineService;

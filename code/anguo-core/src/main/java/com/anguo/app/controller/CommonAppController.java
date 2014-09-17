@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
-import com.anguo.app.service.AppManageService;
+import com.anguo.app.service.CommonAppService;
 import com.anguo.app.service.CommonAppSiDataService;
 import com.anguo.app.service.CommonAppSiDefineService;
 import com.anguo.util.AnguoEncryptUtil;
@@ -34,7 +34,7 @@ public class CommonAppController {
 	
 	//app业务逻辑类
 	@Autowired
-	AppManageService appManageService;
+	CommonAppService appManageService;
 	
 	@Autowired
 	CommonAppSiDefineService commonAppSiDefineService;

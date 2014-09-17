@@ -25,7 +25,7 @@ import com.anguo.util.AnguoJsonUtil;
  *
  */
 @Service
-public class AppManageService implements ApplicationContextAware {
+public class CommonAppService implements ApplicationContextAware {
 
 	/**
 	 * spring容器

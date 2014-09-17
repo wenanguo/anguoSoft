@@ -1,15 +1,25 @@
 package com.anguo.app.service;
+import java.util.UUID;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
+import com.anguo.app.db.mapper.CommonAppLoggedUserMapper;
 import com.anguo.app.db.mapper.CommonSysMemberMapper;
 import com.anguo.mybatis.db.service.BaseService;
 
 
 @Service
 public class CommonSysMemberService extends BaseService<CommonSysMember> {
+	
 	@Autowired
 	private CommonSysMemberMapper mapper;
+	
+	@Autowired
+	private CommonAppLoggedUserMapper commonAppLoggedUserMapper;
 	
 	
 	
@@ -34,14 +44,9 @@ public class CommonSysMemberService extends BaseService<CommonSysMember> {
 		}
 		
 		
+		
 		return geoMember;
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	

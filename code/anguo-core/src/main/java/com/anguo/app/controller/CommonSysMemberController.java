@@ -3,6 +3,7 @@ package com.anguo.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.domain.ResultMsg;
+import com.anguo.app.service.CommonAppLoggedUserService;
 import com.anguo.app.service.CommonSysMemberService;
 import com.anguo.mybatis.db.controller.BaseController;
 import com.anguo.mybatis.db.core.PageResult;
@@ -32,8 +34,12 @@ import com.anguo.mybatis.db.core.PageResult;
 public class CommonSysMemberController extends BaseController {
 	
 	private final static Logger log = Logger.getLogger(CommonSysMemberController.class);
+	
 	@Autowired
 	private CommonSysMemberService commonSysMemberService;
+	
+	@Autowired
+	private CommonAppLoggedUserService commonAppLoggedUserService;
 
 	@RequestMapping("/commonSysMember/list.htm")
 	@ResponseBody
@@ -152,6 +158,17 @@ public class CommonSysMemberController extends BaseController {
 		CommonSysMember resultGeoMember=null;
 		try {
 				resultGeoMember  = this.commonSysMemberService.login(geoMember);
+				
+				String uuid=UUID.randomUUID().toString();
+				
+				resultGeoMember.setUuid(uuid);
+				commonAppLoggedUser.setUuid(uuid);
+				commonAppLoggedUser.setMemberId(resultGeoMember.getId());
+				
+				//插入日志记录表
+				this.commonAppLoggedUserService.deleteDataByMember(commonAppLoggedUser);
+				this.commonAppLoggedUserService.insertData(commonAppLoggedUser);
+				
 				messages.setObj(resultGeoMember);
 			} catch (Exception e) {
 				messages.setCode(ConstantClass.INTERFACE_SERVICEERROR);

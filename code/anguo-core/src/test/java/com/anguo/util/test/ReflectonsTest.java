@@ -1,7 +1,10 @@
 package com.anguo.util.test;
 
+import org.springframework.beans.BeanUtils;
 import org.testng.annotations.Test;
 
+import com.anguo.app.db.domain.CommonAppLoggedUser;
+import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.util.AnguoReflections;
 
 public class ReflectonsTest {
@@ -25,5 +28,22 @@ public class ReflectonsTest {
         }
 		
 		System.out.println("wewe");
+	}
+	@Test
+	public void test2()
+	{
+		CommonSysMember commonSysMember=new CommonSysMember();
+		commonSysMember.setUuid("uuidtest");
+		
+		CommonAppLoggedUser calu=new CommonAppLoggedUser();
+		
+		
+		
+		
+		BeanUtils.copyProperties(calu, commonSysMember);
+		
+		System.out.println(calu);
+		
+		
 	}
 }
