@@ -8,6 +8,11 @@ package com.anguo.app.db.domain;
  */
 public class ResultMsg<T> {
 	
+	@Override
+	public String toString() {
+		return "ResultMsg [code=" + code + ", msg=" + msg + ", obj=" + obj
+				+ "]";
+	}
 	/**
 	 * 操作代码
 	 */

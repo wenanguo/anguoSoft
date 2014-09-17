@@ -17,6 +17,18 @@ import com.anguo.mybatis.db.core.BaseVo;
  */
 public class CommonSysMember extends BaseVo  {
 
+	@Override
+	public String toString() {
+		return "CommonSysMember [id=" + id + ", campusId=" + campusId
+				+ ", memberName=" + memberName + ", password=" + password
+				+ ", phone=" + phone + ", imei=" + imei + ", imsi=" + imsi
+				+ ", nickName=" + nickName + ", photo=" + photo + ", sex="
+				+ sex + ", birthday=" + birthday + ", contact=" + contact
+				+ ", credits=" + credits + ", email=" + email
+				+ ", memberClass=" + memberClass + ", status=" + status
+				+ ", operateUserId=" + operateUserId + ", operateDate="
+				+ operateDate + "]";
+	}
 	/**
 	 * 编号.
 	 */

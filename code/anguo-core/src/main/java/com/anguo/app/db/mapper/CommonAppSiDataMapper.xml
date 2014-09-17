@@ -25,7 +25,7 @@
 <!-- 查询 -->
 <select id="getPageData" resultMap="commonAppSiDataMap"
                parameterType="com.anguo.app.db.domain.CommonAppSiData">
-     select * from wenanguo.common_app_si_data 
+     select * from ${commonSchema}.common_app_si_data 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -73,7 +73,7 @@
 <!-- 查询 -->
 <select id="getAllData" resultMap="commonAppSiDataMap"
                parameterType="com.anguo.app.db.domain.CommonAppSiData">
-     select * from wenanguo.common_app_si_data 
+     select * from ${commonSchema}.common_app_si_data 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -120,14 +120,14 @@
 
 <!-- 读一条记录 -->
 <select id="getData" resultMap="commonAppSiDataMap" parameterType="com.anguo.app.db.domain.CommonAppSiData">
-    select * from  wenanguo.common_app_si_data
+    select * from  ${commonSchema}.common_app_si_data
     where id = #{id}
 </select>
 
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppSiData" useGeneratedKeys="true" keyProperty="id">
 	
-	insert into  wenanguo.common_app_si_data
+	insert into  ${commonSchema}.common_app_si_data
 	<trim prefix="(" suffix=")" suffixOverrides=",">
 		id,
 		 		 		 		 		<if test="commonAppSiDefineId != null">
@@ -211,7 +211,7 @@
 
 <!-- 修改  -->
 <update id="updateData" parameterType="com.anguo.app.db.domain.CommonAppSiData">
-	update  wenanguo.common_app_si_data 
+	update  ${commonSchema}.common_app_si_data 
 	<set>
 										<if test="commonAppSiDefineId != null and commonAppSiDefineId != ''">
 			common_app_si_define_id=#{commonAppSiDefineId},
@@ -257,7 +257,7 @@
 
 <!-- 删除 -->
 <delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonAppSiData">
-	delete from  wenanguo.common_app_si_data 
+	delete from  ${commonSchema}.common_app_si_data 
 	where id=#{id}
 </delete>
 

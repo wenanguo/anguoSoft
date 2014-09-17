@@ -22,7 +22,7 @@
 	<!-- 查询 -->
 	<select id="getAllData" resultMap="commonSysAuthorityMap"
 		parameterType="com.anguo.web.db.domain.CommonSysAuthority">
-		select * from wenanguo.common_sys_authority
+		select * from ${commonSchema}.common_sys_authority
 		<trim prefix="where" prefixOverrides="and |or ">
 			<if test="id != null and id != ''">
 				and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -78,7 +78,7 @@
 	<!-- 读一条记录 -->
 	<select id="getData" resultMap="commonSysAuthorityMap"
 		parameterType="com.anguo.web.db.domain.CommonSysAuthority">
-		select * from wenanguo.common_sys_authority
+		select * from ${commonSchema}.common_sys_authority
 		where id = #{id}
 	</select>
 	
@@ -88,7 +88,7 @@
 	<insert id="insertData" parameterType="com.anguo.web.db.domain.CommonSysAuthority"
 		useGeneratedKeys="true" keyProperty="id">
 
-		insert into wenanguo.common_sys_authority
+		insert into ${commonSchema}.common_sys_authority
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			id,
 			<if test="code != null">
@@ -148,7 +148,7 @@
 
 	<!-- 修改 -->
 	<update id="updateData" parameterType="com.anguo.web.db.domain.CommonSysAuthority">
-		update wenanguo.common_sys_authority
+		update ${commonSchema}.common_sys_authority
 		<set>
 			<if test="code != null and code != ''">
 				code=#{code},
@@ -180,7 +180,7 @@
 
 	<!-- 删除 -->
 	<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonSysAuthority">
-		delete from wenanguo.common_sys_authority
+		delete from ${commonSchema}.common_sys_authority
 		where id=#{id}
 	</delete>
 

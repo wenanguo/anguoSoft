@@ -19,7 +19,7 @@
 <!-- 查询 -->
 <select id="getPageData" resultMap="commonSysRoleMap"
                parameterType="com.anguo.web.db.domain.CommonSysRole">
-     select * from wenanguo.common_sys_role 
+     select * from ${commonSchema}.common_sys_role 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -44,7 +44,7 @@
 <!-- 查询 -->
 <select id="getAllData" resultMap="commonSysRoleMap"
                parameterType="com.anguo.web.db.domain.CommonSysRole">
-     select * from wenanguo.common_sys_role 
+     select * from ${commonSchema}.common_sys_role 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -106,14 +106,14 @@
 
 <!-- 读一条记录 -->
 <select id="getData" resultMap="commonSysRoleMap" parameterType="com.anguo.web.db.domain.CommonSysRole">
-    select * from  wenanguo.common_sys_role
+    select * from  ${commonSchema}.common_sys_role
     where id = #{id}
 </select>
 
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.web.db.domain.CommonSysRole" useGeneratedKeys="true" keyProperty="id">
 	
-	insert into  wenanguo.common_sys_role
+	insert into  ${commonSchema}.common_sys_role
 	<trim prefix="(" suffix=")" suffixOverrides=",">
 		id,
 		 		 		 		 		<if test="name != null">
@@ -149,7 +149,7 @@
 
 <!-- 修改  -->
 <update id="updateData" parameterType="com.anguo.web.db.domain.CommonSysRole">
-	update  wenanguo.common_sys_role 
+	update  ${commonSchema}.common_sys_role 
 	<set>
 										<if test="name != null and name != ''">
 			name=#{name},
@@ -169,7 +169,7 @@
 
 <!-- 删除 -->
 <delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonSysRole">
-	delete from  wenanguo.common_sys_role 
+	delete from  ${commonSchema}.common_sys_role 
 	where id=#{id}
 </delete>
 

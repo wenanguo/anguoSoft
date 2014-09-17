@@ -3,22 +3,23 @@ package com.anguo.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.anguo.member.db.domain.GeoMember;
-import com.anguo.mybatis.db.controller.BaseController;
-import com.anguo.mybatis.db.core.PageResult;
+import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.domain.ResultMsg;
-import com.anguo.app.db.mapper.CommonSysMemberMapper;
 import com.anguo.app.service.CommonSysMemberService;
+import com.anguo.mybatis.db.controller.BaseController;
+import com.anguo.mybatis.db.core.PageResult;
 
 /**
  * 制器类
@@ -140,7 +141,11 @@ public class CommonSysMemberController extends BaseController {
 	
 	
 	
-	public ResultMsg<CommonSysMember> login(CommonSysMember geoMember) {
+	public ResultMsg<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
+		
+		log.debug("业务参数："+geoMember.toString());
+		log.debug("用户参数："+commonSysMember.toString());
+		log.debug("系统参数："+commonAppLoggedUser.toString());
 		
 		ResultMsg<CommonSysMember> messages = new ResultMsg<CommonSysMember>();
 		

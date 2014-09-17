@@ -21,7 +21,7 @@
 <!-- 分页查询 -->
 <select id="getPageData" resultMap="commonSysClassMap"
                parameterType="com.anguo.web.db.domain.CommonSysClass">
-     select * from wenanguo.common_sys_class 
+     select * from ${commonSchema}.common_sys_class 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -54,7 +54,7 @@
 <!-- 查询 -->
 <select id="getAllData" resultMap="commonSysClassMap"
                parameterType="com.anguo.web.db.domain.CommonSysClass">
-     select * from wenanguo.common_sys_class 
+     select * from ${commonSchema}.common_sys_class 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -86,14 +86,14 @@
 
 <!-- 读一条记录 -->
 <select id="getData" resultMap="commonSysClassMap" parameterType="com.anguo.web.db.domain.CommonSysClass">
-    select * from  wenanguo.common_sys_class
+    select * from  ${commonSchema}.common_sys_class
     where id = #{id}
 </select>
 
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.web.db.domain.CommonSysClass" useGeneratedKeys="true" keyProperty="id">
 	
-	insert into  wenanguo.common_sys_class
+	insert into  ${commonSchema}.common_sys_class
 	<trim prefix="(" suffix=")" suffixOverrides=",">
 		id,
 		 		 		 		 		<if test="type != null">
@@ -147,7 +147,7 @@
 
 <!-- 修改  -->
 <update id="updateData" parameterType="com.anguo.web.db.domain.CommonSysClass">
-	update  wenanguo.common_sys_class 
+	update  ${commonSchema}.common_sys_class 
 	<set>
 										<if test="type != null and type != ''">
 			type=#{type},
@@ -176,7 +176,7 @@
 
 <!-- 删除 -->
 <delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonSysClass">
-	delete from  wenanguo.common_sys_class 
+	delete from  ${commonSchema}.common_sys_class 
 	where id=#{id}
 </delete>
 

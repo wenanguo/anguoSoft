@@ -30,7 +30,7 @@
 <!-- 分页查询 -->
 <select id="getPageData" resultMap="commonAppLoggedUserMap"
                parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
-     select * from wenanguo.common_app_logged_user 
+     select * from ${commonSchema}.common_app_logged_user 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -97,7 +97,7 @@
 <!-- 查询 -->
 <select id="getAllData" resultMap="commonAppLoggedUserMap"
                parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
-     select * from wenanguo.common_app_logged_user 
+     select * from ${commonSchema}.common_app_logged_user 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -162,14 +162,14 @@
 
 <!-- 读一条记录 -->
 <select id="getData" resultMap="commonAppLoggedUserMap" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
-    select * from  wenanguo.common_app_logged_user
+    select * from  ${commonSchema}.common_app_logged_user
     where id = #{id}
 </select>
 
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser" useGeneratedKeys="true" keyProperty="id">
 	
-	insert into  wenanguo.common_app_logged_user
+	insert into  ${commonSchema}.common_app_logged_user
 	<trim prefix="(" suffix=")" suffixOverrides=",">
 		id,
 		 		 		 		 		<if test="uuid != null">
@@ -289,7 +289,7 @@
 
 <!-- 修改  -->
 <update id="updateData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
-	update  wenanguo.common_app_logged_user 
+	update  ${commonSchema}.common_app_logged_user 
 	<set>
 										<if test="uuid != null and uuid != ''">
 			uuid=#{uuid},
@@ -351,7 +351,7 @@
 
 <!-- 删除 -->
 <delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
-	delete from  wenanguo.common_app_logged_user 
+	delete from  ${commonSchema}.common_app_logged_user 
 	where id=#{id}
 </delete>
 

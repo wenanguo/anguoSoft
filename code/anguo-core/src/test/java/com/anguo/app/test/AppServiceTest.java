@@ -33,7 +33,7 @@ public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 	@Test
 	public void test1() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		Object obj=this.paramManageService.ObjectInvoke("appService", "login", "123",null,null,null,null);
+		Object obj=this.paramManageService.ObjectInvoke("commonSysMemberController", "login", "{\"memberName\":\"wenanguo\",\"password\":\"123456\"}","{\"phoneBrand\":\"iPhone\"}","{\"nickName\":\"小文\"}",null,null,null);
 		System.out.println(obj);
 	}
 	

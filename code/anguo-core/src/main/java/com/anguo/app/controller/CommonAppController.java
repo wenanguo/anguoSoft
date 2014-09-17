@@ -1,4 +1,4 @@
-package com.anguo.web.controller;
+package com.anguo.app.controller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -101,9 +101,10 @@ public class CommonAppController {
 	    	{
 	    		//真实接口
 	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), 
-	    				localReqParam, localAppParam,  localUserParam,  session,  request);
+	    				localReqParam,localAppParam,localUserParam,session,request,commonAppSiDefine);
 	    		
 	    		return resultObj;
+	    		
 	    	}else
 	    	{
 	    		//模拟接口

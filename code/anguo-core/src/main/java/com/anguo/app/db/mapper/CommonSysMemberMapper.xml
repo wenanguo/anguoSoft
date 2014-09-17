@@ -29,7 +29,7 @@
 <!-- 分页查询 -->
 <select id="getPageData" resultMap="commonSysMemberMap"
                parameterType="com.anguo.app.db.domain.CommonSysMember">
-     select * from wenanguo.common_sys_member 
+     select * from ${commonSchema}.common_sys_member 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -93,7 +93,7 @@
 <!-- 查询 -->
 <select id="getAllData" resultMap="commonSysMemberMap"
                parameterType="com.anguo.app.db.domain.CommonSysMember">
-     select * from wenanguo.common_sys_member 
+     select * from ${commonSchema}.common_sys_member 
      <trim prefix="where" prefixOverrides="and |or ">
              <if test="id != null and id != ''">
            and (id like concat(#{id},'%') or id like concat(#{id},'%'))
@@ -155,20 +155,20 @@
 
 <!-- 读一条记录 -->
 <select id="getData" resultMap="commonSysMemberMap" parameterType="com.anguo.app.db.domain.CommonSysMember">
-    select * from  wenanguo.common_sys_member
+    select * from  ${commonSchema}.common_sys_member
     where id = #{id}
 </select>
 
 <!-- 根据用户名查找用户 -->
 <select id="getDataByUserName" resultMap="commonSysMemberMap" parameterType="com.anguo.app.db.domain.CommonSysMember">
-    select * from  wenanguo.common_sys_member
+    select * from  ${commonSchema}.common_sys_member
     where member_name = #{memberName}
 </select>
 
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.app.db.domain.CommonSysMember" useGeneratedKeys="true" keyProperty="id">
 	
-	insert into  wenanguo.common_sys_member
+	insert into  ${commonSchema}.common_sys_member
 	<trim prefix="(" suffix=")" suffixOverrides=",">
 		id,
 		 		 		 		 		<if test="campusId != null">
@@ -282,7 +282,7 @@
 
 <!-- 修改  -->
 <update id="updateData" parameterType="com.anguo.app.db.domain.CommonSysMember">
-	update  wenanguo.common_sys_member 
+	update  ${commonSchema}.common_sys_member 
 	<set>
 										<if test="campusId != null and campusId != ''">
 			campus_id=#{campusId},
@@ -341,7 +341,7 @@
 
 <!-- 删除 -->
 <delete id="deleteData" parameterType="com.anguo.app.db.domain.CommonSysMember">
-	delete from  wenanguo.common_sys_member 
+	delete from  ${commonSchema}.common_sys_member 
 	where id=#{id}
 </delete>
 

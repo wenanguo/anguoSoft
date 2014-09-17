@@ -3,6 +3,7 @@ package com.anguo.app.test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,10 +16,8 @@ import org.testng.annotations.Test;
 
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ResultMsg;
-import com.anguo.member.db.domain.GeoMember;
 import com.anguo.util.AnguoEncryptUtil;
 import com.anguo.util.AnguoJsonUtil;
-import com.anguo.web.db.domain.TreeNode;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 
@@ -42,7 +41,7 @@ public class AppTest {
 
 		
 		
-		GeoMember member=new GeoMember();
+		CommonSysMember member=new CommonSysMember();
 		member.setMemberName("wenanguo");
 		member.setPassword("123456");
 		

@@ -17,6 +17,19 @@ import com.anguo.mybatis.db.core.BaseVo;
  */
 public class CommonAppLoggedUser extends BaseVo  {
 
+	@Override
+	public String toString() {
+		return "CommonAppLoggedUser [id=" + id + ", uuid=" + uuid
+				+ ", memberId=" + memberId + ", phoneBrand=" + phoneBrand
+				+ ", channelFlag=" + channelFlag + ", appBetaFlag="
+				+ appBetaFlag + ", phoneDeviceId=" + phoneDeviceId
+				+ ", innerVersion=" + innerVersion + ", externalVersion="
+				+ externalVersion + ", osType=" + osType + ", osVersion="
+				+ osVersion + ", phoneModel=" + phoneModel + ", imsi=" + imsi
+				+ ", imei=" + imei + ", sign=" + sign + ", appCode=" + appCode
+				+ ", status=" + status + ", operateUserId=" + operateUserId
+				+ ", operateDate=" + operateDate + "]";
+	}
 	/**
 	 * 编号.
 	 */
