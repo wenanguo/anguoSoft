@@ -1,8 +1,14 @@
 package com.anguo.util.test;
 
+import java.util.UUID;
+
 import junit.framework.Assert;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import com.anguo.app.db.domain.Sign;
+import com.anguo.util.AnguoAppUtil;
 import com.anguo.util.AnguoEncryptUtil;
 
 
@@ -139,7 +145,21 @@ public class CoderTest {
 
     	
         System.err.println("公钥加密——私钥解密");  
-        String inputStr = "abc";  
+        
+        
+        String timestamp=String.valueOf(System.currentTimeMillis());
+    	String uuid=UUID.randomUUID().toString();
+    	
+    	
+    	Sign sign=new Sign();
+    	
+    	sign.setTimestamp(timestamp);
+    	sign.setUuid(uuid);
+    	
+    	
+    	//String sign1=uuid+"|"+timestamp;
+    	
+        String inputStr = uuid+"|"+timestamp;  
         byte[] data = inputStr.getBytes();  
   
         byte[] encodedData = AnguoEncryptUtil.encryptByPublicKey(data, DEFAULT_PUBLIC_KEY);  
@@ -182,6 +202,57 @@ public class CoderTest {
     	
     	String a2=new String(AnguoEncryptUtil.decryptBASE64(a1));
     	System.out.println("解密："+a2);
+    	
+    }
+    
+    /**
+     * 用户参数验证
+     * @throws Exception 
+     */
+    @Test
+    public void signTest1() throws Exception
+    {
+   String DEFAULT_PUBLIC_KEY=
+		        "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDveyqk24CbH/mAgEbUD03pVYQ1"+"\r"
+				+"pTbhZf+9hnVJMtVfYEHf33i53Myq/qVkPsAI6/6iCHgOXhR1RGRmCXtZnTELoPVn"+"\r"
+				+"K3nRQJVFpeVmH3s4i6q6BXaTt6i0RTfWQzeP9SgUtfSPzoAxoGM4DfRw3U5wYvzH"+"\r"
+				+"v60/Mvd4IvWafQeYvQIDAQAB"+"\r";
+   
+   String DEFAULT_PRIVATE_KEY=
+		"MIICXAIBAAKBgQDveyqk24CbH/mAgEbUD03pVYQ1pTbhZf+9hnVJMtVfYEHf33i5"+"\r"
+		+"3Myq/qVkPsAI6/6iCHgOXhR1RGRmCXtZnTELoPVnK3nRQJVFpeVmH3s4i6q6BXaT"+"\r"
+		+"t6i0RTfWQzeP9SgUtfSPzoAxoGM4DfRw3U5wYvzHv60/Mvd4IvWafQeYvQIDAQAB"+"\r"
+		+"AoGAO5hl+1KYhYIGgADsH1eTpu5eEU+FAcB1TP/J7iZVTP/SRNkC3RXiZOcr1296"+"\r"
+		+"MH4yBrae0cx9wNT9Oxs+9AUXL/dmPnJh36+4Rg4P1aHl65Q0hvuq7UUwCqPXG+AT"+"\r"
+		+"RjIP57htK/E/0dyvMicXfMr1Ip6+gUFcYgy3nChm9phfz+0CQQD6+79KR82d6Amg"+"\r"
+		+"1Rk8yhXMND8eO8t2CzqBeZlDJlmOmBwJhLjOglTcCeDrecAUQgcq+euQUB0Mca4l"+"\r"
+		+"Z48u1iOvAkEA9ESQRwgSNWFP8xOqDPBvBFbE/UT4caB9/SqJDHMgDwj/XvV6IXoN"+"\r"
+		+"29yprg+z3uJJi2ANZZIalUDpxsFXbg0pUwJBANV6zHqiGIL3mzjyCUVrnp7S0d0l"+"\r"
+		+"fyoo4tq+U16KgCKJv09ZVNhSg1umC2o/ZOHWR8KGUZeujQbIqxelvmRYQIECQEC7"+"\r"
+		+"yuCIKwsqdt2cYHx9W25y8FGObajvN3RYSWmbOOvDHqozs+IbToDtwan3T1vJ7GOb"+"\r"
+		+"WPGJ/rF/OnUJ1/m6UzECQGxVPKOcSUsQI1NKTLHvATgGxAdvQNii1b3DjjqNLFDN"+"\r"
+		+"aBtbG4svFr0t7HLkilUQnvex3oJkTsp/VYBxTbSSLVU="+"\r";
+   
+    	String timestamp=String.valueOf(System.currentTimeMillis());
+    	String uuid=UUID.randomUUID().toString();
+    	
+    	
+//    	Sign sign=new Sign();
+//    	
+//    	sign.setTimestamp(timestamp);
+//    	sign.setUuid(uuid);
+    	
+    	//签名
+    	String sign=AnguoAppUtil.enSign(uuid, timestamp, DEFAULT_PUBLIC_KEY);
+    	
+    	System.out.println("加密："+sign+";"+timestamp);
+    	
+    	Sign signbean=AnguoAppUtil.deSign(sign, timestamp, DEFAULT_PRIVATE_KEY);
+    	
+    	
+    	
+    	
+    	System.out.println("解密："+signbean);
     	
     }
 }

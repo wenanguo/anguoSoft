@@ -133,6 +133,15 @@ public class CommonAppController {
 	  }
 
 	  
+	  /**
+	   * 解密并验证用户参数
+	   * @param userParam
+	   * @return
+	   */
+	  private String decryptSign(String userParam)
+	  {
+		  return userParam;
+	  }
 	  
 
 	
