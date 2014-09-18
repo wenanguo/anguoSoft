@@ -25,7 +25,8 @@
 		 		<result property="status" column="status" />
 		 		<result property="operateUserId" column="operate_user_id" />
 		 		<result property="operateDate" column="operate_date" />
-		 	</resultMap>
+		 		
+	</resultMap>
 
 <!-- 分页查询 -->
 <select id="getPageData" resultMap="commonAppLoggedUserMap"
@@ -166,11 +167,7 @@
     where id = #{id}
 </select>
 
-<!-- 读一条记录 -->
-<select id="getDataByUUID" resultMap="commonAppLoggedUserMap" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser">
-    select * from  ${commonSchema}.common_app_logged_user
-    where uuid = #{uuid}
-</select>
+
 
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.app.db.domain.CommonAppLoggedUser" useGeneratedKeys="true" keyProperty="id">

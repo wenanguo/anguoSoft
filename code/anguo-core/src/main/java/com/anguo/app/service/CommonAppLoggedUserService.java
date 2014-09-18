@@ -1,6 +1,5 @@
 package com.anguo.app.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.anguo.app.db.domain.CommonAppLoggedUser;
@@ -16,15 +15,7 @@ public class CommonAppLoggedUserService extends BaseService<CommonAppLoggedUser>
 	
 	
 	
-	/**
-	 * 根据uuid获取当前登录用户
-	 * @param obj
-	 * @return
-	 */
-	public CommonAppLoggedUser getDataByUUID(CommonAppLoggedUser obj)
-	{
-		return this.mapper.getDataByUUID(obj);
-	}
+	
 	
 	
 	/**

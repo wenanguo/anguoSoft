@@ -92,6 +92,20 @@ public class CommonSysMemberServiceTest extends AbstractTestNGSpringContextTests
 		assert commonSysMemberData != null : "获得单条数据失败，执行数据为null";
 
 	}
+	
+	/**
+	 * 获得单条数据uuid
+	 */
+	@Test(groups = {BaseConstants.TEST_DATABASE_AFFECT})
+	public void getDataByUUid() {
+		
+		//*******************************
+		CommonSysMember commonAppLoggedUserData =  this.commonSysMemberService.getDataByUUID("dc13c18d-2e5a-4024-af4d-c60e6addd3d4");
+
+		System.out.println(commonAppLoggedUserData);
+		assert commonAppLoggedUserData != null : "获得单条数据失败，执行数据为null";
+
+	}
 
 	/**
 	 * 获得全部数据

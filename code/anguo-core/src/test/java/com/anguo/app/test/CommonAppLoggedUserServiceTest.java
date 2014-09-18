@@ -8,6 +8,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import com.anguo.app.db.domain.CommonAppLoggedUser;
+import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.service.CommonAppLoggedUserService;
 import com.anguo.mybatis.db.controller.BaseConstants;
 
@@ -87,6 +88,8 @@ public class CommonAppLoggedUserServiceTest extends AbstractTestNGSpringContextT
 		assert commonAppLoggedUserData != null : "获得单条数据失败，执行数据为null";
 
 	}
+	
+	
 
 	/**
 	 * 获得全部数据

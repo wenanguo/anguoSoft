@@ -165,6 +165,13 @@
     where member_name = #{memberName}
 </select>
 
+<!-- 根据UUID查找用户 -->
+<select id="getDataByUUID" resultMap="commonSysMemberMap" parameterType="String">
+    
+    select b.* from  ${commonSchema}.common_app_logged_user a,${commonSchema}.common_sys_member b
+    where a.member_id=b.id and a.uuid = #{value}
+</select>
+
 <!-- 插入记录  -->
 <insert id="insertData" parameterType="com.anguo.app.db.domain.CommonSysMember" useGeneratedKeys="true" keyProperty="id">
 	

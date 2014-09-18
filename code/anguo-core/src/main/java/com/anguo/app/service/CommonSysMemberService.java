@@ -50,8 +50,15 @@ public class CommonSysMemberService extends BaseService<CommonSysMember> {
 	
 	
 	
-	
-	
+	/**
+	 * 根据uuid获取当前登录用户
+	 * @param obj
+	 * @return
+	 */
+	public CommonSysMember getDataByUUID(String obj)
+	{
+		return this.mapper.getDataByUUID(obj);
+	}
 	
 	
 	

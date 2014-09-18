@@ -58,7 +58,7 @@ public class CommonAppService implements ApplicationContextAware {
 	 * @throws InvocationTargetException 
 	 * @throws IllegalArgumentException 
 	 */
-	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam,String appParam, String userParam, HttpSession session, HttpServletRequest request,CommonAppSiDefine commonAppSiDefine) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam,String appParam, CommonSysMember commonSysMember, HttpSession session, HttpServletRequest request,CommonAppSiDefine commonAppSiDefine) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		Object returnOjb=null;
 		
@@ -111,13 +111,9 @@ public class CommonAppService implements ApplicationContextAware {
         	if(methodParamTypes[i].isAssignableFrom(CommonSysMember.class))
         	{
         		 //初始化用户参数
-                if (!StringUtils.isEmpty(userParam))
-                {
-                	paramArrays[i] = AnguoJsonUtil.fromJson(userParam, CommonSysMember.class);
-                }
-                else {
-                	paramArrays[i] = Object.class.newInstance();
-                }
+               
+                 paramArrays[i] = commonSysMember;
+               
         	}
         }
         

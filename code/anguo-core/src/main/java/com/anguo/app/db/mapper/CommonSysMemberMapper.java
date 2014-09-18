@@ -11,4 +11,13 @@ public interface CommonSysMemberMapper extends BaseMapper<CommonSysMember> {
 	 * @return
 	 */
 	public CommonSysMember getDataByUserName(CommonSysMember obj);
+	
+	
+	/**
+	 * 根据uuid获取当前登录用户
+	 * @param obj
+	 * @return
+	 */
+	public CommonSysMember getDataByUUID(String obj);
+	
 }
