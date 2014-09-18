@@ -13,16 +13,14 @@ public class AnguoAppUtil {
 
 	/**
 	 * 签名
-	 * @param uuid
-	 * @param timestamp
+	 * @param signBean 签名对象
 	 * @param DEFAULT_PUBLIC_KEY
 	 * @return
 	 * @throws Exception
 	 */
-	public static String enSign(String uuid,String timestamp, String DEFAULT_PUBLIC_KEY) throws Exception
+	public static Sign enSign(Sign signBean, String DEFAULT_PUBLIC_KEY) throws Exception
 	{
-    	
-    	String sign=uuid+"||"+timestamp;
+    	String sign=signBean.getUuid()+"&&"+signBean.getTimestamp();
     	
     	//公钥加密
     	byte[] encodedData = AnguoEncryptUtil.encryptByPublicKey(sign.getBytes(), DEFAULT_PUBLIC_KEY);  
@@ -30,44 +28,50 @@ public class AnguoAppUtil {
     	String signStr1=AnguoEncryptUtil.encryptBASE64(encodedData);
     	
     	
-    	return signStr1;
+    	//返回处理后的对象
+    	Sign sign2=new Sign();
+    	sign2.setSign(signStr1);
+    	sign2.setTimestamp(signBean.getTimestamp());
+    	
+    	
+    	return sign2;
     	
     	
 	}
 	
 	/**
-	 * 签名
+	 * 验证签名
 	 * @param sign
 	 * @param timestamp
 	 * @param DEFAULT_PRIVATE_KEY
 	 * @return
 	 * @throws Exception
 	 */
-	public static Sign deSign(String sign,String timestamp, String DEFAULT_PRIVATE_KEY) throws Exception
+	public static Sign deSign(Sign signBean, String DEFAULT_PRIVATE_KEY) throws Exception
 	{
 		
-		byte[] signStr2=AnguoEncryptUtil.decryptBASE64(sign);
+		byte[] signStrByte=AnguoEncryptUtil.decryptBASE64(signBean.getSign());
     	
     	
-    	String signStr=new String(AnguoEncryptUtil.decryptByPrivateKey(signStr2, DEFAULT_PRIVATE_KEY));
+    	String signStr=new String(AnguoEncryptUtil.decryptByPrivateKey(signStrByte, DEFAULT_PRIVATE_KEY));
 		
 		
     	
-    	String[] arr=signStr.split("||"); 
-    	Sign signBean=new Sign();
+    	String[] arr=signStr.split("&&"); 
+    	Sign signBean2=new Sign();
     	
-    	signBean.setUuid(arr[0]);
-    	signBean.setTimestamp(arr[1]);
+    	signBean2.setUuid(arr[0]);
+    	signBean2.setTimestamp(arr[1]);
         
     	
     	//判断时间戳是否相等
-    	if(!signBean.getTimestamp().equals(timestamp))
+    	if(!signBean2.getTimestamp().equals(signBean.getTimestamp()))
     	{
     		throw new Exception("签名错误");
     	}
     	
     	
-    	return signBean;
+    	return signBean2;
     	
     	
 	}

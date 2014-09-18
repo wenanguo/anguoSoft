@@ -237,22 +237,21 @@ public class CoderTest {
     	String uuid=UUID.randomUUID().toString();
     	
     	
-//    	Sign sign=new Sign();
-//    	
-//    	sign.setTimestamp(timestamp);
-//    	sign.setUuid(uuid);
+    	Sign sign=new Sign();
+    	
+    	sign.setTimestamp(timestamp);
+    	sign.setUuid(uuid);
     	
     	//签名
-    	String sign=AnguoAppUtil.enSign(uuid, timestamp, DEFAULT_PUBLIC_KEY);
+    	Sign sign2=AnguoAppUtil.enSign(sign, DEFAULT_PUBLIC_KEY);
     	
-    	System.out.println("加密："+sign+";"+timestamp);
+    	System.out.println("加密："+sign2);
     	
-    	Sign signbean=AnguoAppUtil.deSign(sign, timestamp, DEFAULT_PRIVATE_KEY);
-    	
-    	
+    	Sign signbean=AnguoAppUtil.deSign(sign2, DEFAULT_PRIVATE_KEY);
     	
     	
     	System.out.println("解密："+signbean);
+    	Assert.assertEquals(signbean.getTimestamp(), sign.getTimestamp());
     	
     }
 }
