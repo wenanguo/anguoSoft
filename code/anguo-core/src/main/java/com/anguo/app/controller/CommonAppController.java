@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.db.domain.CommonSysMember;
+import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.domain.ResultMsg;
 import com.anguo.app.db.domain.Sign;
 import com.anguo.app.service.CommonAppService;
@@ -90,6 +92,8 @@ public class CommonAppController {
 		  Sign loginSign=null;
 		  //登录用户
 		  CommonSysMember commonSysMember=null;
+		  //系统信息
+		  CommonAppLoggedUser commonAppLoggerUser=null;
 		  
 		  //解密base64编码
 		  if(StringUtils.isNotEmpty(reqParam))
@@ -100,6 +104,7 @@ public class CommonAppController {
 		  if(StringUtils.isNotEmpty(appParam))
 		  {
 			  localAppParam=new String(AnguoEncryptUtil.decryptBASE64(appParam));
+			  commonAppLoggerUser=AnguoJsonUtil.fromJson(localAppParam, CommonAppLoggedUser.class);
 		  }
 		  
 		  if(StringUtils.isNotEmpty(userParam))
@@ -140,8 +145,7 @@ public class CommonAppController {
 	    		if(commonSysMember==null)
 	    		{
 	    			ResultMsg rs=new ResultMsg();
-	    			rs.setCode(101);
-	    			rs.setMsg("鉴权失败");
+	    			rs.setCode(ConstantClass.INTERFACE_LOGIN_TIMEOUT);
 	    			
 	    			return rs;
 	    		}
@@ -155,7 +159,7 @@ public class CommonAppController {
 	    		
 	    		//真实接口
 	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), 
-	    				localReqParam,localAppParam,commonSysMember,session,request,commonAppSiDefine);
+	    				localReqParam,commonAppLoggerUser,commonSysMember,session,request);
 	    		
 	    		return resultObj;
 	    		
@@ -187,15 +191,6 @@ public class CommonAppController {
 	  }
 
 	  
-	  /**
-	   * 解密并验证用户参数
-	   * @param userParam
-	   * @return
-	   */
-	  private String decryptSign(String userParam)
-	  {
-		  return userParam;
-	  }
 	  
 
 	

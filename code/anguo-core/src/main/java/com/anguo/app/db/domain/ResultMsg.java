@@ -1,5 +1,7 @@
 package com.anguo.app.db.domain;
 
+import com.anguo.util.AnguoStatusUtil;
+
 
 /**
  * 所有返回结果基类，包括web接口及app
@@ -31,6 +33,7 @@ public class ResultMsg<T> {
 	}
 	public void setCode(int code) {
 		this.code = code;
+		this.msg=AnguoStatusUtil.getUserInfo(code);
 	}
 	public String getMsg() {
 		return msg;

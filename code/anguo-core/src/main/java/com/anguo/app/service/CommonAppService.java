@@ -2,19 +2,15 @@ package com.anguo.app.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import com.anguo.app.db.domain.CommonAppLoggedUser;
-import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.util.AnguoJsonUtil;
 
@@ -58,7 +54,7 @@ public class CommonAppService implements ApplicationContextAware {
 	 * @throws InvocationTargetException 
 	 * @throws IllegalArgumentException 
 	 */
-	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam,String appParam, CommonSysMember commonSysMember, HttpSession session, HttpServletRequest request,CommonAppSiDefine commonAppSiDefine) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public Object ObjectInvoke(String serviceClass,String serviceMethod,String reqParam,CommonAppLoggedUser commonAppLoggerUser, CommonSysMember commonSysMember, HttpSession session, HttpServletRequest request) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		Object returnOjb=null;
 		
@@ -98,20 +94,14 @@ public class CommonAppService implements ApplicationContextAware {
         	if(methodParamTypes[i].isAssignableFrom(CommonAppLoggedUser.class))
         	{
         		 //初始化系统参数
-                if (!StringUtils.isEmpty(appParam))
-                {
-                	paramArrays[i] = AnguoJsonUtil.fromJson(appParam, CommonAppLoggedUser.class);
-                }
-                else {
-                	paramArrays[i] = Object.class.newInstance();
-                }
+                paramArrays[i] =commonAppLoggerUser;
+                
         	}
         	
         	//查找用户参数
         	if(methodParamTypes[i].isAssignableFrom(CommonSysMember.class))
         	{
         		 //初始化用户参数
-               
                  paramArrays[i] = commonSysMember;
                
         	}

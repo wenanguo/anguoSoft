@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
+import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.mapper.CommonAppLoggedUserMapper;
 import com.anguo.app.db.mapper.CommonSysMemberMapper;
+import com.anguo.exception.AnguoException;
 import com.anguo.mybatis.db.service.BaseService;
 
 
@@ -29,18 +31,18 @@ public class CommonSysMemberService extends BaseService<CommonSysMember> {
 	 * @return
 	 * @throws Exception 
 	 */
-	public CommonSysMember login(CommonSysMember commonSysMember) throws Exception
+	public CommonSysMember login(CommonSysMember commonSysMember) throws AnguoException
 	{
 		//根据用户名查询用户
 		CommonSysMember geoMember= this.mapper.getDataByUserName(commonSysMember);
 		
 		if(geoMember==null)
 		{
-			throw new Exception("用户不存在！");
+			throw new AnguoException(ConstantClass.INTERFACE_USERNAME_ERROR);
 			
 		}else if(!geoMember.getPassword().equals(commonSysMember.getPassword()))
 		{
-			throw new Exception("密码错误！");
+			throw new AnguoException(ConstantClass.INTERFACE_PASSWORD_ERROR);
 		}
 		
 		

@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
-import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.domain.ResultMsg;
 import com.anguo.app.service.CommonAppLoggedUserService;
 import com.anguo.app.service.CommonSysMemberService;
+import com.anguo.exception.AnguoException;
 import com.anguo.mybatis.db.controller.BaseController;
 import com.anguo.mybatis.db.core.PageResult;
 
@@ -170,9 +170,8 @@ public class CommonSysMemberController extends BaseController {
 				this.commonAppLoggedUserService.insertData(commonAppLoggedUser);
 				
 				messages.setObj(resultGeoMember);
-			} catch (Exception e) {
-				messages.setCode(ConstantClass.INTERFACE_SERVICEERROR);
-				messages.setMsg(e.getMessage());
+			} catch (AnguoException e) {
+				messages.setCode(e.getCode());
 			}
 		
 		
