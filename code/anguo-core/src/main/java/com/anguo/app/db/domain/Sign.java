@@ -7,6 +7,16 @@ package com.anguo.app.db.domain;
  */
 public class Sign {
 	
+	public Sign(String uuid) {
+		super();
+		this.uuid = uuid;
+		this.timestamp=String.valueOf(System.currentTimeMillis());
+	}
+	public Sign() {
+		super();
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Sign [sign=" + sign + ", timestamp=" + timestamp + ", uuid="
