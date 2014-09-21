@@ -72,7 +72,7 @@ public class CommonAppService implements ApplicationContextAware {
         
        
         
-        if (paramCount>1)
+        if (paramCount>=1)
         {
           Class methodParamType = methodParamTypes[0];
 
@@ -94,7 +94,12 @@ public class CommonAppService implements ApplicationContextAware {
         	if(methodParamTypes[i].isAssignableFrom(CommonAppLoggedUser.class))
         	{
         		 //初始化系统参数
-                paramArrays[i] =commonAppLoggerUser;
+        		if(commonAppLoggerUser!=null){
+        			
+        			paramArrays[i] =commonAppLoggerUser;
+        		}else{
+        			paramArrays[i] =CommonAppLoggedUser.class.newInstance();
+        		}
                 
         	}
         	
@@ -102,7 +107,12 @@ public class CommonAppService implements ApplicationContextAware {
         	if(methodParamTypes[i].isAssignableFrom(CommonSysMember.class))
         	{
         		 //初始化用户参数
-                 paramArrays[i] = commonSysMember;
+        		 if(commonSysMember!=null)
+        		 {
+        			 paramArrays[i] = commonSysMember;
+        		 }else{
+        			 paramArrays[i] = CommonSysMember.class.newInstance();
+        		 }
                
         	}
         }

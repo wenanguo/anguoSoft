@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
+import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.domain.ResultMsg;
 import com.anguo.app.service.CommonAppLoggedUserService;
 import com.anguo.app.service.CommonSysMemberService;
@@ -146,7 +147,13 @@ public class CommonSysMemberController extends BaseController {
 	}
 	
 	
-	
+	/**
+	 * 登录
+	 * @param geoMember
+	 * @param commonSysMember
+	 * @param commonAppLoggedUser
+	 * @return
+	 */
 	public ResultMsg<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
 		
 		log.debug("业务参数："+geoMember.toString());
@@ -156,6 +163,7 @@ public class CommonSysMemberController extends BaseController {
 		ResultMsg<CommonSysMember> messages = new ResultMsg<CommonSysMember>();
 		
 		CommonSysMember resultGeoMember=null;
+		
 		try {
 				resultGeoMember  = this.commonSysMemberService.login(geoMember);
 				
@@ -176,5 +184,76 @@ public class CommonSysMemberController extends BaseController {
 		
 		
 		return messages;
+	}
+	
+	
+	/**
+	 * 注销
+	 * @param geoMember
+	 * @param commonSysMember
+	 * @param commonAppLoggedUser
+	 * @return
+	 */
+	public ResultMsg<CommonSysMember> logout(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
+		
+		log.debug("业务参数："+geoMember.toString());
+		log.debug("用户参数："+commonSysMember.toString());
+		log.debug("系统参数："+commonAppLoggedUser.toString());
+		
+		ResultMsg<CommonSysMember> messages = new ResultMsg<CommonSysMember>();
+		
+		commonAppLoggedUser.setMemberId(commonSysMember.getId());
+				
+		//插入日志记录表
+	    this.commonAppLoggedUserService.deleteDataByMember(commonAppLoggedUser);
+	    messages.setCode(ConstantClass.INTERFACE_SUCCESS);
+				
+		return messages;
+	}
+	
+	
+	/**
+	 * 接口新增用户
+	 * @param commonSysMember
+	 * @return
+	 */
+	public ResultMsg newAppCommonSysMember(CommonSysMember commonSysMember) {
+		ResultMsg messages = new ResultMsg();
+		
+			int i = commonSysMemberService.insertData(commonSysMember);
+			
+			if(i<=0)
+			{
+				messages.setCode(ConstantClass.INTERFACE_SERVICE_ERROR);
+			}else
+			{
+				messages.setCode(ConstantClass.INTERFACE_SUCCESS);
+			}
+			
+		
+		return messages;
+	}
+	
+	/**
+	 * 接口修改会员
+	 * @param commonSysMember
+	 * @return
+	 */
+	public ResultMsg updateAppCommonSysMember(CommonSysMember commonSysMember) {
+		ResultMsg messages = new ResultMsg();
+		
+		int i = commonSysMemberService.updateData(commonSysMember);
+		
+		if(i<=0)
+		{
+			messages.setCode(ConstantClass.INTERFACE_SERVICE_ERROR);
+		}else
+		{
+			messages.setCode(ConstantClass.INTERFACE_SUCCESS);
+		}
+		
+	
+	    return messages;
+		
 	}
 }

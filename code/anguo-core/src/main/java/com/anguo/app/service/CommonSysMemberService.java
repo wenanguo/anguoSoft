@@ -1,10 +1,8 @@
 package com.anguo.app.service;
-import java.util.UUID;
 
-import org.springframework.beans.BeanUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
@@ -50,6 +48,21 @@ public class CommonSysMemberService extends BaseService<CommonSysMember> {
 		return geoMember;
 	}
 	
+	
+	
+	/**
+	 * 根据登录uuid注销
+	 * @param obj
+	 * @return
+	 * @throws Exception 
+	 */
+	public String logout(CommonSysMember obj,CommonAppLoggedUser commonAppLoggedUser) throws AnguoException
+	{
+		//根据用户名查询用户
+		int i=this.commonAppLoggedUserMapper.deleteDataByMember(commonAppLoggedUser);
+		
+		return String.valueOf(i);
+	}
 	
 	
 	/**

@@ -18,7 +18,7 @@ public class ResultMsg<T> {
 	/**
 	 * 操作代码
 	 */
-	private int code=100;
+	private int code=ConstantClass.BASE_NORMAL;
 	/**
 	 * 消息描述
 	 */

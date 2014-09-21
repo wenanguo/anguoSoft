@@ -13,11 +13,7 @@ public class CommonAppLoggedUserService extends BaseService<CommonAppLoggedUser>
 	@Autowired
 	private CommonAppLoggedUserMapper mapper;
 	
-	
-	
-	
-	
-	
+
 	/**
 	 * 删除已登录用户
 	 * @param obj
