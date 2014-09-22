@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
-import com.anguo.app.db.domain.ResultMsg;
+import com.anguo.app.db.domain.AppResult;
 import com.anguo.app.service.CommonAppLoggedUserService;
 import com.anguo.app.service.CommonSysMemberService;
 import com.anguo.exception.AnguoException;
@@ -154,13 +154,13 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonAppLoggedUser
 	 * @return
 	 */
-	public ResultMsg<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
+	public AppResult<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
 		
 		log.debug("业务参数："+geoMember.toString());
 		log.debug("用户参数："+commonSysMember.toString());
 		log.debug("系统参数："+commonAppLoggedUser.toString());
 		
-		ResultMsg<CommonSysMember> messages = new ResultMsg<CommonSysMember>();
+		AppResult<CommonSysMember> messages = new AppResult<CommonSysMember>();
 		
 		CommonSysMember resultGeoMember=null;
 		
@@ -194,13 +194,13 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonAppLoggedUser
 	 * @return
 	 */
-	public ResultMsg<CommonSysMember> logout(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
+	public AppResult<CommonSysMember> logout(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
 		
 		log.debug("业务参数："+geoMember.toString());
 		log.debug("用户参数："+commonSysMember.toString());
 		log.debug("系统参数："+commonAppLoggedUser.toString());
 		
-		ResultMsg<CommonSysMember> messages = new ResultMsg<CommonSysMember>();
+		AppResult<CommonSysMember> messages = new AppResult<CommonSysMember>();
 		
 		commonAppLoggedUser.setMemberId(commonSysMember.getId());
 				
@@ -217,8 +217,8 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonSysMember
 	 * @return
 	 */
-	public ResultMsg newAppCommonSysMember(CommonSysMember commonSysMember) {
-		ResultMsg messages = new ResultMsg();
+	public AppResult newAppCommonSysMember(CommonSysMember commonSysMember) {
+		AppResult messages = new AppResult();
 		
 			int i = commonSysMemberService.insertData(commonSysMember);
 			
@@ -239,8 +239,8 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonSysMember
 	 * @return
 	 */
-	public ResultMsg updateAppCommonSysMember(CommonSysMember commonSysMember) {
-		ResultMsg messages = new ResultMsg();
+	public AppResult updateAppCommonSysMember(CommonSysMember commonSysMember) {
+		AppResult messages = new AppResult();
 		
 		int i = commonSysMemberService.updateData(commonSysMember);
 		

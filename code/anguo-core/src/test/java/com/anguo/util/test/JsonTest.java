@@ -11,8 +11,8 @@ import java.util.Map;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.anguo.app.db.domain.CommonAppSiData;
-import com.anguo.app.db.domain.ResultMsg;
-import com.anguo.app.db.domain.ResultMsgList;
+import com.anguo.app.db.domain.AppResult;
+import com.anguo.app.db.domain.AppResultList;
 import com.anguo.util.AnguoJsonUtil;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -55,7 +55,7 @@ public class JsonTest {
 		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 		//String json = "{\"error\":0, \"results\":{\"AppId\": \"werewrfasdf\", \"AppKey\":\"wqrfdsafdzsjkfhjadh\"}}";
 		
-		ResultMsg<CommonAppSiData> call = mapper.readValue(json, new TypeReference<ResultMsg<CommonAppSiData>>() {});
+		AppResult<CommonAppSiData> call = mapper.readValue(json, new TypeReference<AppResult<CommonAppSiData>>() {});
 		
 		System.out.println(call.toString());
 		System.out.println(call.getObj().toString());
@@ -69,8 +69,8 @@ public class JsonTest {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		JavaType javaType = mapper.getTypeFactory().constructParametricType(ResultMsg.class, CommonAppSiData.class); 
-		ResultMsg<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(AppResult.class, CommonAppSiData.class); 
+		AppResult<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
 		
 		
 		System.out.println(lst.getCode());
@@ -112,7 +112,7 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		ResultMsgList<CommonAppSiData> rlm=new ResultMsgList<CommonAppSiData>(); 
+		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
 		//rlm.setList(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
@@ -125,8 +125,8 @@ public class JsonTest {
 		
 		
 		
-		JavaType javaType = mapper.getTypeFactory().constructParametricType(ResultMsgList.class,CommonAppSiData.class); 
-		ResultMsgList<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(AppResultList.class,CommonAppSiData.class); 
+		AppResultList<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
 		
 		
 		
@@ -145,7 +145,7 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		ResultMsgList<CommonAppSiData> rlm=new ResultMsgList<CommonAppSiData>(); 
+		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
 		rlm.setObj(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
@@ -176,7 +176,7 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		ResultMsgList<CommonAppSiData> rlm=new ResultMsgList<CommonAppSiData>(); 
+		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
 		rlm.setObj(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
@@ -211,7 +211,7 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		ResultMsgList<CommonAppSiData> rlm=new ResultMsgList<CommonAppSiData>(); 
+		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
 		rlm.setObj(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
@@ -224,9 +224,9 @@ public class JsonTest {
 		
 		
 		
-		JavaType javaType = mapper.getTypeFactory().constructParametricType(ResultMsg.class,new ArrayList<CommonAppSiData>().getClass());  		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(AppResult.class,new ArrayList<CommonAppSiData>().getClass());  		
 		
-		ResultMsg<List<CommonAppSiData>> lst =  mapper.readValue(json, javaType);
+		AppResult<List<CommonAppSiData>> lst =  mapper.readValue(json, javaType);
 		
 		//for(CommonAppSiData cas : lst.getObj()){
 			

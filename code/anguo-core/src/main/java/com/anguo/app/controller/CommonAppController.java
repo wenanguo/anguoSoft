@@ -21,7 +21,7 @@ import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
-import com.anguo.app.db.domain.ResultMsg;
+import com.anguo.app.db.domain.AppResult;
 import com.anguo.app.db.domain.Sign;
 import com.anguo.app.service.CommonAppService;
 import com.anguo.app.service.CommonAppSiDataService;
@@ -144,7 +144,7 @@ public class CommonAppController {
 	    		
 	    		if(commonSysMember==null)
 	    		{
-	    			ResultMsg rs=new ResultMsg();
+	    			AppResult rs=new AppResult();
 	    			rs.setCode(ConstantClass.INTERFACE_LOGIN_TIMEOUT);
 	    			
 	    			return rs;

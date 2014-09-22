@@ -8,7 +8,8 @@ import com.anguo.util.AnguoStatusUtil;
  * @author Andrew.Wen
  *
  */
-public class ResultMsg<T> {
+public class AppResult<T> {
+	
 	
 	@Override
 	public String toString() {
@@ -18,7 +19,7 @@ public class ResultMsg<T> {
 	/**
 	 * 操作代码
 	 */
-	private int code=ConstantClass.BASE_NORMAL;
+	private int code=ConstantClass.INTERFACE_SUCCESS;
 	/**
 	 * 消息描述
 	 */
@@ -27,6 +28,17 @@ public class ResultMsg<T> {
 	 * 消息对象
 	 */
 	private T obj;
+	
+	public AppResult() {
+		super();
+		this.msg=AnguoStatusUtil.getUserInfo(this.code);
+	}
+	
+	public AppResult(int code) {
+		super();
+		this.code = code;
+		this.msg=AnguoStatusUtil.getUserInfo(this.code);
+	}
 	
 	public int getCode() {
 		return code;

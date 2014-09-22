@@ -8,7 +8,7 @@ import java.util.List;
  * @author Andrew.Wen
  *
  */
-public class ResultMsgList<E> extends ResultMsg<List<E>> {
+public class AppResultList<E> extends AppResult<List<E>> {
 	
 	
 	

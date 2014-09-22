@@ -15,7 +15,7 @@ import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 
 import com.anguo.app.db.domain.CommonSysMember;
-import com.anguo.app.db.domain.ResultMsg;
+import com.anguo.app.db.domain.AppResult;
 import com.anguo.util.AnguoEncryptUtil;
 import com.anguo.util.AnguoJsonUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -75,7 +75,7 @@ public class AppTest {
 
 			System.out.println(result);
 			
-			ResultMsg<CommonSysMember> messages= AnguoJsonUtil.fromJson(result, new TypeReference<ResultMsg<CommonSysMember>>(){});
+			AppResult<CommonSysMember> messages= AnguoJsonUtil.fromJson(result, new TypeReference<AppResult<CommonSysMember>>(){});
 			System.out.println(messages.getCode());
 			System.out.println(messages.getMsg());
 			System.out.println(messages.getObj().getMemberName());
