@@ -23,9 +23,9 @@ public class AnguoAppUtil {
     	String sign=signBean.getUuid()+"&&"+signBean.getTimestamp();
     	
     	//公钥加密
-    	byte[] encodedData = AnguoEncryptUtil.encryptByPublicKey(sign.getBytes(), DEFAULT_PUBLIC_KEY);  
+    	//byte[] encodedData = AnguoEncryptUtil.encryptByPublicKey(sign.getBytes(), DEFAULT_PUBLIC_KEY);  
         
-    	String signStr1=AnguoEncryptUtil.encryptBASE64(encodedData);
+    	String signStr1=AnguoEncryptUtil.encryptBASE64(sign.getBytes());
     	
     	
     	//返回处理后的对象
@@ -38,6 +38,7 @@ public class AnguoAppUtil {
     	
     	
 	}
+	
 	
 	/**
 	 * 验证签名
@@ -53,11 +54,11 @@ public class AnguoAppUtil {
 		byte[] signStrByte=AnguoEncryptUtil.decryptBASE64(signBean.getSign());
     	
     	
-    	String signStr=new String(AnguoEncryptUtil.decryptByPrivateKey(signStrByte, DEFAULT_PRIVATE_KEY));
+    	//String signStr=new String(AnguoEncryptUtil.decryptByPrivateKey(signStrByte, DEFAULT_PRIVATE_KEY));
 		
 		
     	
-    	String[] arr=signStr.split("&&"); 
+    	String[] arr=new String(signStrByte).split("&&"); 
     	Sign signBean2=new Sign();
     	
     	signBean2.setUuid(arr[0]);
