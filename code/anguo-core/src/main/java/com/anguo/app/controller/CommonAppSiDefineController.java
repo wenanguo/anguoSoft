@@ -34,7 +34,7 @@ public class CommonAppSiDefineController extends BaseController {
 
 	@RequestMapping("/commonAppSiDefine/list.htm")
 	@ResponseBody
-	public PageResult<CommonAppSiDefine> queryCommonAppSiDefineList(CommonAppSiDefine commonAppSiDefine) {
+	public PageResult<List<CommonAppSiDefine>> queryCommonAppSiDefineList(CommonAppSiDefine commonAppSiDefine) {
 		try {
 			return commonAppSiDefineService.getPageData(commonAppSiDefine);
 		} catch (Exception e) {

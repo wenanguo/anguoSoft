@@ -13,11 +13,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.anguo.app.db.domain.AppResult;
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
+import com.anguo.mybatis.db.core.PageResult;
 import com.anguo.util.AnguoJsonUtil;
+import com.anguo.util.AnguoStatusUtil;
 
 
 /**
@@ -65,12 +66,12 @@ public class CommonAppService implements ApplicationContextAware {
 		
 		Object serviceObj=this.applicationContext.getBean(serviceClass);
 		
-		AppResult ar=new AppResult();
+		PageResult ar=new PageResult();
 		
 		if(serviceObj==null)
 		{
 			//找不到当前bean
-			ar.setCode(ConstantClass.INTERFACE_NOT_CLASS);
+			ar.setCode(AnguoStatusUtil.INTERFACE_NOT_CLASS);
 			return ar;
 		}
 		
@@ -79,7 +80,7 @@ public class CommonAppService implements ApplicationContextAware {
 		if(method==null)
 		{
 			//找不到当前bean
-			ar.setCode(ConstantClass.INTERFACE_NOT_METHOD);
+			ar.setCode(AnguoStatusUtil.INTERFACE_NOT_METHOD);
 			return ar;
 		}
 		

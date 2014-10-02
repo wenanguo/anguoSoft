@@ -20,16 +20,16 @@ import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonAppSiData;
 import com.anguo.app.db.domain.CommonAppSiDefine;
 import com.anguo.app.db.domain.CommonSysMember;
-import com.anguo.app.db.domain.ConstantClass;
-import com.anguo.app.db.domain.AppResult;
 import com.anguo.app.db.domain.Sign;
 import com.anguo.app.service.CommonAppService;
 import com.anguo.app.service.CommonAppSiDataService;
 import com.anguo.app.service.CommonAppSiDefineService;
 import com.anguo.app.service.CommonSysMemberService;
+import com.anguo.mybatis.db.core.PageResult;
 import com.anguo.util.AnguoAppUtil;
 import com.anguo.util.AnguoEncryptUtil;
 import com.anguo.util.AnguoJsonUtil;
+import com.anguo.util.AnguoStatusUtil;
 
 /**
  * app接口调用总控制器
@@ -144,8 +144,8 @@ public class CommonAppController {
 	    		
 	    		if(commonSysMember==null)
 	    		{
-	    			AppResult rs=new AppResult();
-	    			rs.setCode(ConstantClass.INTERFACE_LOGIN_TIMEOUT);
+	    			PageResult rs=new PageResult();
+	    			rs.setCode(AnguoStatusUtil.INTERFACE_LOGIN_TIMEOUT);
 	    			
 	    			return rs;
 	    		}

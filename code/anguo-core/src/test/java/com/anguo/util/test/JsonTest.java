@@ -7,12 +7,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.anguo.app.db.domain.CommonAppSiData;
-import com.anguo.app.db.domain.AppResult;
-import com.anguo.app.db.domain.AppResultList;
+import com.anguo.mybatis.db.core.PageResult;
+import com.anguo.mybatis.db.core.PageResultList;
 import com.anguo.util.AnguoJsonUtil;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -55,10 +54,10 @@ public class JsonTest {
 		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 		//String json = "{\"error\":0, \"results\":{\"AppId\": \"werewrfasdf\", \"AppKey\":\"wqrfdsafdzsjkfhjadh\"}}";
 		
-		AppResult<CommonAppSiData> call = mapper.readValue(json, new TypeReference<AppResult<CommonAppSiData>>() {});
+		PageResult<CommonAppSiData> call = mapper.readValue(json, new TypeReference<PageResult<CommonAppSiData>>() {});
 		
 		System.out.println(call.toString());
-		System.out.println(call.getObj().toString());
+		System.out.println(call.getRows().toString());
 	}
 	
 	
@@ -69,12 +68,12 @@ public class JsonTest {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		JavaType javaType = mapper.getTypeFactory().constructParametricType(AppResult.class, CommonAppSiData.class); 
-		AppResult<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(PageResult.class, CommonAppSiData.class); 
+		PageResult<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
 		
 		
 		System.out.println(lst.getCode());
-		System.out.println(lst.getObj().toString());
+		System.out.println(lst.getRows().toString());
 	}
 	
 	@Test
@@ -112,7 +111,7 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
+		PageResultList<CommonAppSiData> rlm=new PageResultList<CommonAppSiData>(); 
 		//rlm.setList(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
@@ -125,8 +124,8 @@ public class JsonTest {
 		
 		
 		
-		JavaType javaType = mapper.getTypeFactory().constructParametricType(AppResultList.class,CommonAppSiData.class); 
-		AppResultList<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(PageResultList.class,CommonAppSiData.class); 
+		PageResultList<CommonAppSiData> lst =  mapper.readValue(json, javaType); 		
 		
 		
 		
@@ -145,8 +144,8 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
-		rlm.setObj(list);
+		PageResultList<CommonAppSiData> rlm=new PageResultList<CommonAppSiData>(); 
+		rlm.setRows(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
 		System.out.println(json);
@@ -176,8 +175,8 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
-		rlm.setObj(list);
+		PageResultList<CommonAppSiData> rlm=new PageResultList<CommonAppSiData>(); 
+		rlm.setRows(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
 		System.out.println(json);
@@ -211,8 +210,8 @@ public class JsonTest {
 		list.add(c1);
 		
 		
-		AppResultList<CommonAppSiData> rlm=new AppResultList<CommonAppSiData>(); 
-		rlm.setObj(list);
+		PageResultList<CommonAppSiData> rlm=new PageResultList<CommonAppSiData>(); 
+		rlm.setRows(list);
 		
 		String json=AnguoJsonUtil.toJson(rlm);
 		System.out.println(json);
@@ -224,9 +223,9 @@ public class JsonTest {
 		
 		
 		
-		JavaType javaType = mapper.getTypeFactory().constructParametricType(AppResult.class,new ArrayList<CommonAppSiData>().getClass());  		
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(PageResult.class,new ArrayList<CommonAppSiData>().getClass());  		
 		
-		AppResult<List<CommonAppSiData>> lst =  mapper.readValue(json, javaType);
+		PageResult<List<CommonAppSiData>> lst =  mapper.readValue(json, javaType);
 		
 		//for(CommonAppSiData cas : lst.getObj()){
 			

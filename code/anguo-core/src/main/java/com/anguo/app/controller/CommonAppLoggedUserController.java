@@ -32,7 +32,7 @@ public class CommonAppLoggedUserController extends BaseController {
 
 	@RequestMapping("/commonAppLoggedUser/list.htm")
 	@ResponseBody
-	public PageResult<CommonAppLoggedUser> queryCommonAppLoggedUserList(CommonAppLoggedUser commonAppLoggedUser) {
+	public PageResult<List<CommonAppLoggedUser>> queryCommonAppLoggedUserList(CommonAppLoggedUser commonAppLoggedUser) {
 		try {
 			return commonAppLoggedUserService.getPageData(commonAppLoggedUser);
 		} catch (Exception e) {

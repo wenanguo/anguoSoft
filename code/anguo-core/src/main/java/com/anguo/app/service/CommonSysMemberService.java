@@ -3,6 +3,7 @@ package com.anguo.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.db.domain.ConstantClass;
@@ -10,6 +11,7 @@ import com.anguo.app.db.mapper.CommonAppLoggedUserMapper;
 import com.anguo.app.db.mapper.CommonSysMemberMapper;
 import com.anguo.exception.AnguoException;
 import com.anguo.mybatis.db.service.BaseService;
+import com.anguo.util.AnguoStatusUtil;
 
 
 @Service
@@ -36,11 +38,11 @@ public class CommonSysMemberService extends BaseService<CommonSysMember> {
 		
 		if(geoMember==null)
 		{
-			throw new AnguoException(ConstantClass.INTERFACE_USERNAME_ERROR);
+			throw new AnguoException(AnguoStatusUtil.INTERFACE_USERNAME_ERROR);
 			
 		}else if(!geoMember.getPassword().equals(commonSysMember.getPassword()))
 		{
-			throw new AnguoException(ConstantClass.INTERFACE_PASSWORD_ERROR);
+			throw new AnguoException(AnguoStatusUtil.INTERFACE_PASSWORD_ERROR);
 		}
 		
 		

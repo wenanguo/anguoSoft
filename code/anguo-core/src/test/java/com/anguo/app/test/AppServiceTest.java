@@ -1,6 +1,8 @@
 package com.anguo.app.test;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 import junit.framework.Assert;
@@ -21,6 +23,8 @@ import com.anguo.mybatis.db.core.PageResult;
 import com.anguo.util.AnguoAppUtil;
 import com.anguo.util.AnguoEncryptUtil;
 import com.anguo.util.AnguoJsonUtil;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 
@@ -93,15 +97,19 @@ public class AppServiceTest  extends AbstractTestNGSpringContextTests{
 	}
 	
 	@Test
-	public void test3()
+	public void test3() throws JsonGenerationException, JsonMappingException, IOException
 	{
 
 		CommonAppSiDefine commonAppSiDefine=new CommonAppSiDefine();
 		//commonAppSiDefine.setSiService("login");
 		  
 		  
-		PageResult<CommonAppSiDefine> list =this.commonAppSiDefineService.getPageData(commonAppSiDefine);
-		System.out.println(list);
+		PageResult<List<CommonAppSiDefine>> list =this.commonAppSiDefineService.getPageData(commonAppSiDefine);
+
+		System.out.println(AnguoJsonUtil.toJson(list));
+		for(CommonAppSiDefine temp:list.getRows()){
+			System.out.println(AnguoJsonUtil.toJson(temp));
+		};
 	}
 	
 	/**

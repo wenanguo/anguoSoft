@@ -29,10 +29,10 @@ public class BaseMongoService<T extends BaseMongoVo> {
 	 * @param obj
 	 * @return
 	 */
-	public PageResult<T> getPageData(T obj) {
+	public PageResult<List<T>> getPageData(T obj) {
 		
 		try {
-			PageResult<T> page=new PageResult<T>();
+			PageResult<List<T>> page=new PageResult<List<T>>();
 			
 			Query query=new Query();
 			query.with(new Sort(new Sort.Order(Direction.ASC, "id")));
@@ -70,10 +70,10 @@ public class BaseMongoService<T extends BaseMongoVo> {
 	 * @param query
 	 * @return
 	 */
-	public PageResult<T> getPageData(T obj,Query query) {
+	public PageResult<List<T>> getPageData(T obj,Query query) {
 		
 		try {
-			PageResult<T> page=new PageResult<T>();
+			PageResult<List<T>> page=new PageResult<List<T>>();
 			
 			//查询总记录数
 			List<?> countList=this.getMongoTemplate().find(query,obj.getClass());

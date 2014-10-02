@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
-import com.anguo.app.db.domain.ConstantClass;
-import com.anguo.app.db.domain.AppResult;
 import com.anguo.app.service.CommonAppLoggedUserService;
 import com.anguo.app.service.CommonSysMemberService;
 import com.anguo.exception.AnguoException;
 import com.anguo.mybatis.db.controller.BaseController;
 import com.anguo.mybatis.db.core.PageResult;
+import com.anguo.util.AnguoStatusUtil;
 
 /**
  * 制器类
@@ -44,7 +43,7 @@ public class CommonSysMemberController extends BaseController {
 
 	@RequestMapping("/commonSysMember/list.htm")
 	@ResponseBody
-	public PageResult<CommonSysMember> queryCommonSysMemberList(CommonSysMember commonSysMember) {
+	public PageResult<List<CommonSysMember>> queryCommonSysMemberList(CommonSysMember commonSysMember) {
 		try {
 			return commonSysMemberService.getPageData(commonSysMember);
 		} catch (Exception e) {
@@ -154,13 +153,13 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonAppLoggedUser
 	 * @return
 	 */
-	public AppResult<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
+	public PageResult<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
 		
 		log.debug("业务参数："+geoMember.toString());
 		log.debug("用户参数："+commonSysMember.toString());
 		log.debug("系统参数："+commonAppLoggedUser.toString());
 		
-		AppResult<CommonSysMember> messages = new AppResult<CommonSysMember>();
+		PageResult<CommonSysMember> messages = new PageResult<CommonSysMember>();
 		
 		CommonSysMember resultGeoMember=null;
 		
@@ -177,7 +176,7 @@ public class CommonSysMemberController extends BaseController {
 				this.commonAppLoggedUserService.deleteDataByMember(commonAppLoggedUser);
 				this.commonAppLoggedUserService.insertData(commonAppLoggedUser);
 				
-				messages.setObj(resultGeoMember);
+				messages.setRows(resultGeoMember);
 			} catch (AnguoException e) {
 				messages.setCode(e.getCode());
 			}
@@ -194,19 +193,19 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonAppLoggedUser
 	 * @return
 	 */
-	public AppResult<CommonSysMember> logout(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
+	public PageResult<CommonSysMember> logout(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
 		
 		log.debug("业务参数："+geoMember.toString());
 		log.debug("用户参数："+commonSysMember.toString());
 		log.debug("系统参数："+commonAppLoggedUser.toString());
 		
-		AppResult<CommonSysMember> messages = new AppResult<CommonSysMember>();
+		PageResult<CommonSysMember> messages = new PageResult<CommonSysMember>();
 		
 		commonAppLoggedUser.setMemberId(commonSysMember.getId());
 				
 		//插入日志记录表
 	    this.commonAppLoggedUserService.deleteDataByMember(commonAppLoggedUser);
-	    messages.setCode(ConstantClass.INTERFACE_SUCCESS);
+	    messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
 				
 		return messages;
 	}
@@ -217,17 +216,17 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonSysMember
 	 * @return
 	 */
-	public AppResult newAppCommonSysMember(CommonSysMember commonSysMember) {
-		AppResult messages = new AppResult();
+	public PageResult newAppCommonSysMember(CommonSysMember commonSysMember) {
+		PageResult messages = new PageResult();
 		
 			int i = commonSysMemberService.insertData(commonSysMember);
 			
 			if(i<=0)
 			{
-				messages.setCode(ConstantClass.INTERFACE_SERVICE_ERROR);
+				messages.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
 			}else
 			{
-				messages.setCode(ConstantClass.INTERFACE_SUCCESS);
+				messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
 			}
 			
 		
@@ -239,17 +238,17 @@ public class CommonSysMemberController extends BaseController {
 	 * @param commonSysMember
 	 * @return
 	 */
-	public AppResult updateAppCommonSysMember(CommonSysMember commonSysMember) {
-		AppResult messages = new AppResult();
+	public PageResult updateAppCommonSysMember(CommonSysMember commonSysMember) {
+		PageResult messages = new PageResult();
 		
 		int i = commonSysMemberService.updateData(commonSysMember);
 		
 		if(i<=0)
 		{
-			messages.setCode(ConstantClass.INTERFACE_SERVICE_ERROR);
+			messages.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
 		}else
 		{
-			messages.setCode(ConstantClass.INTERFACE_SUCCESS);
+			messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
 		}
 		
 	
