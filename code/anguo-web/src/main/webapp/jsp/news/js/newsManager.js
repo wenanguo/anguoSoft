@@ -415,7 +415,6 @@ function uploadSuccess(fileId)
 		        $('#'+fileId+"_img").attr({src:$("#basePath").val()+"web/images/upload/"+obj[0].server });
 		        //设置隐藏控件
 		        $('#'+fileId).val(obj[0].server);
-		        
 		    } 
 		}; 
 	//上传文件
