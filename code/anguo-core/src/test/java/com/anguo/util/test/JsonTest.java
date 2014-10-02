@@ -48,7 +48,7 @@ public class JsonTest {
 	@Test
 	public void test2() throws JsonParseException, JsonMappingException, IOException
 	{
-		String json="{\"code\":100,\"msg\":null,\"obj\":{\"dataName\":\"wenanguo\",\"operateDate\":\"2014-09-11 17:39:27\"}}";
+		String json="{\"code\":100,\"msg\":null,\"rows\":{\"dataName\":\"wenanguo\",\"operateDate\":\"2014-09-11 17:39:27\"}}";
 		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
@@ -64,7 +64,7 @@ public class JsonTest {
 	@Test
 	public void test3() throws JsonParseException, JsonMappingException, IOException
 	{
-		String json="{\"code\":100,\"msg\":null,\"obj\":{\"dataName\":\"wenanguo\"}}";
+		String json="{\"code\":100,\"msg\":null,\"rows\":{\"dataName\":\"wenanguo\"}}";
 		
 		ObjectMapper mapper = new ObjectMapper();
 		

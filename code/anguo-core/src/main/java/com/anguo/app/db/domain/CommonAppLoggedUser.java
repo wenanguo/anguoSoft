@@ -7,7 +7,10 @@ package com.anguo.app.db.domain;
 import java.util.Date;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.anguo.mybatis.db.core.BaseVo;
+import com.anguo.util.AnguoDateUtils;
 
 
 /**
@@ -105,6 +108,8 @@ public class CommonAppLoggedUser extends BaseVo  {
 	/**
 	 * 操作时间.
 	 */
+	@DateTimeFormat(pattern = AnguoDateUtils.C_TIME_PATTON_DEFAULT)
+	@JsonSerialize(using = AnguoDateUtils.class)
 	private Date operateDate;
 
 
