@@ -17,12 +17,12 @@ public class BaseService<T> {
 	private BaseMapper<T> mapper;
 
 
-	public PageResult<T> getPageData(BaseVo page) {
+	public PageResult<List<T>> getPageData(BaseVo page) {
 		
 		//获得查询结果
 		List<T> list=this.getMapper().getPageData(page);
 		//设置分页参数
-		PageResult<T> rePage=new PageResult();
+		PageResult<List<T>> rePage=new PageResult();
 		
 		rePage.setTotal(page.getTotalCount());
 		rePage.setRows(list);

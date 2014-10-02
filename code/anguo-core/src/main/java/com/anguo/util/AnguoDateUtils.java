@@ -8,8 +8,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+
+
+
+
+
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.JsonSerializer;
+
+
+//import com.fasterxml.jackson.databind.JsonSerializer;
+//import com.fasterxml.jackson.databind.SerializerProvider;
 
 
 
@@ -372,18 +382,30 @@ public class AnguoDateUtils extends JsonSerializer<Date> {
 	}
 	
 	
+//	/**
+//	 * 绑定spring jackon字符串序列化
+//	 */
+//	@Override
+//	public void serialize(Date value,
+//			com.fasterxml.jackson.core.JsonGenerator jgen,
+//			SerializerProvider provider) throws IOException,
+//			com.fasterxml.jackson.core.JsonProcessingException {
+//		SimpleDateFormat formatter = new SimpleDateFormat(AnguoDateUtils.C_TIME_PATTON_DEFAULT);
+//		String formattedDate = formatter.format(value);
+//		jgen.writeString(formattedDate);
+//		
+//	}
+	
 	/**
 	 * 绑定spring jackon字符串序列化
 	 */
 	@Override
-	public void serialize(Date value,
-			com.fasterxml.jackson.core.JsonGenerator jgen,
-			SerializerProvider provider) throws IOException,
-			com.fasterxml.jackson.core.JsonProcessingException {
+	public void serialize(Date value, JsonGenerator jgen,
+			org.codehaus.jackson.map.SerializerProvider provider)
+			throws IOException, JsonProcessingException {
 		SimpleDateFormat formatter = new SimpleDateFormat(AnguoDateUtils.C_TIME_PATTON_DEFAULT);
 		String formattedDate = formatter.format(value);
 		jgen.writeString(formattedDate);
-		
 	}
 
 }

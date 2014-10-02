@@ -2,17 +2,23 @@ package com.anguo.app.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
+import com.anguo.app.db.domain.ConstantClass;
+import com.anguo.mybatis.db.core.PageResult;
 import com.anguo.util.AnguoJsonUtil;
+import com.anguo.util.AnguoStatusUtil;
 
 
 /**
@@ -60,7 +66,23 @@ public class CommonAppService implements ApplicationContextAware {
 		
 		Object serviceObj=this.applicationContext.getBean(serviceClass);
 		
+		PageResult ar=new PageResult();
+		
+		if(serviceObj==null)
+		{
+			//找不到当前bean
+			ar.setCode(AnguoStatusUtil.INTERFACE_NOT_CLASS);
+			return ar;
+		}
+		
 		Method method = BeanUtils.findMethodWithMinimalParameters(serviceObj.getClass(), serviceMethod);
+		
+		if(method==null)
+		{
+			//找不到当前bean
+			ar.setCode(AnguoStatusUtil.INTERFACE_NOT_METHOD);
+			return ar;
+		}
 		
 		//处理参数
 		Class[] methodParamTypes = method.getParameterTypes();

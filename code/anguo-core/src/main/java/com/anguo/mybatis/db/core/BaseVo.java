@@ -8,7 +8,7 @@ public class BaseVo {
 
  
 
-	public static final int DEFAULT_PAGE_SIZE = 10;
+	public static final int DEFAULT_PAGE_SIZE = 20;
 	
 	
 	
@@ -22,6 +22,12 @@ public class BaseVo {
     private int totalPage;
     private int totalCount;
 
+    /**
+     * 用户名
+     */
+    private String realName;
+    
+	
 
 	public BaseVo() {
         this.page = 1;
@@ -88,6 +94,13 @@ public class BaseVo {
 		this.totalCount = totalCount;
 	}
 	
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 
 
 }

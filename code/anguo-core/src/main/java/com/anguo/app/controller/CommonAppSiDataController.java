@@ -31,7 +31,7 @@ public class CommonAppSiDataController extends BaseController {
 
 	@RequestMapping("/commonAppSiData/list.htm")
 	@ResponseBody
-	public PageResult<CommonAppSiData> queryCommonAppSiDataList(CommonAppSiData commonAppSiData) {
+	public PageResult<List<CommonAppSiData>> queryCommonAppSiDataList(CommonAppSiData commonAppSiData) {
 		try {
 			
 			return commonAppSiDataService.getPageData(commonAppSiData);

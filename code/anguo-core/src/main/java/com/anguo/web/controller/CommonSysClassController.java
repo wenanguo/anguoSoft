@@ -37,7 +37,7 @@ public class CommonSysClassController extends BaseController {
 
 	@RequestMapping("/commonSysClass/list.htm")
 	@ResponseBody
-	public PageResult<CommonSysClass> queryCommonSysClassList(CommonSysClass commonSysClass) {
+	public PageResult<List<CommonSysClass>> queryCommonSysClassList(CommonSysClass commonSysClass) {
 		try {
 			return commonSysClassService.getPageData(commonSysClass);
 		} catch (Exception e) {

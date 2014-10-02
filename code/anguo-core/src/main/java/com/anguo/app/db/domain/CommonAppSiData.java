@@ -2,11 +2,12 @@ package com.anguo.app.db.domain;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.anguo.mybatis.db.core.BaseVo;
 import com.anguo.util.AnguoDateUtils;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 /**
  * 接口参数实体类
