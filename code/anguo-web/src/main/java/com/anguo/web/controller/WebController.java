@@ -90,7 +90,7 @@ public class WebController extends BaseController {
 		mav.addObject("webConfigList",this.webConfigService.getAllData(null));
 				
 		
-		PageResult<WebNews> newsList=this.webNewsService.getPageData(webNews);
+		PageResult<List<WebNews>> newsList=this.webNewsService.getPageData(webNews);
 		//获得新闻
 		//List<WebNews> newsList=;
 		mav.addObject("newsList", newsList);

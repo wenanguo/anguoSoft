@@ -125,7 +125,7 @@ public class WebNewsServiceTest extends AbstractTestNGSpringContextTests {
 		WebNews page=new  WebNews();
 		page.setPage(2);
 		
-		PageResult<WebNews> page2 = webNewsService.getPageData(page);
+		PageResult<List<WebNews>> page2 = webNewsService.getPageData(page);
 
 		System.out.println(page2);
 		

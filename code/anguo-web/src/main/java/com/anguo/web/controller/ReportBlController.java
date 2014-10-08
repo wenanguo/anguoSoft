@@ -37,7 +37,7 @@ public class ReportBlController extends BaseController {
 	public Object queryReportBlList(ReportBl reportBl) {
 		try {
 			
-			PageResult<ReportBl> page=reportBlService.getPageData(reportBl);
+			PageResult<List<ReportBl>> page=reportBlService.getPageData(reportBl);
 			
 			for(ReportBl rb:page.getRows())
 			{
