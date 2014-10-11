@@ -14,6 +14,8 @@
 		<springframework.version>4.0.5.RELEASE</springframework.version>
 		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 		<slf4j.version>1.6.4</slf4j.version>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
 	
