@@ -146,92 +146,30 @@ public class CommonSysMemberController extends BaseController {
 	}
 	
 	
-	/**
-	 * 登录
-	 * @param geoMember
-	 * @param commonSysMember
-	 * @param commonAppLoggedUser
-	 * @return
-	 */
-	public PageResult<CommonSysMember> login(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
-		
-		log.debug("业务参数："+geoMember.toString());
-		log.debug("用户参数："+commonSysMember.toString());
-		log.debug("系统参数："+commonAppLoggedUser.toString());
-		
-		PageResult<CommonSysMember> messages = new PageResult<CommonSysMember>();
-		
-		CommonSysMember resultGeoMember=null;
-		
-		try {
-				resultGeoMember  = this.commonSysMemberService.login(geoMember);
-				
-				String uuid=UUID.randomUUID().toString();
-				
-				resultGeoMember.setUuid(uuid);
-				commonAppLoggedUser.setUuid(uuid);
-				commonAppLoggedUser.setMemberId(resultGeoMember.getId());
-				
-				//插入日志记录表
-				this.commonAppLoggedUserService.deleteDataByMember(commonAppLoggedUser);
-				this.commonAppLoggedUserService.insertData(commonAppLoggedUser);
-				
-				messages.setRows(resultGeoMember);
-			} catch (AnguoException e) {
-				messages.setCode(e.getCode());
-			}
-		
-		
-		return messages;
-	}
 	
 	
-	/**
-	 * 注销
-	 * @param geoMember
-	 * @param commonSysMember
-	 * @param commonAppLoggedUser
-	 * @return
-	 */
-	public PageResult<CommonSysMember> logout(CommonSysMember geoMember,CommonSysMember commonSysMember,CommonAppLoggedUser commonAppLoggedUser) {
-		
-		log.debug("业务参数："+geoMember.toString());
-		log.debug("用户参数："+commonSysMember.toString());
-		log.debug("系统参数："+commonAppLoggedUser.toString());
-		
-		PageResult<CommonSysMember> messages = new PageResult<CommonSysMember>();
-		
-		commonAppLoggedUser.setMemberId(commonSysMember.getId());
-				
-		//插入日志记录表
-	    this.commonAppLoggedUserService.deleteDataByMember(commonAppLoggedUser);
-	    messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
-				
-		return messages;
-	}
 	
-	
-	/**
-	 * 接口新增用户
-	 * @param commonSysMember
-	 * @return
-	 */
-	public PageResult newAppCommonSysMember(CommonSysMember commonSysMember) {
-		PageResult messages = new PageResult();
-		
-			int i = commonSysMemberService.insertData(commonSysMember);
-			
-			if(i<=0)
-			{
-				messages.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
-			}else
-			{
-				messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
-			}
-			
-		
-		return messages;
-	}
+//	/**
+//	 * 接口新增用户
+//	 * @param commonSysMember
+//	 * @return
+//	 */
+//	public PageResult newAppCommonSysMember(CommonSysMember commonSysMember) {
+//		PageResult messages = new PageResult();
+//		
+//			int i = commonSysMemberService.insertData(commonSysMember);
+//			
+//			if(i<=0)
+//			{
+//				messages.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
+//			}else
+//			{
+//				messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
+//			}
+//			
+//		
+//		return messages;
+//	}
 	
 	/**
 	 * 接口修改会员

@@ -6,8 +6,6 @@ package com.anguo.app.db.domain;
 
 import java.util.Date;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
 import com.anguo.mybatis.db.core.BaseVo;
 
 
@@ -19,18 +17,7 @@ import com.anguo.mybatis.db.core.BaseVo;
 public class CommonSysMember extends BaseVo  {
 
 	
-	@Override
-	public String toString() {
-		return "CommonSysMember [id=" + id + ", uuid=" + uuid + ", campusId="
-				+ campusId + ", memberName=" + memberName + ", password="
-				+ password + ", phone=" + phone + ", imei=" + imei + ", imsi="
-				+ imsi + ", nickName=" + nickName + ", photo=" + photo
-				+ ", sex=" + sex + ", birthday=" + birthday + ", contact="
-				+ contact + ", credits=" + credits + ", email=" + email
-				+ ", memberClass=" + memberClass + ", status=" + status
-				+ ", operateUserId=" + operateUserId + ", operateDate="
-				+ operateDate + "]";
-	}
+	
 	/**
 	 * 编号.
 	 */
@@ -48,6 +35,12 @@ public class CommonSysMember extends BaseVo  {
 	 * 用户名.
 	 */
 	private String memberName;
+	
+	/**
+	 * 注册科目字符串，已逗号分隔
+	 */
+	private String goeSubjectStr;
+	
 	/**
 	 * 密码.
 	 */
@@ -243,5 +236,10 @@ public Date getOperateDate() {
 	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
 	}
-	
+	public String getGoeSubjectStr() {
+		return goeSubjectStr;
+	}
+	public void setGoeSubjectStr(String goeSubjectStr) {
+		this.goeSubjectStr = goeSubjectStr;
+	}
 }
