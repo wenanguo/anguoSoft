@@ -158,6 +158,11 @@ public class AnguoStatusUtil {
 	 * 登陆密码错误";
 	 */
 	public static final int INTERFACE_PASSWORD_ERROR= 1401;
+	
+	/**
+	 * 账号重复";
+	 */
+	public static final int INTERFACE_USERNAME_REPEAT_ERROR= 1402;
 
 	//******************************操作类状态**************************************
 	/**
@@ -271,6 +276,9 @@ public class AnguoStatusUtil {
 			break;
 		case 1401:
 			statusValue="登陆密码错误";
+			break;
+		case 1402:
+			statusValue="账号重复";
 			break;
 		
 		//******************************操作类状态**************************************

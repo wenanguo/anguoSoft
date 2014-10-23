@@ -37,11 +37,6 @@ public class CommonSysMember extends BaseVo  {
 	private String memberName;
 	
 	/**
-	 * 注册科目字符串，已逗号分隔
-	 */
-	private String goeSubjectStr;
-	
-	/**
 	 * 密码.
 	 */
 	private String password;
@@ -235,11 +230,5 @@ public Date getOperateDate() {
 	}
 	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
-	}
-	public String getGoeSubjectStr() {
-		return goeSubjectStr;
-	}
-	public void setGoeSubjectStr(String goeSubjectStr) {
-		this.goeSubjectStr = goeSubjectStr;
 	}
 }

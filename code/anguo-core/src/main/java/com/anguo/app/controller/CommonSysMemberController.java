@@ -171,26 +171,5 @@ public class CommonSysMemberController extends BaseController {
 //		return messages;
 //	}
 	
-	/**
-	 * 接口修改会员
-	 * @param commonSysMember
-	 * @return
-	 */
-	public PageResult updateAppCommonSysMember(CommonSysMember commonSysMember) {
-		PageResult messages = new PageResult();
-		
-		int i = commonSysMemberService.updateData(commonSysMember);
-		
-		if(i<=0)
-		{
-			messages.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
-		}else
-		{
-			messages.setCode(AnguoStatusUtil.INTERFACE_SUCCESS);
-		}
-		
 	
-	    return messages;
-		
-	}
 }

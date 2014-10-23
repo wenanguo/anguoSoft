@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
-import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.app.db.mapper.CommonAppLoggedUserMapper;
 import com.anguo.app.db.mapper.CommonSysMemberMapper;
 import com.anguo.exception.AnguoException;
@@ -46,6 +45,21 @@ public class CommonSysMemberService extends BaseService<CommonSysMember> {
 		}
 		
 		
+		
+		return geoMember;
+	}
+	
+	
+	/**
+	 * 根据用户名单条数据
+	 * @param obj
+	 * @return
+	 * @throws Exception 
+	 */
+	public CommonSysMember getDataByUserName(CommonSysMember commonSysMember) 
+	{
+		//根据用户名查询用户
+		CommonSysMember geoMember= this.mapper.getDataByUserName(commonSysMember);
 		
 		return geoMember;
 	}
