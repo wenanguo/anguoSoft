@@ -8,12 +8,13 @@ package com.anguo.web.db.domain;
  */
 public class CommonSysAuthority  {
 
+	
 	@Override
 	public String toString() {
 		return "CommonSysAuthority [id=" + id + ", code=" + code + ", name="
 				+ name + ", url=" + url + ", icon=" + icon + ", type=" + type
 				+ ", sort=" + sort + ", parentId=" + parentId + ", status="
-				+ status + "]";
+				+ status + ", checked=" + checked + "]";
 	}
 	/**
 	 * .
@@ -52,10 +53,17 @@ public class CommonSysAuthority  {
 	 */
 	private Integer status;
 
+	/**
+	 * 树勾选状态，true为勾选，false为不勾选
+	 */
+    private boolean checked;
 
-
-
-    
+    public Boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
 public Integer getId() {
 		return id;
 	}

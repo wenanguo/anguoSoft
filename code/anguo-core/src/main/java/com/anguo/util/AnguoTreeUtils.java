@@ -75,7 +75,7 @@ public class AnguoTreeUtils {
 	 * @param node
 	 * @return
 	 */
-	private static TreeNode findChildNode(TreeNode node,List<TreeNode> list)
+	public static TreeNode findChildNode(TreeNode node,List<TreeNode> list)
 	{
 		
 		List<TreeNode> templist=new ArrayList<TreeNode>();
@@ -97,37 +97,7 @@ public class AnguoTreeUtils {
 	}
 	
 	
-	public static List<TreeNode> coverTreeNode(List<CommonSysAuthority> list)
-	{
-		List<TreeNode> treeNodeList=new ArrayList<TreeNode>();
-		
-		for(CommonSysAuthority obj:list)
-		{
-			//类型为2，即为菜单类型
-			if(obj.getType()==2)
-			{
-				TreeNode temp= new TreeNode();
-				temp.setId(obj.getId());
-				temp.setText(obj.getName());
-				temp.setIconCls(obj.getIcon());
-				temp.setUrl(obj.getUrl());
-				temp.setParentId(obj.getParentId());
-				temp.setTitle(obj.getName());
-				
-				Map attributes=new HashMap();
-				attributes.put("url", obj.getUrl());
-				attributes.put("title", obj.getName());
-				
-				temp.setAttributes(attributes);
-				treeNodeList.add(temp);
-			}
-			
-			
-			
-		}
-		
-		return treeNodeList;
-	}
+	
 	
 	 
 

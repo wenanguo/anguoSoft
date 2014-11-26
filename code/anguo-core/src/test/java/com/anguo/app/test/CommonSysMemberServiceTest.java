@@ -10,6 +10,9 @@ import org.testng.annotations.Test;
 import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.service.CommonSysMemberService;
 import com.anguo.mybatis.db.controller.BaseConstants;
+import com.anguo.web.db.domain.CommonSysAuthority;
+import com.anguo.web.db.domain.CommonSysUser;
+import com.anguo.web.service.CommonSysAuthorityService;
 
 @ContextConfiguration(locations = { "classpath*:cmcc-platform.xml" , "file:src/test/resources/project-*.xml" })
 public class CommonSysMemberServiceTest extends AbstractTestNGSpringContextTests {
@@ -17,6 +20,8 @@ public class CommonSysMemberServiceTest extends AbstractTestNGSpringContextTests
 
 	@Autowired
 	CommonSysMemberService commonSysMemberService;
+	@Autowired
+	CommonSysAuthorityService commonSysAuthorityService;
 
 	/**
 	 * 插入数据编号
@@ -92,6 +97,26 @@ public class CommonSysMemberServiceTest extends AbstractTestNGSpringContextTests
 		assert commonSysMemberData != null : "获得单条数据失败，执行数据为null";
 
 	}
+	
+	/**
+	 * 获得单条数据
+	 */
+	@Test(groups = {BaseConstants.TEST_DATABASE_AFFECT})
+	public void getData1() {
+		CommonSysUser commonSysMember = new CommonSysUser();
+		// ********设置获取数据***********
+		commonSysMember.setId(1);
+		//*******************************
+		
+		List<CommonSysAuthority>  list=commonSysAuthorityService.getAuthorityByRoleId(commonSysMember);
+		
+		for(CommonSysAuthority cas:list)
+		{
+			System.out.println(cas);
+		}
+	}
+	
+	
 	
 	/**
 	 * 获得单条数据uuid

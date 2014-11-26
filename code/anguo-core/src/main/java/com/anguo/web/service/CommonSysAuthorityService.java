@@ -32,4 +32,14 @@ public class CommonSysAuthorityService extends BaseService<CommonSysAuthority> {
 	}
 	
 	
+	/**
+	 * 根据角色查询当前具备权限，返回所有菜单列表
+	 * @param obj
+	 * @return
+	 */
+	public List<CommonSysAuthority> getAuthorityByRoleId(CommonSysUser obj)
+	{
+		return this.mapper.getAuthorityByRoleId(obj);
+	}
+	
 }

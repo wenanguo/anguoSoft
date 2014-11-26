@@ -6,47 +6,45 @@ package com.anguo.mybatis.db.core;
  */
 public class BaseVo {
 
- 
-
 	public static final int DEFAULT_PAGE_SIZE = 20;
-	
-	
-	
-
-    
 
 	private int rows;
-    private int page;
-    private int prePage;
-    private int nextPage;
-    private int totalPage;
-    private int totalCount;
+	private int page;
+	private int prePage;
+	private int nextPage;
+	private int totalPage;
+	private int totalCount;
 
-    /**
-     * 用户名
-     */
-    private String realName;
-    
-	
+	/**
+	 * 用户名
+	 */
+	private String realName;
+	/**
+	 * 排序规则 desc ，asc
+	 */
+	private String order;
+
+	/**
+	 * 排序字段
+	 */
+	private String sort;
 
 	public BaseVo() {
-        this.page = 1;
-        this.rows = DEFAULT_PAGE_SIZE;
-    }
+		this.page = 1;
+		this.rows = DEFAULT_PAGE_SIZE;
+	}
 
-    /**
-     * 
-     * @param page
-     * @param pageSize
-     */
-    public BaseVo(int page, int pageSize) {
-        this.page = page;
-        this.rows = pageSize;
-    }
+	/**
+	 * 
+	 * @param page
+	 * @param pageSize
+	 */
+	public BaseVo(int page, int pageSize) {
+		this.page = page;
+		this.rows = pageSize;
+	}
 
-    
-
-    public int getRows() {
+	public int getRows() {
 		return rows;
 	}
 
@@ -93,7 +91,7 @@ public class BaseVo {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-	
+
 	public String getRealName() {
 		return realName;
 	}
@@ -102,5 +100,20 @@ public class BaseVo {
 		this.realName = realName;
 	}
 
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
 
 }
