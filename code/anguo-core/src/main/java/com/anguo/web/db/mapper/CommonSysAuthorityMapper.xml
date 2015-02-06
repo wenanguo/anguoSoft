@@ -87,7 +87,7 @@ select a.*,(
 case when b.id>0 then 'true' else 'false' END) checked
  from common_sys_authority a left join common_role_authority b on a.id=b.common_sys_authority_id and b.common_sys_role_id in 
 (select common_sys_role_id from common_user_role where common_sys_user_id=#{id})
- where a.type=2 order by a.sort asc
+ where a.type in (2,3) order by a.sort asc
 
 		
 	</select>
