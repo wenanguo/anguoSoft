@@ -11,6 +11,7 @@ import com.anguo.app.db.domain.CommonSysMember;
 import com.anguo.app.service.CommonSysMemberService;
 import com.anguo.mybatis.db.controller.BaseConstants;
 import com.anguo.web.db.domain.CommonSysAuthority;
+import com.anguo.web.db.domain.CommonSysRole;
 import com.anguo.web.db.domain.CommonSysUser;
 import com.anguo.web.service.CommonSysAuthorityService;
 
@@ -103,12 +104,12 @@ public class CommonSysMemberServiceTest extends AbstractTestNGSpringContextTests
 	 */
 	@Test(groups = {BaseConstants.TEST_DATABASE_AFFECT})
 	public void getData1() {
-		CommonSysUser commonSysMember = new CommonSysUser();
+		CommonSysRole role = new CommonSysRole();
 		// ********设置获取数据***********
-		commonSysMember.setId(1);
+		role.setId(1);
 		//*******************************
 		
-		List<CommonSysAuthority>  list=commonSysAuthorityService.getAuthorityByRoleId(commonSysMember);
+		List<CommonSysAuthority>  list=commonSysAuthorityService.getAuthorityByRoleId(role);
 		
 		for(CommonSysAuthority cas:list)
 		{

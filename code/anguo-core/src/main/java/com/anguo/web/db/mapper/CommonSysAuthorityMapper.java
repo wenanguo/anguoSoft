@@ -23,7 +23,7 @@ public interface CommonSysAuthorityMapper extends BaseMapper<CommonSysAuthority>
 	 * @param obj
 	 * @return
 	 */
-	public List<CommonSysAuthority> getAuthorityByRoleId(CommonSysUser obj);
+	public List<CommonSysAuthority> getAuthorityByRoleId(CommonSysRole role);
 	
 	
 }

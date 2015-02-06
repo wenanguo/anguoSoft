@@ -1,9 +1,7 @@
 package com.anguo.web.service;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.anguo.mybatis.db.service.BaseService;
 import com.anguo.web.db.domain.CommonSysAuthority;
 import com.anguo.web.db.domain.CommonSysRole;
@@ -37,9 +35,9 @@ public class CommonSysAuthorityService extends BaseService<CommonSysAuthority> {
 	 * @param obj
 	 * @return
 	 */
-	public List<CommonSysAuthority> getAuthorityByRoleId(CommonSysUser obj)
+	public List<CommonSysAuthority> getAuthorityByRoleId(CommonSysRole role)
 	{
-		return this.mapper.getAuthorityByRoleId(obj);
+		return this.mapper.getAuthorityByRoleId(role);
 	}
 	
 }

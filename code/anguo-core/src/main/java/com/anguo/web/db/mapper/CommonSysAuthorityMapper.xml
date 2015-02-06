@@ -78,15 +78,15 @@
 	</select>
 	
 	
-	<!-- 根据用户所属角色编号获得角色权限勾选，返回所有菜单 -->
+	<!-- 根据角色编号获得角色权限勾选，返回所有菜单 -->
 	<select id="getAuthorityByRoleId" resultMap="commonSysAuthorityMap"
-		parameterType="com.anguo.web.db.domain.CommonSysUser">
+		parameterType="com.anguo.web.db.domain.CommonSysRole">
 		
 	
 select a.*,(
 case when b.id>0 then 'true' else 'false' END) checked
  from common_sys_authority a left join common_role_authority b on a.id=b.common_sys_authority_id and b.common_sys_role_id in 
-(select common_sys_role_id from common_user_role where common_sys_user_id=#{id})
+(#{id})
  where a.type in (2,3) order by a.sort asc
 
 		
@@ -200,5 +200,6 @@ case when b.id>0 then 'true' else 'false' END) checked
 		delete from ${commonSchema}.common_sys_authority
 		where id=#{id}
 	</delete>
+	
 
 </mapper>

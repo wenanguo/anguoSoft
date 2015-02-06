@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anguo.mybatis.db.controller.BaseController;
 import com.anguo.util.AnguoTreeUtils;
+import com.anguo.web.db.domain.CommonRoleAuthority;
 import com.anguo.web.db.domain.CommonSysAuthority;
+import com.anguo.web.db.domain.CommonSysRole;
 import com.anguo.web.db.domain.CommonSysUser;
 import com.anguo.web.db.domain.TreeNode;
+import com.anguo.web.service.CommonRoleAuthorityService;
 import com.anguo.web.service.CommonSysAuthorityService;
+import com.anguo.web.service.CommonUserRoleService;
 
 /**
  * 制器类
  * @ClassName: CommonSysAuthority
  * @author Andrew.Wen
  */
-
 @SuppressWarnings({ "rawtypes", "unchecked" })
 @Controller
 public class CommonSysAuthorityController extends BaseController {
@@ -32,8 +35,9 @@ public class CommonSysAuthorityController extends BaseController {
 	
 	@Autowired
 	private CommonSysAuthorityService commonSysAuthorityService;
-
 	
+	@Autowired
+	private CommonRoleAuthorityService commonRoleAuthorityService;
 	
 	
 	@RequestMapping("/commonSysAuthority/tree.htm")
@@ -55,18 +59,59 @@ public class CommonSysAuthorityController extends BaseController {
 	
 	@RequestMapping("/commonSysAuthority/roleTree.htm")
 	@ResponseBody
-	public Object loadroleTree(CommonSysAuthority commonSysAuthority) {
+	public Object loadroleTree(CommonSysRole role) {
 		
 		
-		CommonSysUser currUser=this.getSecuritySessionUser();
 		
-		List<CommonSysAuthority> list =this.commonSysAuthorityService.getAuthorityByRoleId(currUser);
+		List<CommonSysAuthority> list =this.commonSysAuthorityService.getAuthorityByRoleId(role);
 		
 		
 		
 		List<TreeNode> list3=AnguoTreeUtils.buildTree(coverTreeNode(list));
 		
 		return list3;
+	}
+	
+	/**
+	 * 修改权限
+	 * @param role 修改角色
+	 * @param authorityStr 权限列表，用逗号分隔
+	 * @return
+	 */
+	@RequestMapping("/commonSysAuthority/update.htm")
+	@ResponseBody
+	public Object update(CommonSysRole role,String authorityStr) {
+		
+		Map messages = new HashMap();
+		try {
+			//删除原有权限
+			int i =this.commonRoleAuthorityService.deleteDataByRole(role);
+			
+			//插入权限
+			String[] authArray=authorityStr.split(",");
+			
+			for(int z=0;z<authArray.length;z++){
+				CommonRoleAuthority temp=new CommonRoleAuthority();
+				temp.setCommonSysRoleId(role.getId());
+				temp.setCommonSysAuthorityId(Integer.valueOf(authArray[z]));
+				this.commonRoleAuthorityService.insertData(temp);
+			}
+			
+			
+			if (i > 0) {
+				messages.put("success", true);
+				messages.put("msg", "添加成功!");
+			} else {
+				messages.put("success", false);
+				messages.put("msg", "添加失败!");
+			}
+		} catch (Exception e) {
+			messages.put("success", false);
+			messages.put("msg", "添加失败!");
+			e.printStackTrace();
+		}
+		
+		return messages;
 	}
 	
 	public static List<TreeNode> coverTreeNode(List<CommonSysAuthority> list)

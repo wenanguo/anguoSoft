@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.web.db.mapper.CommonRoleAuthorityMapper">
+
+	<!-- 配置内容信息 -->
+	<resultMap id="commonRoleAuthorityMap" type="com.anguo.web.db.domain.CommonRoleAuthority">
+
+		<result property="id" column="id" />
+		<result property="commonSysRoleId" column="common_sys_role_id" />
+		<result property="commonSysAuthorityId" column="common_sys_authority_id" />
+		<result property="realName" column="real_name" />
+	</resultMap>
+
+
+
+	<!-- 插入记录 -->
+	<insert id="insertData" parameterType="com.anguo.web.db.domain.CommonRoleAuthority"
+		useGeneratedKeys="true" keyProperty="id">
+
+		insert into ${commonSchema}.common_role_authority
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="commonSysRoleId != null">
+				common_sys_role_id,
+			</if>
+			<if test="commonSysAuthorityId != null">
+				common_sys_authority_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+
+			<if test="commonSysRoleId != null">
+				#{commonSysRoleId},
+			</if>
+			<if test="commonSysAuthorityId != null">
+				#{commonSysAuthorityId},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonRoleAuthority">
+		delete from goe.common_role_authority
+		where id=#{id}
+	</delete>
+
+	<!-- 删除当前角色权限 -->
+	<delete id="deleteDataByRole" parameterType="com.anguo.web.db.domain.CommonSysRole">
+		delete from goe.common_role_authority
+		where common_sys_role_id=#{id}
+	</delete>
+
+</mapper>
