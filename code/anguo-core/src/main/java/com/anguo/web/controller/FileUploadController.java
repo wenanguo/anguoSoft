@@ -3,6 +3,7 @@ package com.anguo.web.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -83,14 +84,14 @@ public class FileUploadController  {
 					MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 					
 					
-					List<MultipartFile> files = multipartRequest.getFiles("file");
 					
+					Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 					
-					
-					//遍历文件
-					for(MultipartFile multiparfile:files)
-					{
+					//System.out.println("===========================================");
+					for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 						
+						MultipartFile multiparfile = entity.getValue();
+						//String fileName = mf.getOriginalFilename();
 						
 						clientName = multiparfile.getOriginalFilename(); // 获得文件：
 						
@@ -105,7 +106,23 @@ public class FileUploadController  {
 						
 						returnJson+="{\"client\":\"" + clientName + "\",\"server\":\""+ projectPath+"/"+serverName + "\"},";
 						
+						
+						//System.out.println(fileName);
+					
 					}
+					//System.out.println("===========================================");
+					//List<MultipartFile> files = multipartRequest.getFiles("file");
+					
+					
+					
+					//遍历文件
+//					for(MultipartFile multiparfile:files)
+//					{
+//						
+//						
+//						
+//						
+//					}
 					
 					if(returnJson.length()>1)returnJson=returnJson.substring(0, returnJson.length()-1);
 					

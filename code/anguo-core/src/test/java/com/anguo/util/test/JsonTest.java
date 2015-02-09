@@ -255,5 +255,16 @@ public class JsonTest {
 	}
 	
 	
+	@Test
+	public void test10() throws JsonParseException, JsonMappingException, IOException
+	{
+		String json="{\"password\":\"123456\",\"msg\":\"123456789\"}}";
+		
+		
+		
+		
+	}
+	
+	
 	
 }

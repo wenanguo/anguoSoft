@@ -1,9 +1,12 @@
 package com.anguo.mybatis.db.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 分页参数类
  * 
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BaseVo {
 
 	public static final int DEFAULT_PAGE_SIZE = 20;
