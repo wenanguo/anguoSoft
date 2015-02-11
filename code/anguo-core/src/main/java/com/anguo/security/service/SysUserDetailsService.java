@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +24,8 @@ import com.anguo.web.service.CommonSysUserService;
 
 public class SysUserDetailsService implements UserDetailsService {
 
+	private final static Logger log = Logger.getLogger(SysUserDetailsService.class);
+	
 	public static Map<String, CommonSysUser> userMap = null;
 	
 	/**
@@ -61,7 +64,7 @@ public class SysUserDetailsService implements UserDetailsService {
 		 userMap = new HashMap<String, CommonSysUser>();
 
 		 //CommonSysUser SysUser = null;
-		 System.out.println("============刷新用户资源==============");
+		 log.info("============刷新用户资源==============");
 		 /**
 		  * 获得用户列表
 		  */
