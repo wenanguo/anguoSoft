@@ -1,5 +1,7 @@
 package com.anguo.mybatis.db.core;
 
+import java.util.Map;
+
 import com.anguo.util.AnguoStatusUtil;
 
 /**
@@ -24,6 +26,10 @@ public class PageResult<T> {
 	
 	private T rows;
 	
+	/**
+	 * 自定义扩展属性
+	 */
+	private Map attribute;
 	
 	/**
 	 * 操作代码
@@ -86,6 +92,15 @@ public class PageResult<T> {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+	
+
+	public Map getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(Map attribute) {
+		this.attribute = attribute;
 	}
 
 }

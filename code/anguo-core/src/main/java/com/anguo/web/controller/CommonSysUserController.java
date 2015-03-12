@@ -43,7 +43,7 @@ public class CommonSysUserController extends BaseController {
 	@ResponseBody
 	public Object queryCommonSysUserList(CommonSysUser commonSysUser) {
 		try {
-			return commonSysUserService.getPageData(commonSysUser);
+			return commonSysUserService.getPageData(new CommonSysUser());
 		} catch (Exception e) {
 			log.error("发生错误，因为：" + e.getMessage());
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class CommonSysUserController extends BaseController {
 	@ResponseBody
 	public List<CommonSysUser> queryCommonSysUserAllList(CommonSysUser commonSysUser) {
 		try {
-			return commonSysUserService.getAllData(commonSysUser);
+			return commonSysUserService.getAllData(new CommonSysUser());
 		} catch (Exception e) {
 			log.error("查询列表发生错误，因为：" + e.getMessage());
 			e.printStackTrace();
@@ -66,9 +66,12 @@ public class CommonSysUserController extends BaseController {
 	@RequestMapping("/commonSysUser/create.htm")
 	@ResponseBody
 	public Object saveCommonSysUser(HttpServletRequest request,
-			HttpServletResponse response, CommonSysUser commonSysUser,String roleIds) {
+			HttpServletResponse response, CommonSysUser commonSysUser,String roleIds,CommonSysUser commonSysUser2) {
 		Map messages = new HashMap();
 		try {
+			System.out.println(commonSysUser);
+			System.out.println(commonSysUser2);
+			commonSysUser.setId(null);
 			int i = commonSysUserService.insertData(commonSysUser,roleIds);
 			
 			sysUserDetailsService.loadResourceDefine();
