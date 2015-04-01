@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anguo.mybatis.db.controller.BaseController;
@@ -69,7 +70,7 @@ public class CommonSysUserController extends BaseController {
 
 	@RequestMapping("/commonSysUser/create.htm")
 	@ResponseBody
-	public Object saveCommonSysUser(String roleIds,String userName,String password,String realName,Date birthday,String email,String phone,String memo) {
+	public Object saveCommonSysUser(String roleIds,String userName,String password,String realName,@RequestParam(value ="birthday") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")Date birthday ,String email,String phone,String memo) {
 		Map messages = new HashMap();
 		try {
 			//组装bean实体
@@ -106,10 +107,20 @@ public class CommonSysUserController extends BaseController {
 
 	@RequestMapping("/commonSysUser/update.htm")
 	@ResponseBody
-	public Object updateCommonSysUser(HttpServletRequest request,
-			HttpServletResponse response,CommonSysUser commonSysUser,String roleIds) {
+	public Object updateCommonSysUser(String roleIds,String userName,String password,String realName,@RequestParam(value ="birthday") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")Date birthday ,String email,String phone,String memo) {
 		Map messages = new HashMap();
 		try {
+			
+			//组装bean实体
+			CommonSysUser commonSysUser=new CommonSysUser();
+			commonSysUser.setUserName(userName);
+			commonSysUser.setPassword(password);
+			commonSysUser.setRealName(realName);
+			commonSysUser.setBirthday(birthday);
+			commonSysUser.setEmail(email);
+			commonSysUser.setPhone(phone);
+			commonSysUser.setMemo(memo);
+			
 			int i = commonSysUserService.updateData(commonSysUser,roleIds);
 			
 			sysUserDetailsService.loadResourceDefine();
@@ -132,9 +143,13 @@ public class CommonSysUserController extends BaseController {
 
 	@RequestMapping("/commonSysUser/delete.htm")
 	@ResponseBody
-	public Map deleteCommonSysUser(HttpServletRequest request,CommonSysUser commonSysUser) {
+	public Map deleteCommonSysUser(HttpServletRequest request,Integer id) {
 		Map messages = new HashMap();
 		try {
+			
+			//组装bean实体
+			CommonSysUser commonSysUser=new CommonSysUser();
+			commonSysUser.setId(id);
 		
 			int i =this.commonSysUserService.deleteData(commonSysUser);
 			
@@ -157,7 +172,11 @@ public class CommonSysUserController extends BaseController {
 	
 	@RequestMapping("/commonSysUser/load.htm")
 	@ResponseBody
-	public Object loadCommonSysUser(CommonSysUser commonSysUser) {
+	public Object loadCommonSysUser(Integer id) {
+		
+		//组装bean实体
+		CommonSysUser commonSysUser=new CommonSysUser();
+		commonSysUser.setId(id);
 		
 		return commonSysUserService.getData(commonSysUser);
 	}
