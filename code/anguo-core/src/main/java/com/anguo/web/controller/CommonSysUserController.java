@@ -1,15 +1,19 @@
 package com.anguo.web.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.anguo.mybatis.db.controller.BaseController;
 import com.anguo.security.service.SysUserDetailsService;
 import com.anguo.web.db.domain.CommonSysUser;
@@ -65,13 +69,21 @@ public class CommonSysUserController extends BaseController {
 
 	@RequestMapping("/commonSysUser/create.htm")
 	@ResponseBody
-	public Object saveCommonSysUser(HttpServletRequest request,
-			HttpServletResponse response, CommonSysUser commonSysUser,String roleIds,CommonSysUser commonSysUser2) {
+	public Object saveCommonSysUser(String roleIds,String userName,String password,String realName,Date birthday,String email,String phone,String memo) {
 		Map messages = new HashMap();
 		try {
-			System.out.println(commonSysUser);
-			System.out.println(commonSysUser2);
-			commonSysUser.setId(null);
+			//组装bean实体
+			CommonSysUser commonSysUser=new CommonSysUser();
+			commonSysUser.setUserName(userName);
+			commonSysUser.setPassword(password);
+			commonSysUser.setRealName(realName);
+			commonSysUser.setBirthday(birthday);
+			commonSysUser.setEmail(email);
+			commonSysUser.setPhone(phone);
+			commonSysUser.setMemo(memo);
+			
+			
+			
 			int i = commonSysUserService.insertData(commonSysUser,roleIds);
 			
 			sysUserDetailsService.loadResourceDefine();
