@@ -51,7 +51,10 @@ public class CommonSysRoleController extends BaseController {
 	
 	@RequestMapping("/commonSysRole/roleTree.htm")
 	@ResponseBody
-	public Object loadTree(CommonSysUser commonSysUser) {
+	public Object loadTree(Integer id) {
+		
+		CommonSysUser commonSysUser=new CommonSysUser();
+		commonSysUser.setId(id);
 		
 		List<CommonSysRole> list =this.commonSysRoleService.getRoleTreeByUser(commonSysUser);
 		

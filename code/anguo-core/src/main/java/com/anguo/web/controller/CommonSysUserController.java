@@ -70,7 +70,7 @@ public class CommonSysUserController extends BaseController {
 
 	@RequestMapping("/commonSysUser/create.htm")
 	@ResponseBody
-	public Object saveCommonSysUser(String roleIds,String userName,String password,String realName,@RequestParam(value ="birthday") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")Date birthday ,String email,String phone,String memo) {
+	public Object saveCommonSysUser(String roleIds,String userName,String password,String realName,@RequestParam(value ="birthday") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")Date birthday ,String email,String phone,String memo,Integer status) {
 		Map messages = new HashMap();
 		try {
 			//组装bean实体
@@ -82,6 +82,7 @@ public class CommonSysUserController extends BaseController {
 			commonSysUser.setEmail(email);
 			commonSysUser.setPhone(phone);
 			commonSysUser.setMemo(memo);
+			commonSysUser.setStatus(status);
 			
 			
 			

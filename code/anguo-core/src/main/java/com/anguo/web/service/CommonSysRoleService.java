@@ -1,9 +1,8 @@
 package com.anguo.web.service;
-import java.util.List;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.anguo.mybatis.db.service.BaseService;
 import com.anguo.web.db.domain.CommonSysAuthority;
 import com.anguo.web.db.domain.CommonSysRole;
