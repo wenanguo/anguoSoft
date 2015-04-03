@@ -145,7 +145,7 @@ public class CommonAppController {
 	    		if(commonSysMember==null)
 	    		{
 	    			PageResult rs=new PageResult();
-	    			rs.setCode(AnguoStatusUtil.INTERFACE_LOGIN_TIMEOUT);
+	    			rs.setCode(AnguoStatusUtil.INTERFACE_NO_PERMISSION);
 	    			
 	    			return rs;
 	    		}
@@ -155,8 +155,6 @@ public class CommonAppController {
 	    	
 	    	if(commonAppSiDefine.getSiDemo().equals(2))
 	    	{
-	    		
-	    		
 	    		//真实接口
 	    		Object resultObj=this.appManageService.ObjectInvoke(commonAppSiDefine.getSiServiceName(), commonAppSiDefine.getSiServiceMethod(), 
 	    				localReqParam,commonAppLoggerUser,commonSysMember,session,request);
