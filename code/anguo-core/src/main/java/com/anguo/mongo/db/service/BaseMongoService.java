@@ -2,6 +2,7 @@ package com.anguo.mongo.db.service;
 
 import java.lang.reflect.Field;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+
 import com.anguo.mongo.db.domain.BaseMongoVo;
 import com.anguo.mybatis.db.core.PageResult;
 
@@ -125,6 +127,7 @@ public class BaseMongoService<T extends BaseMongoVo> {
 			
 		}
 		//设置根据id排序
+		
 		query.with(new Sort(new Sort.Order(Direction.ASC, "id")));
 	
 		
@@ -193,7 +196,7 @@ public class BaseMongoService<T extends BaseMongoVo> {
 			{
 				return t.getId()+1;
 			}else{
-				return 0;
+				return 1;
 			}
 			
 			
