@@ -98,7 +98,12 @@
 			<version>5.13</version>
 		</dependency>
 
-
+		<!-- Quartz调度器 -->
+		<dependency>
+		 <groupId>org.quartz-scheduler</groupId>
+		 <artifactId>quartz</artifactId>
+		 <version>1.8.5</version>
+		</dependency>
 
 		<!-- 日志 -->
 		<dependency>
