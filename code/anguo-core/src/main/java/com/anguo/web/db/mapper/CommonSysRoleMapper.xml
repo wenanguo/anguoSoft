@@ -36,7 +36,7 @@
              <if test="status != null and status != ''">
            and (status like concat(#{status},'%') or status like concat(#{status},'%'))
         </if>
-       
+           and id >2
         </trim>
      order by id desc
 </select>
@@ -61,7 +61,7 @@
              <if test="status != null and status != ''">
            and (status like concat(#{status},'%') or status like concat(#{status},'%'))
         </if>
-         and id>1
+         and id>2
           </trim>
      order by id desc
 </select>

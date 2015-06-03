@@ -76,7 +76,12 @@ public class CommonSysUserController extends BaseController {
 			//组装bean实体
 			CommonSysUser commonSysUser=new CommonSysUser();
 			commonSysUser.setUserName(userName);
-			commonSysUser.setPassword(password);
+			if(password==null){
+				commonSysUser.setPassword("123456");
+			}else{
+				
+				commonSysUser.setPassword(password);
+			}
 			commonSysUser.setRealName(realName);
 			commonSysUser.setBirthday(birthday);
 			commonSysUser.setEmail(email);
@@ -123,6 +128,41 @@ public class CommonSysUserController extends BaseController {
 			commonSysUser.setMemo(memo);
 			
 			int i = commonSysUserService.updateData(commonSysUser,roleIds);
+			
+			sysUserDetailsService.loadResourceDefine();
+			if (i > 0) {
+				messages.put("success", true);
+				messages.put("msg", "修改成功!");
+			} else {
+				messages.put("success", false);
+				messages.put("msg", "修改失败!");
+			}
+		} catch (Exception e) {
+			messages.put("success", false);
+			messages.put("msg", "修改失败!");
+			e.printStackTrace();
+		}
+		
+		return messages;
+		
+	}
+	
+	/**
+	 * 修改密码
+	 * @param password
+	 * @param commonSysUser
+	 * @return
+	 */
+	@RequestMapping("/commonSysUser/updatePassword.htm")
+	@ResponseBody
+	public Object updateCommonSysUserPassword(String password,CommonSysUser commonSysUser) {
+		Map messages = new HashMap();
+		try {
+			
+			//组装bean实体
+			commonSysUser.setPassword(password);
+			
+			int i = commonSysUserService.updateData(commonSysUser);
 			
 			sysUserDetailsService.loadResourceDefine();
 			if (i > 0) {
