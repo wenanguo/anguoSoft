@@ -113,14 +113,15 @@ public class CommonSysUserController extends BaseController {
 
 	@RequestMapping("/commonSysUser/update.htm")
 	@ResponseBody
-	public Object updateCommonSysUser(String roleIds,String userName,String password,String realName,@RequestParam(value ="birthday") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")Date birthday ,String email,String phone,String memo) {
+	public Object updateCommonSysUser(Integer id,String roleIds,String userName,String password,String realName,@RequestParam(value ="birthday") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")Date birthday ,String email,String phone,String memo) {
 		Map messages = new HashMap();
 		try {
 			
 			//组装bean实体
 			CommonSysUser commonSysUser=new CommonSysUser();
+			commonSysUser.setId(id);
 			commonSysUser.setUserName(userName);
-			commonSysUser.setPassword(password);
+			//commonSysUser.setPassword(password);
 			commonSysUser.setRealName(realName);
 			commonSysUser.setBirthday(birthday);
 			commonSysUser.setEmail(email);
