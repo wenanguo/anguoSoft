@@ -170,6 +170,7 @@ public class CommonSysJobController extends BaseController {
 			//添加进入队列
 			this.qmanager.createJob(job);
 			
+			result.setMsg("作业启动成功");
 		} catch (ClassNotFoundException e) {
 			result.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
 			e.printStackTrace();
@@ -241,6 +242,7 @@ public class CommonSysJobController extends BaseController {
 				
 		this.qmanager.triggerJob(job);
 		
+		result.setMsg("作业启动成功");
 		return result;
 	}
 	
@@ -264,7 +266,7 @@ public class CommonSysJobController extends BaseController {
 				
 		//队列中删除任务
 		this.qmanager.deleteJob(job);
-		
+		result.setMsg("作业停止成功");
 		return result;
 	}
 	
