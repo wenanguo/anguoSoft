@@ -36,6 +36,18 @@ public class AnguoStatusUtil {
 	 * 锁定
 	 */
 	public static final int BASE_LOCKED=106;
+	
+	/**
+	 * 暂停
+	 */
+	public static final int BASE_PAUSE=107;
+	
+	/**
+	 * 启动
+	 */
+	public static final int BASE_START=108;
+	
+	
 	/**
 	 * 未知
 	 */
