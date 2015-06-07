@@ -17,7 +17,7 @@ public class AsynJobBase implements Job {
 //        CommonSysJob scheduleJob = (CommonSysJob)context.getMergedJobDataMap().get("scheduleJob");
 //        System.out.println("任务名称 = [" + scheduleJob.getJobName() + "]");
 //        
-//        
+////        
 //        //获取JobExecutionContext中的service对象    
 //        try {  
 //                        //获取JobExecutionContext中的service对象   
