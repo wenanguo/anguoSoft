@@ -21,6 +21,7 @@
 		 		<result property="credits" column="credits" />
 		 		<result property="email" column="email" />
 		 		<result property="memberClass" column="member_class" />
+		 		<result property="xgToken" column="xg_token" />
 		 		<result property="status" column="status" />
 		 		<result property="operateUserId" column="operate_user_id" />
 		 		<result property="operateDate" column="operate_date" />
@@ -220,6 +221,11 @@
 	  			 		 		<if test="memberClass != null">
 				member_class,
 	  	</if>
+	  							<if test="xgToken != null">
+				xg_token,
+	  	</if>
+	  	
+	  	
 	  			 		 		<if test="status != null">
 				status,
 	  	</if>
@@ -274,6 +280,9 @@
 </if>
 				<if test="memberClass != null">
 #{memberClass},
+</if>
+				<if test="xgToken != null">
+#{xgToken},
 </if>
 				<if test="status != null">
 #{status},
@@ -332,6 +341,9 @@
 		</if>
 								<if test="memberClass != null and memberClass != ''">
 			member_class=#{memberClass},
+		</if>
+		<if test="xgToken != null and xgToken != ''">
+			xg_token=#{xgToken},
 		</if>
 								<if test="status != null and status != ''">
 			status=#{status},

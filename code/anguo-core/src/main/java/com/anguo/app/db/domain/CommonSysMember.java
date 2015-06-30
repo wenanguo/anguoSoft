@@ -3,8 +3,10 @@ package com.anguo.app.db.domain;
 
 
 import java.util.Date;
+
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import com.anguo.mybatis.db.core.BaseVo;
 import com.anguo.util.AnguoDateUtils;
 
@@ -85,6 +87,15 @@ public class CommonSysMember extends BaseVo  {
 	 * 用户类别.是否招生人员，注册学员
 	 */
 	private Integer memberClass;
+	
+	/**
+	 * 信鸽token
+	 */
+	private String xgToken;
+	
+	
+
+
 	/**
 	 * 状态.
 	 */
@@ -100,7 +111,13 @@ public class CommonSysMember extends BaseVo  {
 	@JsonSerialize(using = AnguoDateUtils.class)
 	private Date operateDate;
 
+	public String getXgToken() {
+		return xgToken;
+	}
 
+	public void setXgToken(String xgToken) {
+		this.xgToken = xgToken;
+	}
 
 	public String getUuid() {
 		return uuid;
