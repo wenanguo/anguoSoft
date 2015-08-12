@@ -53,6 +53,24 @@ public class AnguoStatusUtil {
 	 */
 	public static final int BASE_UNKNOWN=110;	
 	
+	/**
+	 * 未支付
+	 */
+	public static final int PAY_NO=201;
+	/**
+	 * 支付中
+	 */
+	public static final int PAY_ING=202;
+	/**
+	 * 支付成功
+	 */
+	public static final int PAY_YES=203;
+	/**
+	 * 支付失败
+	 */
+	public static final int PAY_FAIL=204;
+	
+	
 	
 	
 	/****************接口类******************/

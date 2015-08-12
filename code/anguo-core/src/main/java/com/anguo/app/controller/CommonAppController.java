@@ -98,18 +98,18 @@ public class CommonAppController {
 		  //解密base64编码
 		  if(StringUtils.isNotEmpty(reqParam))
 		  {
-			  localReqParam=new String(AnguoEncryptUtil.decryptBASE64(reqParam));
+			  localReqParam=new String(AnguoEncryptUtil.decryptBASE64(reqParam),"utf-8");
 		  }
 		  
 		  if(StringUtils.isNotEmpty(appParam))
 		  {
-			  localAppParam=new String(AnguoEncryptUtil.decryptBASE64(appParam));
+			  localAppParam=new String(AnguoEncryptUtil.decryptBASE64(appParam),"utf-8");
 			  commonAppLoggerUser=AnguoJsonUtil.fromJson(localAppParam, CommonAppLoggedUser.class);
 		  }
 		  
 		  if(StringUtils.isNotEmpty(userParam))
 		  {
-			  localUserParam=new String(AnguoEncryptUtil.decryptBASE64(userParam));
+			  localUserParam=new String(AnguoEncryptUtil.decryptBASE64(userParam),"utf-8");
 			  
 			  //获得签名数据
 			  loginSign=AnguoJsonUtil.fromJson(localUserParam, Sign.class);

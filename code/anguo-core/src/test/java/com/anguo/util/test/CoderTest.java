@@ -326,4 +326,6 @@ public class CoderTest {
     	Assert.assertEquals(signbean.getTimestamp(), sign.getTimestamp());
     	
     }
+    
+ 
 }
