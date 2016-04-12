@@ -35,3 +35,7 @@
 /**/src/main/webapp/WEB-INF/classes/
 /**/src/main/webapp/WEB-INF/lib/
 
+
+
+/code/**/.idea
+/code/**/node_modules
