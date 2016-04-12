@@ -40,3 +40,4 @@
 /code/**/.idea
 /code/**/node_modules
 /code/**/bower_components
+/code/**/test

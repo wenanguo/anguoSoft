@@ -67,7 +67,7 @@ module.exports = function (grunt) {
 
     // 默认任务
     grunt.registerTask('default', ['watch'], function(){
-        grunt.log.writeln(this.target + ' 复制完成 ' + this.data);
+        grunt.log.writeln(' grunt构建完成 ');
     });
 
 }
