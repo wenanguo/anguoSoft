@@ -2,20 +2,16 @@ package com.anguo.app.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import com.anguo.app.db.domain.CommonAppLoggedUser;
 import com.anguo.app.db.domain.CommonSysMember;
-import com.anguo.app.db.domain.ConstantClass;
 import com.anguo.mybatis.db.core.PageResult;
 import com.anguo.util.AnguoJsonUtil;
 import com.anguo.util.AnguoStatusUtil;
