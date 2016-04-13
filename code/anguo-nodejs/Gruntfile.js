@@ -53,6 +53,12 @@ module.exports = function (grunt) {
             options:{
                 jshintrc:'.jshintrc'
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                autoWatch: true
+            }
         }
     });
     // 加载提供"uglify"任务的插件
@@ -62,6 +68,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-css-sprite');
 
 
 
