@@ -1,4 +1,0 @@
-function TT() {
-    return "abc";
-}
-
