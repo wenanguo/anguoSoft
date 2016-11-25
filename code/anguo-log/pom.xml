@@ -8,6 +8,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
+		<project.name>anguo-log</project.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring.integration.version>4.0.0.RELEASE</spring.integration.version>
@@ -372,7 +373,7 @@
 	
 
 	<build>
-	<finalName>anguo-log</finalName>
+		<finalName>${project.name}</finalName>
 		<outputDirectory>src\main\webapp\WEB-INF\classes</outputDirectory>
 		<sourceDirectory>src\main\java</sourceDirectory>
 		<scriptSourceDirectory>src\main\scripts</scriptSourceDirectory>
