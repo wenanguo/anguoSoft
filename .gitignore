@@ -3,6 +3,7 @@
 *.bak
 *.tmp
 *.MF
+*.iml
 
 /code/**/.classpath
 /code/**/.mymetadata
@@ -20,6 +21,8 @@
 /code/**/src/main/webapp/WEB-INF/lib/
 /documents/工程管理/设计管理/项目快速原型/
 
+
+/**/.idea
 /**/.classpath
 /**/.mymetadata
 /**/.project
