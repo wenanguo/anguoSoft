@@ -1,5 +1,5 @@
 language: java
 sudo: false
 script: 
- cd code/anguo-parent
- mvn test
+ cd code
+ mvn clean package
