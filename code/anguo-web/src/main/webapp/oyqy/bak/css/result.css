@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+/* CSS 结果 */
+
+
+#div_top{
+	text-align: center;
+}
+
+#label_otherwant{
+	font-size: 20px;
+	color: #2eb6cc;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+.online{
+	float: left;
+}
+
+#div_other{
+	text-align:center;
+	margin-top: 30px;
+}

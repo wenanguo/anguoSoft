@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+/* CSS 首页 */
+
+#top {
+	width: 93%;
+	height: auto;
+	text-align: center;
+	background: url(../images/index_bgtop.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+#div_headmsg {
+	width: 91%;
+	margin: 0 auto;
+}
+
+#div_head {
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+#div_msg {
+	width: 80%;
+	height: 52px;
+	line-height: 52px;
+	background: url(../images/index_my_msg.png);
+	background-size: 100% 100%;
+	margin-left: 5px;
+	background-repeat: no-repeat;
+	float: left;
+	text-align: center;
+}
+
+#labal_talk {
+	font-size: 19px;
+	color: #2eb6cc;
+	font-weight: bold;
+}
+
+#input {
+	width: 93%;
+	margin: 0 auto;
+}
+
+.div_input {
+	width: 50%;
+	float: left;
+	height: 38px;
+	margin-top: 25px;
+}
+
+#city {
+	background: url(../images/index_city.png);
+	padding-left: 20px;
+	height: 17px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	border: none;
+	width: 80%;
+}
+
+#dosamething {
+	background: url(../images/index_dosamething.png);
+	padding-left: 20px;
+	height: 17px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	border: none;
+	width: 80%;
+}
+
+.div_city {
+	width: 92%;
+	text-align: left;
+	padding-left: 14px;
+	margin-top: 3px;
+	clear: both;
+	margin-left: 10px;
+}
+
+.div_tag {
+	background: url(../images/index_tag.png);
+	float: left;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	font-size: 13px;
+	color: #636363;
+	height: 28px;
+	line-height: 28px;
+	padding-left: 15px;
+	padding-right: 10px;
+	margin-right: 5px;
+	margin-top: 4px;
+}
+
+#button_go {
+	width: 40%;
+	height: 50px;
+	background: url(../images/index_gogo.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	border: none;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#dv_bottom {
+	text-align: center;
+	margin-top: 15px;
+}
+
+#label_lang {
+	font-size: 20px;
+	color: #2eb6cc;
+	font-weight: bold;
+}
+
+

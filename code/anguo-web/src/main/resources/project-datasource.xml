@@ -6,12 +6,15 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                             http://www.springframework.org/schema/aop
                             http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
                             http://www.springframework.org/schema/tx
                             http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+                            http://www.springframework.org/schema/task
+							http://www.springframework.org/schema/task/spring-task-3.2.xsd
                             http://www.springframework.org/schema/context
                             http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
@@ -25,15 +28,25 @@
 		<property name="username" value="root" />
 		<property name="password" value="wenanguo" />
     </bean> -->
-   <context:component-scan base-package="com.anguo"/>
+   <context:component-scan base-package="com.anguo.**"/>
+   
+   <task:annotation-driven />  
+   
+   <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
+   <!-- 通过applicationContextSchedulerContextKey属性配置spring上下文 -->    
+        <property name="applicationContextSchedulerContextKey">    
+            <value>applicationContext</value>    
+        </property> 
+   </bean>
+     
    
     <!-- 阿里云RDS  -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://wenanguo.mysql.rds.aliyuncs.com:3306/wenanguo?characterEncoding=utf-8" /> 
-		<property name="username" value="wenanguo" />
-		<property name="password" value="wenanguo870623" />
+		<property name="jdbcUrl" value="jdbc:mysql://55fd001f57bb5.sh.cdb.myqcloud.com:8392/oyqy?characterEncoding=utf-8" /> 
+		<property name="username" value="root" />
+		<property name="password" value="Matrining81215" />
     </bean>
 	
 	

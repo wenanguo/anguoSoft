@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+
+		<link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.5-dist/css/bootstrap.css">
+
+
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/jqmeter.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript" src="js/bootstrap-progressbar.js"></script>
+
+
+		<title>进度条</title>
+	</head>
+
+	<body>
+
+
+
+	<div class="progress">
+		<div class="progress-bar" style="width:40%"></div>
+	</div>
+
+	<div class="progress">
+		<div class="progress-bar" role="progressbar" data-transitiongoal="75"></div>
+	</div>
+
+<button onclick="jd();">更新进度</button>
+		
+	</body>
+
+<script>
+
+	$(document).ready(function() {
+		$('.progress .progress-bar').progressbar();
+	});
+
+
+	function jd(){
+		//$('.progress .progress-bar').attr("data-transitiongoal",20);
+
+		$('.progress .progress-bar').progressbar('setPosition', 85);$('.progress .progress-bar').update();
+	}
+
+</script>
+
+</html>

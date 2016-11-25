@@ -15,9 +15,14 @@
 <!-- 引入jQuery 
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.8.3.js"></script>
+
+
 <!-- 引入bootstrap样式 -->
+<!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="${pageContext.request.contextPath}/resources/js/bootstrap-2.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<!-- <script charset="utf-8" src="${pageContext.request.contextPath}/resources/js/bootstrap-2.3.1/js/bootstrap.min.js" charset="utf-8"></script> -->
+
+
+
 
 <!-- 引入EasyUI -->
 <link id="easyuiTheme" rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/jquery-easyui-1.3.3/themes/<c:out value="${cookie.easyuiThemeName.value}" default="bootstrap"/>/easyui.css" type="text/css">
@@ -51,4 +56,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ueditor1_3_6/ueditor.all.js"></script>
 <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ueditor1_3_6/lang/zh-cn/zh-cn.js"></script>
+
+<!-- 百度编辑器um版
+<link href="${pageContext.request.contextPath}/resources/js/umeditor1_2_2/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/js/umeditor1_2_2/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/js/umeditor1_2_2/umeditor.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/umeditor1_2_2/lang/zh-cn/zh-cn.js"></script>
+ -->
+
+
 

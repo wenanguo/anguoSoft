@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="css/cropper.min.css">
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/my.css">
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/dist/lrz.all.bundle.js"></script>
+		<script type="text/javascript" src="js/cropper.min.js"></script>
+		<script type="text/javascript" src="js/getimage.js"></script>
+		<title>头像合成</title>
+	</head>
+
+	<body>
+		<div class="idno div_input" id="div_head">
+			<input type="file" name="image" id="image" class="inputfile" />
+			<label for="image">
+				<img id="headimg" name="headimg" class="img_idno" src="images/default.jpg" style="width:160px; height: 180px;"/>
+			</label>
+		</div>
+
+		<div id="showEdit" style="display: none;width:100%;height: 100%;position: absolute;top:40%;left: 0;z-index: 9;">
+			<div style="width:100%;position: absolute;top:10px;left:0px;">
+				<button class="mui-btn" data-mui-style="fab" id='cancleBtn' style="margin-left: 10px;">取消</button>
+				<button class="mui-btn" data-mui-style="fab" data-mui-color="primary" id='confirmBtn' style="float:right;margin-right: 10px;">确定</button>
+			</div>
+			<div id="report">
+				<img src="images/default.jpg" style="width: 300px;height:300px">
+			</div>
+		</div>
+		
+		
+	</body>
+
+</html>

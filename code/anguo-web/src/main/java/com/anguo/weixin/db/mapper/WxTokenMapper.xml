@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.weixin.db.mapper.WxTokenMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="wxTokenMap" type="com.anguo.weixin.db.domain.WxToken" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="token" column="token" />
+		 		<result property="tokenType" column="token_type" />
+		 		<result property="validity" column="validity" />
+		 		<result property="status" column="status" />
+		 		<result property="operateUserId" column="operate_user_id" />
+		 		<result property="operateDate" column="operate_date" />
+		 		<result property="realName" column="real_name" />
+		 		
+	</resultMap>
+
+<!-- 分页查询 -->
+<select id="getPageData" resultMap="wxTokenMap"
+               parameterType="com.anguo.weixin.db.domain.WxToken">
+     select a.*,b.real_name from ${commonSchema}.wx_token a left join ${commonSchema}.common_sys_user b on a.operate_user_id=b.id 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (a.id like concat('%',concat(#{id},'%')))
+        </if>
+             <if test="token != null and token != ''">
+           and (a.token like concat('%',concat(#{token},'%')))
+        </if>
+             <if test="tokenType != null and tokenType != ''">
+           and (a.token_type like concat('%',concat(#{tokenType},'%')))
+        </if>
+             <if test="validity != null and validity != ''">
+           and (a.validity like concat('%',concat(#{validity},'%')))
+        </if>
+             <if test="status != null and status != ''">
+           and (a.status like concat('%',concat(#{status},'%')))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (a.operate_date like concat('%',concat(#{operateDate},'%')))
+        </if>
+          </trim>
+     order by id desc
+</select>
+	
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="wxTokenMap"
+               parameterType="com.anguo.weixin.db.domain.WxToken">
+     select a.*,b.real_name from ${commonSchema}.wx_token a left join ${commonSchema}.common_sys_user b on a.operate_user_id=b.id 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (a.id like concat('%',concat(#{id},'%')))
+        </if>
+             <if test="token != null and token != ''">
+           and (a.token like concat('%',concat(#{token},'%')))
+        </if>
+             <if test="tokenType != null and tokenType != ''">
+           and (a.token_type like concat('%',concat(#{tokenType},'%')))
+        </if>
+             <if test="validity != null and validity != ''">
+           and (a.validity like concat('%',concat(#{validity},'%')))
+        </if>
+             <if test="status != null and status != ''">
+           and (a.status like concat('%',concat(#{status},'%')))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (a.operate_date like concat('%',concat(#{operateDate},'%')))
+        </if>
+          </trim>
+     order by id desc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="wxTokenMap" parameterType="com.anguo.weixin.db.domain.WxToken">
+    select * from  ${commonSchema}.wx_token
+    where id = #{id}
+</select>
+
+<!-- 根据读一条记录 -->
+<select id="getDataByValidity" resultMap="wxTokenMap" parameterType="com.anguo.weixin.db.domain.WxToken">
+    select * from  ${commonSchema}.wx_token
+    where token_type = #{tokenType} and date_add(operate_date, interval validity second) > now() limit 1
+</select>
+
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.weixin.db.domain.WxToken" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  ${commonSchema}.wx_token
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		<if test="token != null">
+				token,
+	  	</if>
+	  			 		 		<if test="tokenType != null">
+				token_type,
+	  	</if>
+	  			 		 		<if test="validity != null">
+				validity,
+	  	</if>
+	  			 		 		<if test="status != null">
+				status,
+	  	</if>
+	  			 		 		<if test="operateUserId != null">
+				operate_user_id,
+	  	</if>
+	  			 		 		<if test="operateDate != null">
+				operate_date,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="token != null">
+#{token},
+</if>
+				<if test="tokenType != null">
+#{tokenType},
+</if>
+				<if test="validity != null">
+#{validity},
+</if>
+				<if test="status != null">
+#{status},
+</if>
+				<if test="operateUserId != null">
+#{operateUserId},
+</if>
+				<if test="operateDate != null">
+#{operateDate},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.weixin.db.domain.WxToken">
+	update  ${commonSchema}.wx_token 
+	<set>
+										<if test="token != null and token != ''">
+			token=#{token},
+		</if>
+								<if test="tokenType != null and tokenType != ''">
+			token_type=#{tokenType},
+		</if>
+								<if test="validity != null and validity != ''">
+			validity=#{validity},
+		</if>
+								<if test="status != null and status != ''">
+			status=#{status},
+		</if>
+								<if test="operateUserId != null and operateUserId != ''">
+			operate_user_id=#{operateUserId},
+		</if>
+								<if test="operateDate != null and operateDate != ''">
+			operate_date=#{operateDate},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.weixin.db.domain.WxToken">
+	delete from  ${commonSchema}.wx_token 
+	where id=#{id}
+</delete>
+
+</mapper>

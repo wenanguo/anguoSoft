@@ -24,13 +24,13 @@
 	<context:component-scan base-package="com.anguo.mongo"></context:component-scan>
 	<context:component-scan base-package="com.anguo.log"></context:component-scan>
 
-	<mongo:mongo host="10.201.253.106" port="27017">
+	<mongo:mongo host="121.42.41.17" port="10001">
 	</mongo:mongo>
 
 	<!-- <mongo:mongo host="10.201.250.106" port="27017"> </mongo:mongo> -->
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongo" />
-		<constructor-arg name="databaseName" value="udpmongo" />
+		<constructor-arg name="databaseName" value="kaosheng" />
 		<!-- <constructor-arg name="defaultCollectionName" value="test" /> -->
 	</bean>
 

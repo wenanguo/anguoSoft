@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anguo.oy.db.mapper.OyqyHistoryLikeMapper">
+
+ <!-- 配置内容信息 -->
+	<resultMap id="oyqyHistoryLikeMap" type="com.anguo.oy.db.domain.OyqyHistoryLike" >
+		
+		 		<result property="id" column="id" />
+		 		<result property="travelId" column="travel_id" />
+		 		<result property="openid" column="openid" />
+		 		<result property="status" column="status" />
+		 		<result property="operateUserId" column="operate_user_id" />
+		 		<result property="operateDate" column="operate_date" />
+		 		 <result property="realName" column="real_name" />
+	</resultMap>
+
+<!-- 分页查询 -->
+<select id="getPageData" resultMap="oyqyHistoryLikeMap"
+               parameterType="com.anguo.oy.db.domain.OyqyHistoryLike">
+     select a.*,b.real_name from ${commonSchema}.oyqy_history_like a left join ${commonSchema}.common_sys_user b on a.operate_user_id=b.id 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (a.id like concat('%',concat(#{id},'%')))
+        </if>
+             <if test="travelId != null and travelId != ''">
+           and (a.travel_id like concat('%',concat(#{travelId},'%')))
+        </if>
+             <if test="openid != null and openid != ''">
+           and (a.openid like concat('%',concat(#{openid},'%')))
+        </if>
+             <if test="status != null and status != ''">
+           and (a.status like concat('%',concat(#{status},'%')))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (a.operate_date like concat('%',concat(#{operateDate},'%')))
+        </if>
+          </trim>
+     order by id desc
+</select>
+	
+
+<!-- 查询 -->
+<select id="getAllData" resultMap="oyqyHistoryLikeMap"
+               parameterType="com.anguo.oy.db.domain.OyqyHistoryLike">
+     select a.*,b.real_name from ${commonSchema}.oyqy_history_like a left join ${commonSchema}.common_sys_user b on a.operate_user_id=b.id 
+     <trim prefix="where" prefixOverrides="and |or ">
+             <if test="id != null and id != ''">
+           and (a.id like concat('%',concat(#{id},'%')))
+        </if>
+             <if test="travelId != null and travelId != ''">
+           and (a.travel_id like concat('%',concat(#{travelId},'%')))
+        </if>
+             <if test="openid != null and openid != ''">
+           and (a.openid like concat('%',concat(#{openid},'%')))
+        </if>
+             <if test="status != null and status != ''">
+           and (a.status like concat('%',concat(#{status},'%')))
+        </if>
+             <if test="operateUserId != null and operateUserId != ''">
+           and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
+        </if>
+             <if test="operateDate != null and operateDate != ''">
+           and (a.operate_date like concat('%',concat(#{operateDate},'%')))
+        </if>
+          </trim>
+     order by id desc
+</select>
+
+<!-- 读一条记录 -->
+<select id="getData" resultMap="oyqyHistoryLikeMap" parameterType="com.anguo.oy.db.domain.OyqyHistoryLike">
+    select * from  ${commonSchema}.oyqy_history_like
+     where openid=#{openid} and travel_id = #{travelId}
+</select>
+
+<!-- 插入记录  -->
+<insert id="insertData" parameterType="com.anguo.oy.db.domain.OyqyHistoryLike" useGeneratedKeys="true" keyProperty="id">
+	
+	insert into  ${commonSchema}.oyqy_history_like
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		id,
+		 		 		 		 		<if test="travelId != null">
+				travel_id,
+	  	</if>
+	  			 		 		<if test="openid != null">
+				openid,
+	  	</if>
+	  			 		 		<if test="status != null">
+				status,
+	  	</if>
+	  			 		 		<if test="operateUserId != null">
+				operate_user_id,
+	  	</if>
+	  			 		 		<if test="operateDate != null">
+				operate_date,
+	  	</if>
+	  			 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+#{id},
+		
+		<if test="travelId != null">
+#{travelId},
+</if>
+				<if test="openid != null">
+#{openid},
+</if>
+				<if test="status != null">
+#{status},
+</if>
+				<if test="operateUserId != null">
+#{operateUserId},
+</if>
+				<if test="operateDate != null">
+#{operateDate},
+</if>
+					</trim>
+</insert>
+
+<!-- 修改  -->
+<update id="updateData" parameterType="com.anguo.oy.db.domain.OyqyHistoryLike">
+	update  ${commonSchema}.oyqy_history_like 
+	<set>
+										<if test="travelId != null and travelId != ''">
+			travel_id=#{travelId},
+		</if>
+								<if test="openid != null and openid != ''">
+			openid=#{openid},
+		</if>
+								<if test="status != null and status != ''">
+			status=#{status},
+		</if>
+								<if test="operateUserId != null and operateUserId != ''">
+			operate_user_id=#{operateUserId},
+		</if>
+								<if test="operateDate != null and operateDate != ''">
+			operate_date=#{operateDate},
+		</if>
+					</set>
+	where id=#{id}
+</update>
+
+<!-- 删除 -->
+<delete id="deleteData" parameterType="com.anguo.oy.db.domain.OyqyHistoryLike">
+	delete from  ${commonSchema}.oyqy_history_like 
+	where openid=#{openid} and travel_id = #{travelId}
+</delete>
+
+</mapper>

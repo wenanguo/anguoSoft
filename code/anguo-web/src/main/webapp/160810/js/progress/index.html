@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-progressbar-3.2.0.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-progressbar-demo.css">
+	<script src="js/common.min.js"></script>
+	<script src="js/bootstrap-progressbar.js"></script>
+	<script src="js/minddust.min.js"></script>
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	
+<h4>default settings (bottom)</h4>
+
+
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="v-bottom-basic">
+        <h5>basic progressbars <button type="button" class="btn btn-primary" id="v-bottom-basic-start">start</button> <button type="button" class="btn btn-danger" id="v-bottom-basic-reset">reset</button></h5>
+        <div class="bs-example">
+            <div class="fixed-height-250">
+                <div class="progress vertical bottom"><div class="progress-bar" role="progressbar" data-transitiongoal-backup="75"></div></div>
+            </div>
+            <script type='text/javascript'>
+                $(document).ready(function() {
+                    $('#v-bottom-basic-start').click(function() {
+                        var $pb = $('#v-bottom-basic .progress-bar');
+                        $pb.attr('data-transitiongoal', $pb.attr('data-transitiongoal-backup'));
+                        $pb.progressbar();
+                    });
+                    $('#v-bottom-basic-reset').click(function() {
+                        $('#v-bottom-basic .progress-bar').attr('data-transitiongoal', 0).progressbar();
+                    });
+                });
+            </script>
+        </div>
+
+
+
+    </div>
+	
+	
+	
+	
+</body>
+</html>

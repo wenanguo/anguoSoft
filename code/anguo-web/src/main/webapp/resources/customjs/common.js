@@ -229,6 +229,15 @@ function stateFormat(value) {
 		case 105 :
 			return '<font style="color:red">审核中</font>';
 			break;
+		case 106 :
+			return '<font style="color:red">锁定</font>';
+			break;
+		case 107 :
+			return '<font style="color:red">暂停</font>';
+			break;
+		case 108 :
+			return '<font style="color:green">启动</font>';
+			break;
 
 		case 121 :
 			return '<font style="color:red">新增审核中</font>';
@@ -300,6 +309,14 @@ function stateFormat(value) {
 		case 169 :
 			return '<font style="color:red">发送失败</font>';
 			break;
+			
+			
+		case 201 :
+			return '<font style="color:red">未支付</font>';
+			break;
+		case 202 :
+			return '<font style="color:green">已支付</font>';
+			break;
 
 		default :
 			return '<font style="color:red">其他</font>';
@@ -307,6 +324,40 @@ function stateFormat(value) {
 	}
 
 
+}
+
+/**
+ * 格式化Time
+ * 
+ * @param {Object}
+ *            format
+ * @return {TypeName}
+ */
+function formatTime(time, format) {
+	var date = new Date(time);
+	var year = (date.getYear() < 1900) ? date.getYear() + 1900 : date.getYear();
+	var o = {
+		"M+" : date.getMonth() + 1, // month
+		"d+" : date.getDate(), // day
+		"h+" : date.getHours(), // hour
+		"m+" : date.getMinutes(), // minute
+		"ss" : date.getSeconds(), // second
+		"ms" : date.getMilliseconds()
+	};
+
+	if (/(y+)/.test(format)) {
+		format = format.replace(RegExp.$1, (year + "").substr(4
+						- RegExp.$1.length));
+	}
+
+	for (var k in o) {
+		if (new RegExp("(" + k + ")").test(format)) {
+			format = format.replace(RegExp.$1, RegExp.$1.length == 1
+							? o[k]
+							: ("00" + o[k]).substr(("" + o[k]).length));
+		}
+	}
+	return format;
 }
 
 /**
@@ -360,11 +411,11 @@ function createFileUpload(fileInputId, rootPath, onUploadSuccessCallback,
 		fileTypeExts, fileTypeDesc, fileSizeLimit) {
 	$("#" + fileInputId).uploadify({
 
-		'langFile' : rootPath + 'resources/uploader/chlang.js',
-		'swf' : rootPath + 'resources/uploader/uploadify.swf',
-		'uploader' : rootPath + 'fileupload',
-		'buttonImage' : rootPath + 'resources/uploader/file.png',
-		'cancelImg' : rootPath + 'resources/uploader/cancel.png',
+		'langFile' : rootPath + 'resources/js/uploader/chlang.js',
+		'swf' : rootPath + 'resources/js/uploader/uploadify.swf',
+		'uploader' : rootPath + 'toFileUpload/goe/toMultiUpload.htm',
+		'buttonImage' : rootPath + 'resources/js/uploader/file.png',
+		'cancelImg' : rootPath + 'resources/js/uploader/cancel.png',
 		'debug' : true,
 		'height' : 23,
 		'width' : 76,
@@ -426,17 +477,13 @@ function createFileUpload(fileInputId, rootPath, onUploadSuccessCallback,
 		},
 		'onUploadProgress' : function(file, bytesUploaded, bytesTotal,
 				totalBytesUploaded, totalBytesTotal) {
-			// $('#progress').html(totalBytesUploaded + ' bytes uploaded of ' +
-			// totalBytesTotal + ' bytes.');
-		},
-		'onUploadStart' : function(file) {
-			// alert('Starting to upload ' + file.name);
+			 $('#progress').html(totalBytesUploaded + ' bytes uploaded of ' +
+			 totalBytesTotal + ' bytes.');
 		},
 		'onUploadSuccess' : onUploadSuccessCallback,
 
 		'onUploadStart' : function(file) {
-//			console.info(file);
-			// alert(fileSizeLimit.substring(0,fileSizeLimit.length-2));
+
 			if ((file.size / 1024) > fileSizeLimit.substring(0,
 					fileSizeLimit.length - 2)) {
 				$.messager.show({
@@ -451,4 +498,93 @@ function createFileUpload(fileInputId, rootPath, onUploadSuccessCallback,
 	});
 
 }
+
+/**
+ * 将json对象序列化为查询字符串
+ * @param params
+ */
+function Json2GetStr(params)
+{
+	var getStr="";
+	
+	 for(var item in params){
+		 getStr+=item+"="+params[item]+"&";
+	 }
+	 
+	 if(getStr.length>1){
+		 
+		 getStr=getStr.substring(0,getStr.length-1);
+	 }
+	
+	return getStr;
+}
+
+/**
+ * 判断字符串，如超出指导长度，则截取加省略号。
+ * @param str 目标字符串
+ * @param length 最大长度
+ */
+function limit(objString,objLength)
+{
+	if(objString.length>objLength)
+	{
+		return objString.replace(/<[^>].*?>/g,"").substring(0,objLength) + "...";
+	}else
+	{
+		return objString;
+	}
+}
+
+
+//常量定义
+function anguoStatusUtil(){ 
+	
+	/**
+	 * 正常
+	 */
+	this.BASE_NORMAL=100;    
+	/**
+	 * 删除
+	 */
+	this.BASE_DELETE=101;
+	/**
+	 * 作废
+	 */
+	this.BASE_INVALID=102;	
+	/**
+	 * 审核中
+	 */
+	this.BASE_AUDITING=103;	
+	/**
+	 * 停用
+	 */
+	this.BASE_STOP=104;
+	/**
+	 * 过期
+	 */
+	this.BASE_EXPIRED=105;
+	/**
+	 * 锁定
+	 */
+	this.BASE_LOCKED=106;
+	
+	/**
+	 * 暂停
+	 */
+	this.BASE_PAUSE=107;
+	
+	/**
+	 * 启动
+	 */
+	this.BASE_START=108;
+	
+	
+	/**
+	 * 未知
+	 */
+	this.BASE_UNKNOWN=110;	
+
+} 
+//初始化对象
+var AnguoStatusUtil=new anguoStatusUtil();
 
