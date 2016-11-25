@@ -21,7 +21,7 @@
 <dependency>
 <groupId>com.anguo</groupId>
 	<artifactId>anguo-core</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.6</version>
 </dependency>
 
 <dependency>

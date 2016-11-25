@@ -25,19 +25,19 @@ public class CommonOperateLogController extends BaseController {
 	@Autowired
 	private CommonOperateLogService commonOperateLogService;
 
-	@RequestMapping("/commonOperateLog/list.json")
-	@ResponseBody
-	public PageResult<CommonOperateLog> queryCommonOperateLogList(CommonOperateLog commonOperateLog) {
-		try {
-			
-			return commonOperateLogService.getPageData(commonOperateLog);
-			
-		} catch (Exception e) {
-			log.error("发生错误，因为：" + e.getMessage());
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	@RequestMapping("/commonOperateLog/list.json")
+//	@ResponseBody
+//	public PageResult<CommonOperateLog> queryCommonOperateLogList(CommonOperateLog commonOperateLog) {
+//		try {
+//
+//			return commonOperateLogService.getPageData(commonOperateLog);
+//
+//		} catch (Exception e) {
+//			log.error("发生错误，因为：" + e.getMessage());
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	@RequestMapping("/commonOperateLog/listAll.json")
 	@ResponseBody
