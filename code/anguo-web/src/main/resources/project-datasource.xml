@@ -44,9 +44,9 @@
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://55fd001f57bb5.sh.cdb.myqcloud.com:8392/oyqy?characterEncoding=utf-8" /> 
+		<property name="jdbcUrl" value="jdbc:mysql://115.29.151.55:3306/stm?characterEncoding=utf-8" /> 
 		<property name="username" value="root" />
-		<property name="password" value="Matrining81215" />
+		<property name="password" value="wenanguo" />
     </bean>
 	
 	

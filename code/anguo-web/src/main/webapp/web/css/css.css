@@ -1,0 +1,104 @@
+/* CSS Document */
+a:link {
+	color: #000000;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+a:hover {
+	position:relative;top:1px;
+	text-decoration: underline;
+	color: #CC0000;
+}
+a:active {
+	text-decoration: none;
+	color: #CC3300;
+}
+
+.f1 {
+	line-height: 20px;
+}
+.f2 {
+	line-height: 28px;
+}
+.f3 {
+	line-height: 35px;
+}
+
+.ta1 {
+	border: 1px solid #444444;
+}
+body {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #FFFFFF;
+}
+body,td,th {
+	font-size: 12px;
+}
+
+.ta2 {
+	border: 1px solid #d8d8d8;
+}
+
+.ta1 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: none;
+	border-left-style: solid;
+	border-top-color: #CCE5FB;
+	border-right-color: #CCE5FB;
+	border-bottom-color: #CCE5FB;
+	border-left-color: #CCE5FB;
+}
+.ta2 {
+	border: 1px solid #CCCCCC;
+}
+.ta4 {
+	border: 1px solid #d7d6d5;
+}
+.ta5 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #e6c48f;
+	border-right-color: #e6c48f;
+	border-bottom-color: #e6c48f;
+	border-left-color: #e6c48f;
+}
+.ta7 {
+	border: 1px solid #c42934;
+}
+.gs {
+	border: 1px solid #d2d2d2;
+}
+.tata {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #7abcd4;
+	border-right-color: #7abcd4;
+	border-bottom-color: #7abcd4;
+	border-left-color: #7abcd4;
+}
+.f22 {
+	line-height: 28px;
+}

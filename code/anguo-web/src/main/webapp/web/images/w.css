@@ -1,0 +1,61 @@
+#tx_foBtn
+{
+	cursor:pointer;
+    cursor:hand;
+}
+
+
+#txWb-side-a {
+	float: left;
+	width: 10px;
+	height: 73px;
+	background: url("http://v.t.qq.com/follow/images/left.jpg") no-repeat;
+}
+
+#txWb-side-b {
+	float: left;
+	width: 9px;
+	height: 73px;
+	background: url("http://v.t.qq.com/follow/images/right.jpg") no-repeat;
+}
+
+#txWb-header {
+	float: left;
+	margin-right:10px;
+	border:1px solid #888888;
+	background: url("http://v.t.qq.com/follow/images/right.jpg") no-repeat;
+	vertical-align:middle
+}
+
+.txWb-foBtn{
+	display: block;
+	margin-top:5px;
+	text-align:center;
+
+}
+
+#txWb_main{
+  padding-top:10px;
+  min-width:150px;
+}
+
+#txWb_logo 
+{
+vertical-align:middle;
+}
+
+#txWb_vip
+{
+vertical-align:middle;
+}
+
+#txWb_name
+{
+font-size:12px;
+}
+
+#txWb_middle { 
+	float: left;
+	height:73px;
+	background: url("http://v.t.qq.com/follow/images/center.jpg") repeat;
+}

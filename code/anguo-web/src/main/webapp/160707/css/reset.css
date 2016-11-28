@@ -1,4 +1,0 @@
-export JAVA_HOME=/usr/local/jdk1.8.0_101
-export CATALINA_HOME=/usr/local/apache-tomcat-8.5.5
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
