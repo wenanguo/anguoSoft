@@ -13,7 +13,7 @@
   
   
     <packages>
-      <package name="com.anguo.service.test" />
+      <package name="com.anguo.util.test" />
    </packages>
  </test>
 </suite>
