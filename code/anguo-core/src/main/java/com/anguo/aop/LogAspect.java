@@ -25,8 +25,7 @@ public class LogAspect {
 	        Object retVal = pjp.proceed();
 
 
-			//阿斯顿发
-	        
+
 	        return retVal;  
 	    }  
 	  

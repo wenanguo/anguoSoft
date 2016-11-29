@@ -1,10 +1,10 @@
 package com.anguo.util.test;
 
-import java.io.UnsupportedEncodingException;
-
+import com.anguo.util.AnguoEncryptUtil;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.anguo.util.AnguoEncryptUtil;
+import java.io.UnsupportedEncodingException;
 
 public class Base64Test {
 	
@@ -18,8 +18,9 @@ public class Base64Test {
     	String a=new String(AnguoEncryptUtil.decryptBASE64(reqParam),"utf-8");
     	
     	System.out.println(a);
-    	
-    	
+        Assert.assertEquals(false,true);
+
+
     }
 
 }
