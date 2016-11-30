@@ -9,6 +9,6 @@ public interface CommonSysJobMapper extends BaseMapper<CommonSysJob> {
 	 * 启动是将暂停状态修改为停用  
 	 * @return
 	 */
-	public int updateDataByPause();
+	int updateDataByPause();
 
 }
