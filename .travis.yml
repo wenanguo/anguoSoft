@@ -1,3 +1,5 @@
 language: java
 sudo: required
-script: cd code gradle build
+script: 
+  -cd code 
+  -gradle build
