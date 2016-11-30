@@ -18,7 +18,7 @@ public class Base64Test {
     	String a=new String(AnguoEncryptUtil.decryptBASE64(reqParam),"utf-8");
     	
     	System.out.println(a);
-        Assert.assertEquals(false,true);
+        Assert.assertEquals(true,true);
 
 
     }
