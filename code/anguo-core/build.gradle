@@ -116,7 +116,7 @@ dependencies {
     compile group: 'jsptags', name: 'pager-taglib', version:'2.0'
     compile group: 'bouncycastle', name: 'bcprov-jdk16', version:'140'
     compile group: 'org.apache.directory.studio', name: 'org.apache.commons.codec', version:'1.8'
-    compile group: 'com.baidu', name: 'ueditor', version:'1.2.6.1'
+
     testCompile group: 'org.testng', name: 'testng', version:'6.3.1'
     compile(group: 'javax.servlet.jsp', name: 'jsp-api', version:'2.2.1-b03') {
 
