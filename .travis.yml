@@ -1,5 +1,5 @@
 language: java
 sudo: false
 script: 
- cd code/anguo-core
- mvn test clean package
+ cd code
+ gradle build
