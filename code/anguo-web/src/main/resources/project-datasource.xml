@@ -2,7 +2,6 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -39,14 +38,14 @@
         </property> 
    </bean>
      
-   
+
     <!-- 阿里云RDS  -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://115.29.151.55:3306/stm?characterEncoding=utf-8" /> 
+		<property name="jdbcUrl" value="jdbc:mysql://55fd001f57bb5.sh.cdb.myqcloud.com:8392/herblist?characterEncoding=utf-8" />
 		<property name="username" value="root" />
-		<property name="password" value="wenanguo" />
+		<property name="password" value="Matrining81215" />
     </bean>
 	
 	

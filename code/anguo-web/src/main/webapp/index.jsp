@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>学生学籍管理系统</title>
+<title>考神后台管理系统</title>
 <jsp:include page="resources/page/inc.jsp"></jsp:include>
 <script type="text/javascript">
 	var index_tabs;

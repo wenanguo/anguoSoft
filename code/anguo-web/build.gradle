@@ -1,12 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'maven'
-//apply plugin: 'checkstyle'
+apply plugin:"jetty"
 
 group = 'com.anguo'
 version = '1.0.7-SNAPSHOT'
 
 
-description = """anguo-core"""
+description = """anguo-web"""
 
 
 sourceCompatibility = 1.7
@@ -70,13 +70,16 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.anguo', name: 'anguo-core', version:'1.0.6'
     compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.1'
     compile group: 'javax.servlet', name: 'jstl', version:'1.2'
     compile group: 'taglibs', name: 'standard', version:'1.1.2'
     compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.18'
     compile group: 'org.activiti', name: 'activiti-engine', version:'5.13'
     compile group: 'org.activiti', name: 'activiti-spring', version:'5.13'
-    compile group: 'org.quartz-scheduler', name: 'quartz', version:'2.2.1'
+    compile group: 'org.apache.poi', name: 'poi', version:'3.11-beta3'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version:'3.11-beta3'
+    compile group: 'com.tencent', name: 'xinge', version:'1.1.5'
     compile group: 'log4j', name: 'log4j', version:'1.2.16'
     compile group: 'org.springframework', name: 'spring-core', version:'4.0.5.RELEASE'
     compile group: 'org.springframework', name: 'spring-beans', version:'4.0.5.RELEASE'
@@ -96,17 +99,11 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-web', version:'3.2.4.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-config', version:'3.2.4.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-acl', version:'3.2.4.RELEASE'
-    compile group: 'org.mongodb', name: 'mongo-java-driver', version:'2.11.1'
-    compile group: 'org.springframework.data', name: 'spring-data-mongodb', version:'1.7.0.RELEASE'
     compile group: 'cglib', name: 'cglib', version:'2.2'
     compile group: 'commons-fileupload', name: 'commons-fileupload', version:'1.3'
-    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version:'1.9.7'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.4.2'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.4.2'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.4.2'
-    compile group: 'joda-time', name: 'joda-time', version:'2.4'
     compile group: 'org.aspectj', name: 'aspectjrt', version:'1.6.12'
     compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.6.12'
+    compile group: 'dom4j', name: 'dom4j', version:'1.6.1'
     compile group: 'com.jolbox', name: 'bonecp', version:'0.7.1.RELEASE'
     compile group: 'com.jolbox', name: 'bonecp-spring', version:'0.7.1.RELEASE'
     compile group: 'org.slf4j', name: 'slf4j-api', version:'1.6.4'
@@ -114,16 +111,23 @@ dependencies {
     compile group: 'org.mybatis', name: 'mybatis', version:'3.2.2'
     compile group: 'org.mybatis', name: 'mybatis-spring', version:'1.1.1'
     compile group: 'jsptags', name: 'pager-taglib', version:'2.0'
-    compile group: 'bouncycastle', name: 'bcprov-jdk16', version:'140'
-    compile group: 'org.apache.directory.studio', name: 'org.apache.commons.codec', version:'1.8'
+    compile group: 'com.baidu', name: 'ueditor', version:'1.2.6.1'
+    compile group: 'commons-httpclient', name: 'commons-httpclient', version:'3.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version:'4.3.4'
+    compile group: 'com.google.zxing', name: 'core', version:'3.0.0'
+    compile group: 'com.google.zxing', name: 'javase', version:'3.0.0'
+    testCompile group: 'org.testng', name: 'testng', version:'6.3.1'
+    providedCompile group: 'javax.servlet.jsp', name: 'jsp-api', version:'2.2.1-b03'
+    providedCompile group: 'javax.servlet', name: 'servlet-api', version:'2.5'
+}
 
-    compile group: 'org.testng', name: 'testng', version:'6.3.1'
-    compile(group: 'javax.servlet.jsp', name: 'jsp-api', version:'2.2.1-b03') {
 
-    }
-    compile(group: 'javax.servlet', name: 'servlet-api', version:'2.5') {
-
-    }
+jettyRun{
+    webAppSourceDirectory file("$projectDir/src/main/webapp")
+    httpPort 8080
+    contextPath project.name
+    scanIntervalSeconds 0
+    reload "automatic"
 }
 
 
