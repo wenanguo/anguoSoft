@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.MDC;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+//import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * ClassName:interceptorT
