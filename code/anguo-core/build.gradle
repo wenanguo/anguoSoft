@@ -1,9 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 //apply plugin: 'checkstyle'
+apply plugin: 'idea'
+
 
 group = 'com.anguo'
-version = '1.0.7-SNAPSHOT'
+version = '1.0.8-SNAPSHOT'
 
 
 description = """anguo-core"""
@@ -16,6 +18,17 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
+jar {
+
+
+    from('src/main/java') {
+        include 'com/**/*.xml'
+    }
+
+    from('src/main/java') {
+        include 'com/**/*.properties'
+    }
+}
 
 
 //判断是否正式版本
@@ -60,12 +73,13 @@ test {
 
 repositories {
 
-
-     maven { url "http://repo.maven.apache.org/maven2" }
      maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
-     maven { url "http://10.201.250.20:8080/cmcc-nexus/content/groups/public/" }
-     maven { url "http://maven.springframework.org/milestone" }
-     maven { url "https://maven.alfresco.com/nexus/content/groups/public/" }
+    maven { url "http://10.201.250.20:8080/cmcc-nexus/content/groups/public/" }
+    maven { url "http://maven.springframework.org/milestone" }
+    maven { url "https://maven.alfresco.com/nexus/content/groups/public/" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+
+
 
 }
 

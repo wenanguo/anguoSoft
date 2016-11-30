@@ -21,11 +21,9 @@ public class LogAspect {
 	  
 	    public Object doAround(ProceedingJoinPoint pjp) throws Throwable {  
 	    	
-	    	//test
-	        Object retVal = pjp.proceed();
-
-
-
+	    
+	        Object retVal = pjp.proceed();  
+	        
 	        return retVal;  
 	    }  
 	  

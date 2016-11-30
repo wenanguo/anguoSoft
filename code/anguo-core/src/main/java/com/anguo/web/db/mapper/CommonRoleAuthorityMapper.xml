@@ -42,13 +42,13 @@
 
 	<!-- 删除 -->
 	<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonRoleAuthority">
-		delete from ${commonSchema}.common_role_authority
+		delete from goe.common_role_authority
 		where id=#{id}
 	</delete>
 
 	<!-- 删除当前角色权限 -->
 	<delete id="deleteDataByRole" parameterType="com.anguo.web.db.domain.CommonSysRole">
-		delete from ${commonSchema}.common_role_authority
+		delete from goe.common_role_authority
 		where common_sys_role_id=#{id}
 	</delete>
 
