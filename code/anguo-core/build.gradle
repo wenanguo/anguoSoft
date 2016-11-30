@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'checkstyle'
+//apply plugin: 'checkstyle'
 
 group = 'com.anguo'
 version = '1.0.7-SNAPSHOT'
