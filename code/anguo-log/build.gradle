@@ -58,11 +58,11 @@ test {
 
 
 repositories {
-		 maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
-     maven { url "http://10.201.250.20:8080/cmcc-nexus/content/groups/public/" }
-     maven { url "http://maven.springframework.org/milestone" }
-     maven { url "https://maven.alfresco.com/nexus/content/groups/public/" }
-     maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    maven { url "http://10.201.250.20:8080/cmcc-nexus/content/groups/public/" }
+    maven { url "http://maven.springframework.org/milestone" }
+    maven { url "https://maven.alfresco.com/nexus/content/groups/public/" }
 }
 
 dependencies {
