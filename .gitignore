@@ -19,7 +19,7 @@
 /code/**/src/main/webapp/META-INF/
 /code/**/src/main/webapp/WEB-INF/classes/
 /code/**/src/main/webapp/WEB-INF/lib/
-/documents/¹¤³Ì¹ÜÀí/Éè¼Æ¹ÜÀí/ÏîÄ¿¿ìËÙÔ­ĞÍ/
+/documents/å·¥ç¨‹ç®¡ç†/è®¾è®¡ç®¡ç†/é¡¹ç›®å¿«é€ŸåŸå‹/
 
 
 /**/.idea
@@ -44,3 +44,6 @@
 /code/**/node_modules
 /code/**/bower_components
 /code/**/test
+
+/code/**/.gradle
+/code/**/build
