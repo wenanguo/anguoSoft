@@ -1,4 +1,4 @@
-include 'anguo-core', 'anguo-log', 'anguo-web'
+include 'anguo-core'
 
 
 
