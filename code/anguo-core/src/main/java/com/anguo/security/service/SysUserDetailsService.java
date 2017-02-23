@@ -64,7 +64,7 @@ public class SysUserDetailsService implements UserDetailsService {
 		 userMap = new HashMap<String, CommonSysUser>();
 
 		 //CommonSysUser SysUser = null;
-		 log.info("============刷新用户资源==============");
+		 log.debug("============刷新用户资源==============");
 		 /**
 		  * 获得用户列表
 		  */

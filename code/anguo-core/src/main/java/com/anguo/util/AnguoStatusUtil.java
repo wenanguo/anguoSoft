@@ -46,12 +46,35 @@ public class AnguoStatusUtil {
 	 * 启动
 	 */
 	public static final int BASE_START=108;
-	
-	
+
+
 	/**
 	 * 未知
 	 */
-	public static final int BASE_UNKNOWN=110;	
+	public static final int BASE_UNKNOWN=110;
+
+	//审批，发货状态
+
+	/**
+	 * 未审核
+	 */
+	public static final int BASE_NOT_AUDIT=111;
+	/**
+	 * 已审核
+	 */
+	public static final int BASE_AUDITED=112;
+	/**
+	 * 已发货
+ 	 */
+	public static final int BASE_SENDING=113;
+	/**
+	 * 已收货
+ 	 */
+	public static final int BASE_DELIVERY=114;
+
+
+	
+    //支付
 	
 	/**
 	 * 未支付
