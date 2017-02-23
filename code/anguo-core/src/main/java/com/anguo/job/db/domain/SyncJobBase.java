@@ -42,10 +42,10 @@ public class SyncJobBase implements Job {
 //        
 //        
 //        } catch (SchedulerException e1) {  
-//            // TODO 尚未处理异常  
+
 //            e1.printStackTrace();  
 //        } catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
+
 //			e.printStackTrace();
 //		}   
         

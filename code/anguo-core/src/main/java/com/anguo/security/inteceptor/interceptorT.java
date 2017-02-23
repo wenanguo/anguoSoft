@@ -28,7 +28,7 @@ public class interceptorT extends HandlerInterceptorAdapter {
 		
 		//System.out.println("afterCompletion");
 		
-		// TODO Auto-generated method stub
+
 		super.afterCompletion(request, response, handler, ex);
 		
 	}
@@ -40,7 +40,7 @@ public class interceptorT extends HandlerInterceptorAdapter {
 		
 		//System.out.println("postHandle");
 		
-		// TODO Auto-generated method stub
+
 		super.postHandle(request, response, handler, modelAndView);
 		
 	}
