@@ -18,6 +18,12 @@ public class BaseVo {
 	private int totalPage;
 	private int totalCount;
 
+
+    /**
+     * 编号批量
+     */
+	private String ids;
+
 	/**
 	 * 用户名
 	 */
@@ -119,4 +125,11 @@ public class BaseVo {
 		this.sort = sort;
 	}
 
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
 }
