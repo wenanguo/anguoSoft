@@ -2,6 +2,8 @@ package com.anguo.mybatis.db.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  * 分页参数类
  * 
@@ -53,6 +55,8 @@ public class BaseVo {
 		this.rows = pageSize;
 	}
 
+
+    @XmlTransient
 	public int getRows() {
 		return rows;
 	}
@@ -60,7 +64,7 @@ public class BaseVo {
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-
+    @XmlTransient
 	public int getPage() {
 		return page;
 	}
@@ -68,7 +72,7 @@ public class BaseVo {
 	public void setPage(int page) {
 		this.page = page;
 	}
-
+    @XmlTransient
 	public int getPrePage() {
 		return prePage;
 	}
@@ -76,7 +80,7 @@ public class BaseVo {
 	public void setPrePage(int prePage) {
 		this.prePage = prePage;
 	}
-
+    @XmlTransient
 	public int getNextPage() {
 		return nextPage;
 	}
@@ -84,7 +88,7 @@ public class BaseVo {
 	public void setNextPage(int nextPage) {
 		this.nextPage = nextPage;
 	}
-
+    @XmlTransient
 	public int getTotalPage() {
 		return totalPage;
 	}
@@ -92,7 +96,7 @@ public class BaseVo {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-
+    @XmlTransient
 	public int getTotalCount() {
 		return totalCount;
 	}
@@ -100,7 +104,7 @@ public class BaseVo {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-
+    @XmlTransient
 	public String getRealName() {
 		return realName;
 	}
@@ -108,7 +112,7 @@ public class BaseVo {
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
-
+    @XmlTransient
 	public String getOrder() {
 		return order;
 	}
@@ -116,7 +120,7 @@ public class BaseVo {
 	public void setOrder(String order) {
 		this.order = order;
 	}
-
+    @XmlTransient
 	public String getSort() {
 		return sort;
 	}
@@ -124,7 +128,7 @@ public class BaseVo {
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
-
+    @XmlTransient
     public String getIds() {
         return ids;
     }
