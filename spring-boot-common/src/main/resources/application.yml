@@ -1,0 +1,58 @@
+thymeleaf:
+    cache: false
+    mode: html
+
+logging:
+  level:
+    root: INFO
+
+
+#数据库配置
+spring:
+  datasource:
+    ##导入指定的sql
+    #schema: import.sql
+    url: jdbc:mysql://115.29.151.55:3306/dsm?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wenanguo
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+
+#使用 yml的方式
+mybatis:
+  type-aliases-package: com.anguo.db.domain
+  #mapper-locations: ['mapper/UserMapper.xml']
+  mapper-locations: classpath:mybatis/**/*.xml
+
+#server:
+#  port: 9091
+server:
+  port: 8082
+
+#
+management:
+  port: 8083
+
+---
+
+
+spring:
+  profiles: development
+
+logging:
+  level:
+    root: DEBUG
+
+
+
+---
+
+
+spring:
+  profiles: production
+
+logging:
+  path: /tmp/
+  file: BookWorm.log
+  level:
+  root: WARN
