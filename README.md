@@ -3,4 +3,6 @@
 
 [操作手册](https://github.com/wenanguo/anguosoft/wiki)
 
-版本更新v1.2.0
+### 版本更新v2.0.1
+
+项目第二阶段，基于spring-boot相关技术重构，整体配置简化。

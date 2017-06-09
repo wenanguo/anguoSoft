@@ -1,5 +1,6 @@
 language: java
 sudo: required
 script: 
-- cd code 
-- gradle build
+- cd spring-boot-common 
+#- gradle build
+- mvn clean test package
