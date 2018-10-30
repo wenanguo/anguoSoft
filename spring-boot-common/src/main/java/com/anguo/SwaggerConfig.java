@@ -19,7 +19,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 // 自行修改为自己的包路径
-                .apis(RequestHandlerSelectors.basePackage("net.ainio.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.anguo"))
                 .paths(PathSelectors.any())
                 .build();
     }

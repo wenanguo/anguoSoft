@@ -16,10 +16,5 @@ public class TestSwaggerController {
         return "hello world";
     }
  
-    @ApiOperation(value="添加用户信息", notes = "添加用户信息")
-    @ApiImplicitParam(name="user", value="User", required = true, dataType = "User")
-    @PostMapping("/addUser")
-    public Object addUser(@RequestBody User user){
-        return "success";
-    }
+
 }
