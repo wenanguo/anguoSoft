@@ -19,9 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by wenanguo on 2017/6/8.
  */
-@Api(value="/Index", tags="首页相关模块")
+@Api(value="/SystemUser", tags="用户管理模块")
+@RequestMapping("/systemuser")
 @RestController
-public class SysUser {
+public class SysUserController {
 
     @Autowired
     private UserMapper userMapper;

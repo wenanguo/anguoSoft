@@ -55,4 +55,4 @@ logging:
   path: /tmp/
   file: BookWorm.log
   level:
-  root: WARN
+  root: INFO
