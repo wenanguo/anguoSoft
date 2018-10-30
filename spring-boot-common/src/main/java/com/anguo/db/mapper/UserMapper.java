@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 
+
 @Mapper
 public interface UserMapper {
 
@@ -28,6 +29,9 @@ public interface UserMapper {
     @Select("SELECT * FROM user")
     @ResultMap("userMap")
     List<User> fingAll();
+    
+    
+    List<User> selectByPrimaryKey();
 
 
     int insertUserXml(User user);

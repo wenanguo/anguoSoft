@@ -12,7 +12,7 @@ spring:
   datasource:
     ##导入指定的sql
     #schema: import.sql
-    url: jdbc:mysql://115.29.151.55:3306/dsm?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://115.29.151.55:3306/pyfw?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: wenanguo
     driver-class-name: com.mysql.jdbc.Driver
@@ -23,9 +23,9 @@ mybatis:
   type-aliases-package: com.anguo.db.domain
   #mapper-locations: ['mapper/UserMapper.xml']
   mapper-locations: classpath:mybatis/**/*.xml
+  #mapper-locations: classpath:mapper/*.xml
 
-#server:
-#  port: 9091
+
 server:
   port: 8082
 
