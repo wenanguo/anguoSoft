@@ -1,4 +1,4 @@
-package com.anguo.db.domain;
+package com.anguo.web.domain;
 
 /**
  * Created by wenanguo on 2017/6/10.

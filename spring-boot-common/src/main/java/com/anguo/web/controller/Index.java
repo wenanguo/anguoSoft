@@ -1,18 +1,16 @@
-package com.anguo.web;
+package com.anguo.web.controller;
 
-import com.anguo.db.mapper.UserMapper;
-import com.anguo.db.domain.User;
+import com.anguo.web.domain.User;
+import com.anguo.web.mapper.UserMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

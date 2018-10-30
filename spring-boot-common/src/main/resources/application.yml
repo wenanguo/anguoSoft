@@ -20,9 +20,9 @@ spring:
 
 #使用 yml的方式
 mybatis:
-  type-aliases-package: com.anguo.db.domain
+  type-aliases-package: com.anguo.*.domain
   #mapper-locations: ['mapper/UserMapper.xml']
-  mapper-locations: classpath:mybatis/**/*.xml
+  mapper-locations: classpath:com/anguo/**/*.xml
   #mapper-locations: classpath:mapper/*.xml
 
 

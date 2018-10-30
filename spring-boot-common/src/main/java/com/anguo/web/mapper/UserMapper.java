@@ -1,7 +1,9 @@
-package com.anguo.db.mapper;
+package com.anguo.web.mapper;
 
-import com.anguo.db.domain.User;
 import org.apache.ibatis.annotations.*;
+
+import com.anguo.web.domain.User;
+
 import java.util.List;
 
 
