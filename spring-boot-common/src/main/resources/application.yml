@@ -7,6 +7,8 @@ logging:
     root: INFO
 
 
+
+
 #数据库配置
 spring:
   datasource:
@@ -39,6 +41,7 @@ management:
 
 spring:
   profiles: development
+
 
 logging:
   level:
