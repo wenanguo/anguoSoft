@@ -1,11 +1,14 @@
 package com.anguo;
  
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -26,12 +29,12 @@ public class SwaggerConfig {
  
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("api文档")
-                .description("restfun 风格接口")
+                .title("基础框架接口文档")
+                .description("此文档为研发基础框架文档")
                 //服务条款网址
-                //.termsOfServiceUrl("http://blog.csdn.net/forezp")
+                .termsOfServiceUrl("http://www.cmcc.com")
                 .version("1.0")
-                //.contact(new Contact("帅呆了", "url", "email"))
+                .contact(new Contact("Andrew Wen", "http://www.baidu.com", "79912844@qq.com"))
                 .build();
     }
 }

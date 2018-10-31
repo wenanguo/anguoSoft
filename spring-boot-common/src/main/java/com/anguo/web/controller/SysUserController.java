@@ -1,6 +1,8 @@
 package com.anguo.web.controller;
 
+import com.anguo.web.db.domain.CommonRoleInfo;
 import com.anguo.web.db.domain.User;
+import com.anguo.web.db.mapper.CommonRoleInfoMapper;
 import com.anguo.web.db.mapper.UserMapper;
 import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.Api;
@@ -27,6 +29,9 @@ public class SysUserController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommonRoleInfoMapper commonRoleInfoMapper;
+
     @ApiOperation(value="展现用户信息", notes = "展现用户信息")
     @ApiImplicitParam(name="user", value="User", dataType = "User")
     @GetMapping("/list")
@@ -36,6 +41,20 @@ public class SysUserController {
         PageHelper.startPage(2,2);//无法与 注解生成动态sql同步使用
 
         List<User> list=this.userMapper.selectByPrimaryKey();
+
+
+        return list;
+    }
+
+
+
+    @ApiOperation(value="展现用户信息", notes = "展现用户信息")
+    @ApiImplicitParam(name="user", value="User", dataType = "User")
+    @GetMapping("/rolelist")
+    public List<?> rolelist(CommonRoleInfo commonRoleInfo) {
+
+
+        List<CommonRoleInfo> list=this.commonRoleInfoMapper.getPageData(commonRoleInfo);
 
 
         return list;
