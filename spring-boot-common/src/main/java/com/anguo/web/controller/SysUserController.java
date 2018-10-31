@@ -1,7 +1,7 @@
 package com.anguo.web.controller;
 
-import com.anguo.web.domain.User;
-import com.anguo.web.mapper.UserMapper;
+import com.anguo.web.db.domain.User;
+import com.anguo.web.db.mapper.UserMapper;
 import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -55,8 +55,8 @@ public class SysUserController {
 
         return "success";
     }
-    
-    
+
+
 //    /**
 //	 * 微信访问初始入口
 //	 * @param request
