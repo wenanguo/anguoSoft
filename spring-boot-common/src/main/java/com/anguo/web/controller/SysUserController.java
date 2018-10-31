@@ -8,15 +8,11 @@ import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by wenanguo on 2017/6/8.
@@ -25,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/systemuser")
 @RestController
 public class SysUserController {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(SysUserController.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -53,7 +52,9 @@ public class SysUserController {
     @GetMapping("/rolelist")
     public List<?> rolelist(CommonRoleInfo commonRoleInfo) {
 
-
+        logger.warn("warn");
+        logger.info("info");
+        logger.debug("debug");
         List<CommonRoleInfo> list=this.commonRoleInfoMapper.getPageData(commonRoleInfo);
 
 
