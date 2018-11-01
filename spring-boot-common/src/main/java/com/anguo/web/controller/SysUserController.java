@@ -1,9 +1,11 @@
 package com.anguo.web.controller;
 
+import com.anguo.mybatis.db.core.PageResult;
+import com.anguo.util.AnguoStatusUtil;
 import com.anguo.web.db.domain.CommonRoleInfo;
 import com.anguo.web.db.domain.User;
-import com.anguo.web.db.mapper.CommonRoleInfoMapper;
 import com.anguo.web.db.mapper.UserMapper;
+import com.anguo.web.service.CommonRoleInfoService;
 import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,7 +31,7 @@ public class SysUserController {
     private UserMapper userMapper;
 
     @Autowired
-    private CommonRoleInfoMapper commonRoleInfoMapper;
+    private CommonRoleInfoService commonRoleInfoService;
 
     @ApiOperation(value="展现用户信息", notes = "展现用户信息")
     @ApiImplicitParam(name="user", value="User", dataType = "User")
@@ -50,15 +52,30 @@ public class SysUserController {
     @ApiOperation(value="展现用户信息", notes = "展现用户信息")
     @ApiImplicitParam(name="user", value="User", dataType = "User")
     @GetMapping("/rolelist")
-    public List<?> rolelist(CommonRoleInfo commonRoleInfo) {
+    public PageResult<List<CommonRoleInfo>> rolelist(CommonRoleInfo commonRoleInfo) {
 
         logger.warn("warn");
         logger.info("info");
         logger.debug("debug");
-        List<CommonRoleInfo> list=this.commonRoleInfoMapper.getPageData(commonRoleInfo);
 
 
-        return list;
+        PageResult<List<CommonRoleInfo>> result=new PageResult<List<CommonRoleInfo>>();
+
+        try {
+            result= commonRoleInfoService.getPageData(commonRoleInfo);
+        } catch (Exception e) {
+
+            logger.error("发生错误，因为：" + e.getMessage());
+            e.printStackTrace();
+            result.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
+            result.setMsg(result.getMsg()+":"+e.getMessage());
+
+        }
+
+//        PageResult<CommonRoleInfo> list=this.commonRoleInfoService.getPageData(commonRoleInfo);
+
+
+        return result;
     }
 
 

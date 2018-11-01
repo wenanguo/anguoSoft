@@ -1,31 +1,30 @@
-
 package com.anguo.web.db.domain;
 
 
+
+
+import java.util.Date;
 import com.anguo.mybatis.db.core.BaseVo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.util.Date;
-
 
 /**
- * 实体类
- *
- * @author Andrew.Wen
+ * 角色表-实体类
  * @ClassName: CommonRoleInfo
+ * @author Andrew.Wen
  */
-public class CommonRoleInfo extends BaseVo {
+public class CommonRoleInfo extends BaseVo  {
 
     /**
      * .
      */
     private Integer id;
     /**
-     * .
+     * 编码.
      */
     private String roleCode;
     /**
-     * .
+     * 角色名称.
      */
     private String roleName;
     /**
@@ -49,6 +48,9 @@ public class CommonRoleInfo extends BaseVo {
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date operateTime;
+
+
+
 
 
     public Integer getId() {

@@ -41,7 +41,7 @@ public class HttpTests {
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(jsonPath("$.[0].roleName").value("Lee"));
+                .andExpect(jsonPath("$.rows.[0].roleName").value("Lee"));
     }
 
 }

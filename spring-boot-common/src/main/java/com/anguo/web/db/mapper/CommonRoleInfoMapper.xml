@@ -1,193 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anguo.web.db.mapper.CommonRoleInfoMapper">
 
- <!-- 配置内容信息 -->
-	<resultMap id="commonRoleInfoMap" type="com.anguo.web.db.domain.CommonRoleInfo" >
-		
-		 		<result property="id" column="id" />
-		 		<result property="roleCode" column="role_code" />
-		 		<result property="roleName" column="role_name" />
-		 		<result property="roleOrder" column="role_order" />
-		 		<result property="roleRemark" column="role_remark" />
-		 		<result property="status" column="status" />
-		 		<result property="operateUserId" column="operate_user_id" />
-		 		<result property="operateTime" column="operate_time" />
-		 		 <result property="realName" column="real_name" />
-	</resultMap>
+    <!-- 配置内容信息 -->
+    <resultMap id="commonRoleInfoMap" type="com.anguo.web.db.domain.CommonRoleInfo" >
+
+        <result property="id" column="id" />
+        <result property="roleCode" column="role_code" />
+        <result property="roleName" column="role_name" />
+        <result property="roleOrder" column="role_order" />
+        <result property="roleRemark" column="role_remark" />
+        <result property="status" column="status" />
+        <result property="operateUserId" column="operate_user_id" />
+        <result property="operateTime" column="operate_time" />
+        <result property="realName" column="real_name" />
+    </resultMap>
 
 
     <sql id="Base_Column_List">
-                    a.id,
-                    a.role_code,
-                    a.role_name,
-                    a.role_order,
-                    a.role_remark,
-                    a.status,
-                    a.operate_user_id,
-                    a.operate_time
-            </sql>
+        a.id,
+        a.role_code,
+        a.role_name,
+        a.role_order,
+        a.role_remark,
+        a.status,
+        a.operate_user_id,
+        a.operate_time
 
-<!-- 分页查询 -->
-<select id="getPageData" resultMap="commonRoleInfoMap"
-               parameterType="com.anguo.web.db.domain.CommonRoleInfo">
-     select <include refid="Base_Column_List" /> from ${commonSchema}.common_role_info a
-     <trim prefix="where" prefixOverrides="and |or ">
-             <if test="id != null and id != ''">
-           and (a.id like concat('%',concat(#{id},'%')))
-        </if>
-             <if test="roleCode != null and roleCode != ''">
-           and (a.role_code like concat('%',concat(#{roleCode},'%')))
-        </if>
-             <if test="roleName != null and roleName != ''">
-           and (a.role_name like concat('%',concat(#{roleName},'%')))
-        </if>
-             <if test="roleOrder != null and roleOrder != ''">
-           and (a.role_order like concat('%',concat(#{roleOrder},'%')))
-        </if>
-             <if test="roleRemark != null and roleRemark != ''">
-           and (a.role_remark like concat('%',concat(#{roleRemark},'%')))
-        </if>
-             <if test="status != null and status != ''">
-           and (a.status like concat('%',concat(#{status},'%')))
-        </if>
-             <if test="operateUserId != null and operateUserId != ''">
-           and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
-        </if>
-             <if test="operateTime != null and operateTime != ''">
-           and (a.operate_time like concat('%',concat(#{operateTime},'%')))
-        </if>
-          </trim>
-     order by id desc
-</select>
-	
+    </sql>
 
-<!-- 查询 -->
-<select id="getAllData" resultMap="commonRoleInfoMap"
-               parameterType="com.anguo.web.db.domain.CommonRoleInfo">
-     select <include refid="Base_Column_List" /> from ${commonSchema}.common_role_info a
-     <trim prefix="where" prefixOverrides="and |or ">
-             <if test="id != null and id != ''">
-           and (a.id like concat('%',concat(#{id},'%')))
-        </if>
-             <if test="roleCode != null and roleCode != ''">
-           and (a.role_code like concat('%',concat(#{roleCode},'%')))
-        </if>
-             <if test="roleName != null and roleName != ''">
-           and (a.role_name like concat('%',concat(#{roleName},'%')))
-        </if>
-             <if test="roleOrder != null and roleOrder != ''">
-           and (a.role_order like concat('%',concat(#{roleOrder},'%')))
-        </if>
-             <if test="roleRemark != null and roleRemark != ''">
-           and (a.role_remark like concat('%',concat(#{roleRemark},'%')))
-        </if>
-             <if test="status != null and status != ''">
-           and (a.status like concat('%',concat(#{status},'%')))
-        </if>
-             <if test="operateUserId != null and operateUserId != ''">
-           and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
-        </if>
-             <if test="operateTime != null and operateTime != ''">
-           and (a.operate_time like concat('%',concat(#{operateTime},'%')))
-        </if>
-          </trim>
-     order by id desc
-</select>
+    <!-- 分页查询 -->
+    <select id="getPageData" resultMap="commonRoleInfoMap"
+            parameterType="com.anguo.web.db.domain.CommonRoleInfo">
 
-<!-- 读一条记录 -->
-<select id="getData" resultMap="commonRoleInfoMap" parameterType="com.anguo.web.db.domain.CommonRoleInfo">
-    select <include refid="Base_Column_List" /> from  ${commonSchema}.common_role_info as a
-    where id = #{id}
-</select>
+        select <include refid="Base_Column_List" /> from ${commonSchema}.common_role_info a
 
-<!-- 插入记录  -->
-<insert id="insertData" parameterType="com.anguo.web.db.domain.CommonRoleInfo" useGeneratedKeys="true" keyProperty="id">
-	
-	insert into  ${commonSchema}.common_role_info
-	<trim prefix="(" suffix=")" suffixOverrides=",">
-		id,
-		 		 		 		 		<if test="roleCode != null">
-				role_code,
-	  	</if>
-	  			 		 		<if test="roleName != null">
-				role_name,
-	  	</if>
-	  			 		 		<if test="roleOrder != null">
-				role_order,
-	  	</if>
-	  			 		 		<if test="roleRemark != null">
-				role_remark,
-	  	</if>
-	  			 		 		<if test="status != null">
-				status,
-	  	</if>
-	  			 		 		<if test="operateUserId != null">
-				operate_user_id,
-	  	</if>
-	  			 		 		<if test="operateTime != null">
-				operate_time,
-	  	</if>
-	  			 	</trim>
-	<trim prefix="values (" suffix=")" suffixOverrides=",">
-#{id},
-		
-		<if test="roleCode != null">
-#{roleCode},
-</if>
-				<if test="roleName != null">
-#{roleName},
-</if>
-				<if test="roleOrder != null">
-#{roleOrder},
-</if>
-				<if test="roleRemark != null">
-#{roleRemark},
-</if>
-				<if test="status != null">
-#{status},
-</if>
-				<if test="operateUserId != null">
-#{operateUserId},
-</if>
-				<if test="operateTime != null">
-#{operateTime},
-</if>
-					</trim>
-</insert>
+        <trim prefix="where" prefixOverrides="and |or ">
+            <if test="id != null and id != ''">
+                and (a.id like concat('%',concat(#{id},'%')))
+            </if>
+            <if test="roleCode != null and roleCode != ''">
+                and (a.role_code like concat('%',concat(#{roleCode},'%')))
+            </if>
+            <if test="roleName != null and roleName != ''">
+                and (a.role_name like concat('%',concat(#{roleName},'%')))
+            </if>
+            <if test="roleOrder != null and roleOrder != ''">
+                and (a.role_order like concat('%',concat(#{roleOrder},'%')))
+            </if>
+            <if test="roleRemark != null and roleRemark != ''">
+                and (a.role_remark like concat('%',concat(#{roleRemark},'%')))
+            </if>
+            <if test="status != null and status != ''">
+                and (a.status like concat('%',concat(#{status},'%')))
+            </if>
+            <if test="operateUserId != null and operateUserId != ''">
+                and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
+            </if>
+            <if test="operateTime != null and operateTime != ''">
+                and (a.operate_time like concat('%',concat(#{operateTime},'%')))
+            </if>
+        </trim>
+        order by id desc
+    </select>
 
-<!-- 修改  -->
-<update id="updateData" parameterType="com.anguo.web.db.domain.CommonRoleInfo">
-	update  ${commonSchema}.common_role_info 
-	<set>
-										<if test="roleCode != null and roleCode != ''">
-			role_code=#{roleCode},
-		</if>
-								<if test="roleName != null and roleName != ''">
-			role_name=#{roleName},
-		</if>
-								<if test="roleOrder != null and roleOrder != ''">
-			role_order=#{roleOrder},
-		</if>
-								<if test="roleRemark != null and roleRemark != ''">
-			role_remark=#{roleRemark},
-		</if>
-								<if test="status != null and status != ''">
-			status=#{status},
-		</if>
-								<if test="operateUserId != null and operateUserId != ''">
-			operate_user_id=#{operateUserId},
-		</if>
-								<if test="operateTime != null and operateTime != ''">
-			operate_time=#{operateTime},
-		</if>
-					</set>
-	where id=#{id}
-</update>
 
-<!-- 删除 -->
-<delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonRoleInfo">
+    <!-- 查询 -->
+    <select id="getAllData" resultMap="commonRoleInfoMap"
+            parameterType="com.anguo.web.db.domain.CommonRoleInfo">
+
+        select <include refid="Base_Column_List" /> from ${commonSchema}.common_role_info a
+
+        <trim prefix="where" prefixOverrides="and |or ">
+            <if test="id != null and id != ''">
+                and (a.id like concat('%',concat(#{id},'%')))
+            </if>
+            <if test="roleCode != null and roleCode != ''">
+                and (a.role_code like concat('%',concat(#{roleCode},'%')))
+            </if>
+            <if test="roleName != null and roleName != ''">
+                and (a.role_name like concat('%',concat(#{roleName},'%')))
+            </if>
+            <if test="roleOrder != null and roleOrder != ''">
+                and (a.role_order like concat('%',concat(#{roleOrder},'%')))
+            </if>
+            <if test="roleRemark != null and roleRemark != ''">
+                and (a.role_remark like concat('%',concat(#{roleRemark},'%')))
+            </if>
+            <if test="status != null and status != ''">
+                and (a.status like concat('%',concat(#{status},'%')))
+            </if>
+            <if test="operateUserId != null and operateUserId != ''">
+                and (a.operate_user_id like concat('%',concat(#{operateUserId},'%')))
+            </if>
+            <if test="operateTime != null and operateTime != ''">
+                and (a.operate_time like concat('%',concat(#{operateTime},'%')))
+            </if>
+        </trim>
+        order by id desc
+    </select>
+
+    <!-- 读一条记录 -->
+    <select id="getData" resultMap="commonRoleInfoMap" parameterType="com.anguo.web.db.domain.CommonRoleInfo">
+        select <include refid="Base_Column_List" /> from  ${commonSchema}.common_role_info as a
+        where id = #{id}
+    </select>
+
+    <!-- 插入记录  -->
+    <insert id="insertData" parameterType="com.anguo.web.db.domain.CommonRoleInfo" useGeneratedKeys="true" keyProperty="id">
+
+        insert into  ${commonSchema}.common_role_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="roleCode != null">role_code,</if>
+            <if test="roleName != null">role_name,</if>
+            <if test="roleOrder != null">role_order,</if>
+            <if test="roleRemark != null">role_remark,</if>
+            <if test="status != null">status,</if>
+            <if test="operateUserId != null">operate_user_id,</if>
+            <if test="operateTime != null">operate_time,</if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id},
+            <if test="roleCode != null">#{roleCode},</if>
+            <if test="roleName != null">#{roleName},</if>
+            <if test="roleOrder != null">#{roleOrder},</if>
+            <if test="roleRemark != null">#{roleRemark},</if>
+            <if test="status != null">#{status},</if>
+            <if test="operateUserId != null">#{operateUserId},</if>
+            <if test="operateTime != null">#{operateTime},</if>
+        </trim>
+
+    </insert>
+
+    <!-- 修改  -->
+    <update id="updateData" parameterType="com.anguo.web.db.domain.CommonRoleInfo">
+        update  ${commonSchema}.common_role_info
+        <set>
+            <if test="roleCode != null and roleCode != ''">role_code=#{roleCode},</if>
+            <if test="roleName != null and roleName != ''">role_name=#{roleName},</if>
+            <if test="roleOrder != null and roleOrder != ''">role_order=#{roleOrder},</if>
+            <if test="roleRemark != null and roleRemark != ''">role_remark=#{roleRemark},</if>
+            <if test="status != null and status != ''">status=#{status},</if>
+            <if test="operateUserId != null and operateUserId != ''">operate_user_id=#{operateUserId},</if>
+            <if test="operateTime != null and operateTime != ''">operate_time=#{operateTime},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="deleteData" parameterType="com.anguo.web.db.domain.CommonRoleInfo">
 	delete from  ${commonSchema}.common_role_info 
 	where id=#{id}
 </delete>
