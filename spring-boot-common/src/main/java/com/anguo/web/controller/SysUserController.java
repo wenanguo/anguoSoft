@@ -49,34 +49,34 @@ public class SysUserController {
 
 
 
-    @ApiOperation(value="展现用户信息", notes = "展现用户信息")
-    @ApiImplicitParam(name="user", value="User", dataType = "User")
-    @GetMapping("/rolelist")
-    public PageResult<List<CommonRoleInfo>> rolelist(CommonRoleInfo commonRoleInfo) {
-
-        logger.warn("warn");
-        logger.info("info");
-        logger.debug("debug");
-
-
-        PageResult<List<CommonRoleInfo>> result=new PageResult<List<CommonRoleInfo>>();
-
-        try {
-            result= commonRoleInfoService.getPageData(commonRoleInfo);
-        } catch (Exception e) {
-
-            logger.error("发生错误，因为：" + e.getMessage());
-            e.printStackTrace();
-            result.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
-            result.setMsg(result.getMsg()+":"+e.getMessage());
-
-        }
-
-//        PageResult<CommonRoleInfo> list=this.commonRoleInfoService.getPageData(commonRoleInfo);
-
-
-        return result;
-    }
+//    @ApiOperation(value="展现用户信息", notes = "展现用户信息")
+//    @ApiImplicitParam(name="user", value="User", dataType = "User")
+//    @GetMapping("/rolelist")
+//    public PageResult<List<CommonRoleInfo>> rolelist(CommonRoleInfo commonRoleInfo) {
+//
+//        logger.warn("warn");
+//        logger.info("info");
+//        logger.debug("debug");
+//
+//
+//        PageResult<List<CommonRoleInfo>> result=new PageResult<List<CommonRoleInfo>>();
+//
+//        try {
+//            result= commonRoleInfoService.getPageData(commonRoleInfo);
+//        } catch (Exception e) {
+//
+//            logger.error("发生错误，因为：" + e.getMessage());
+//            e.printStackTrace();
+//            result.setCode(AnguoStatusUtil.INTERFACE_SERVICE_ERROR);
+//            result.setMsg(result.getMsg()+":"+e.getMessage());
+//
+//        }
+//
+////        PageResult<CommonRoleInfo> list=this.commonRoleInfoService.getPageData(commonRoleInfo);
+//
+//
+//        return result;
+//    }
 
 
 
